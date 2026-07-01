@@ -3,7 +3,7 @@
    ============================================================ */
 
 .site-header {
-  background: rgba(255, 255, 255, 0.85);
+  background: #ffffff;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   position: sticky;
@@ -25,23 +25,59 @@
 }
 
 /* Logo */
-.logo {
-  font-family: var(--font-serif);
-  font-size: 1.35rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: var(--color-dark);
+.site-header .logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 0;
+  text-decoration: none;
 }
-.logo i {
-  color: var(--color-primary);
-  transition: transform 0.5s ease;
+
+.site-header .logo img {
+  display: block;
+
+  /* tamanho ideal para desktop */
+  width: clamp(190px, 24vw, 380px);
+  height: auto;
+
+  /* impede a logo de deixar o header gigante */
+  max-height: 105px;
+
+  object-fit: contain;
 }
-.logo:hover i {
-  transform: rotate(45deg);
+
+/* Ajuste do header para ficar mais elegante */
+.site-header .inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  min-height: 105px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .site-header .inner {
+    min-height: 78px;
+    padding: 0.6rem 1rem;
+  }
+
+  .site-header .logo img {
+    width: clamp(150px, 52vw, 230px);
+    max-height: 65px;
+  }
+}
+
+/* Telas grandes */
+@media (min-width: 1280px) {
+  .site-header .logo img {
+    width: 400px;
+    max-height: 115px;
+  }
 }
 
 /* Nav desktop */
