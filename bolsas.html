@@ -1,162 +1,151 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bolsas de Crochê | Atelier Fios & Artes</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Bolsas Artesanais | Atelier Fios &amp; Artes</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;display=swap"
       rel="stylesheet"
     />
     <link
-      rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
     />
-    <link rel="stylesheet" href="./assets/css/main.css" />
-    <link rel="stylesheet" href="./assets/css/header.css" />
-    <link rel="stylesheet" href="./assets/css/components.css" />
-    <link rel="stylesheet" href="./assets/css/pages/catalog.css" />
-    <link rel="stylesheet" href="./assets/css/footer.css" />
+    <link href="./assets/css/main.css" rel="stylesheet" />
+    <link href="./assets/css/header.css" rel="stylesheet" />
+    <link href="./assets/css/components.css" rel="stylesheet" />
+    <link href="./assets/css/pages/catalog.css" rel="stylesheet" />
+    <link href="./assets/css/footer.css" rel="stylesheet" />
   </head>
   <body>
     <!-- HEADER (igual ao index) -->
     <header class="site-header">
       <div class="inner">
-        <a href="index.html" class="logo">
-          <i class="fa-solid fa-fan"></i> Fios & Artes
+        <a class="logo" href="index.html">
+          <i class="fa-solid fa-fan"> </i>
+          Fios &amp; Artes
         </a>
         <nav class="nav-desktop">
-          <a href="index.html">Início</a>
-          <div class="dropdown">
-            <button>
-              Catálogo <i class="fa-solid fa-chevron-down chevron"></i>
-            </button>
-            <div class="dropdown-panel">
-              <a href="bolsas.html"><i class="fa-solid fa-minus"></i> Bolsas</a>
-              <a href="decoracao.html"
-                ><i class="fa-solid fa-minus"></i> Decoração</a
-              >
-              <a href="vestidos.html"
-                ><i class="fa-solid fa-minus"></i> Vestidos</a
-              >
-            </div>
-          </div>
-          <a href="sobre.html">Nossa História</a>
+          <a href="index.html"> In&iacute;cio </a>
+          <a href="bolsas.html"> Bolsas </a>
+          <a href="sobre.html"> Nossa Hist&oacute;ria </a>
         </nav>
         <a
+          class="header-cta"
           href="https://wa.me/5579999999999"
           target="_blank"
-          class="header-cta"
         >
-          <i class="fa-brands fa-whatsapp"></i> Fale Conosco
+          <i class="fa-brands fa-whatsapp"> </i>
+          Fale Conosco
         </a>
         <button class="menu-toggle" id="menu-btn">
-          <i class="fa-solid fa-bars-staggered"></i>
+          <i class="fa-solid fa-bars-staggered"> </i>
         </button>
       </div>
       <div class="mobile-menu hidden" id="mobile-menu">
         <div class="inner-mobile">
-          <a href="index.html">Início</a>
-          <span class="mobile-cat-title">Catálogo</span>
-          <div class="mobile-sub">
-            <a href="bolsas.html">Bolsas</a>
-            <a href="decoracao.html">Decoração</a>
-            <a href="vestidos.html">Vestidos</a>
-          </div>
-          <a href="sobre.html">Nossa História</a>
+          <a href="index.html"> In&iacute;cio </a>
+          <a href="bolsas.html"> Bolsas </a>
+          <a href="sobre.html"> Nossa Hist&oacute;ria </a>
           <a
+            class="mobile-cta"
             href="https://wa.me/5579999999999"
             target="_blank"
-            class="mobile-cta"
           >
-            <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
+            <i class="fa-brands fa-whatsapp"> </i>
+            Chamar no WhatsApp
           </a>
         </div>
       </div>
     </header>
-
     <main>
       <div class="catalog-page">
         <div class="catalog-header">
-          <span class="section-label">Catálogo Exclusivo</span>
+          <span class="section-label"> Cat&aacute;logo Exclusivo </span>
           <h1 class="section-title">
-            Bolsas de <span class="highlight-word">Crochê e Palha</span>
+            Bolsas de
+            <span class="highlight-word"> Croch&ecirc; Artesanal </span>
           </h1>
           <p class="section-subtitle" style="margin: 0.75rem auto 0">
-            Feitas à mão com fios selecionados, cada bolsa carrega elegância,
-            durabilidade e um design único.
+            Feitas &agrave; m&atilde;o com fios selecionados, cada bolsa carrega
+            eleg&acirc;ncia, durabilidade, pre&ccedil;o Pix e
+            op&ccedil;&otilde;es de parcelamento.
           </p>
           <div class="divider"></div>
         </div>
         <div class="catalog-grid-wrap">
-          <div id="grid-bolsas" class="products-grid"></div>
+          <div class="products-grid" id="grid-bolsas"></div>
         </div>
       </div>
-
       <section class="cta-section">
         <div class="inner">
-          <h2>Quer uma cor <span class="highlight-word">diferente</span>?</h2>
+          <h2>
+            Quer uma cor
+            <span class="highlight-word"> diferente </span>
+            ?
+          </h2>
           <p>
-            Faço sob encomenda! Me conta no WhatsApp o modelo e as cores que
-            você sonha.
+            Fa&ccedil;o sob encomenda! Me conta no WhatsApp o modelo e as cores
+            que voc&ecirc; sonha.
           </p>
           <a
+            class="btn-whatsapp"
             href="https://wa.me/5579999999999"
             target="_blank"
-            class="btn-whatsapp"
           >
-            <i class="fa-brands fa-whatsapp"></i> Fazer Encomenda
+            <i class="fa-brands fa-whatsapp"> </i>
+            Fazer Encomenda
           </a>
         </div>
       </section>
     </main>
-
     <footer class="site-footer">
       <div class="inner">
         <div class="footer-grid">
           <div class="footer-brand">
-            <a href="index.html" class="logo"
-              ><i class="fa-solid fa-fan"></i> Fios & Artes</a
-            >
+            <a class="logo" href="index.html">
+              <i class="fa-solid fa-fan"> </i>
+              Fios &amp; Artes
+            </a>
             <p>
-              Atelier de crochê artesanal. Criando belezas ponto a ponto com
-              fios selecionados e muito afeto.
+              Atelier de bolsas em croch&ecirc; artesanal. Criando belezas ponto
+              a ponto com fios selecionados e muito afeto.
             </p>
             <div class="footer-socials">
-              <a href="#"><i class="fa-brands fa-instagram"></i></a>
-              <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
-              <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#">
+                <i class="fa-brands fa-instagram"> </i>
+              </a>
+              <a href="#">
+                <i class="fa-brands fa-pinterest-p"> </i>
+              </a>
+              <a href="#">
+                <i class="fa-brands fa-facebook-f"> </i>
+              </a>
             </div>
           </div>
           <div class="footer-col">
-            <h3>Navegação Rápida</h3>
+            <h3>Navega&ccedil;&atilde;o R&aacute;pida</h3>
             <ul class="footer-links">
               <li>
-                <a href="index.html"
-                  ><i class="fa-solid fa-caret-right"></i> Início</a
-                >
+                <a href="index.html">
+                  <i class="fa-solid fa-caret-right"> </i>
+                  In&iacute;cio
+                </a>
               </li>
               <li>
-                <a href="bolsas.html"
-                  ><i class="fa-solid fa-caret-right"></i> Bolsas</a
-                >
+                <a href="bolsas.html">
+                  <i class="fa-solid fa-caret-right"> </i>
+                  Bolsas
+                </a>
               </li>
               <li>
-                <a href="decoracao.html"
-                  ><i class="fa-solid fa-caret-right"></i> Decoração</a
-                >
-              </li>
-              <li>
-                <a href="vestidos.html"
-                  ><i class="fa-solid fa-caret-right"></i> Vestidos</a
-                >
-              </li>
-              <li>
-                <a href="sobre.html"
-                  ><i class="fa-solid fa-caret-right"></i> Quem Somos</a
-                >
+                <a href="sobre.html">
+                  <i class="fa-solid fa-caret-right"> </i>
+                  Quem Somos
+                </a>
               </li>
             </ul>
           </div>
@@ -164,35 +153,47 @@
             <h3>Contato</h3>
             <ul class="footer-contact">
               <li>
-                <div class="icon"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="icon">
+                  <i class="fa-brands fa-whatsapp"> </i>
+                </div>
                 <div class="text">
                   <p>(79) 99999-9999</p>
                   <p>Seg. a sex.</p>
                 </div>
               </li>
               <li>
-                <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
-                <div class="text"><p>Entregas em Aracaju, SE.</p></div>
+                <div class="icon">
+                  <i class="fa-solid fa-location-dot"> </i>
+                </div>
+                <div class="text">
+                  <p>Entregas em Aracaju, SE.</p>
+                </div>
               </li>
             </ul>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; <span id="year"></span> Atelier Fios & Artes.</p>
-          <p>Feito com <i class="fa-solid fa-heart"></i> para você.</p>
+          <p>
+            &copy;
+            <span id="year"> </span>
+            Atelier Fios &amp; Artes.
+          </p>
+          <p>
+            Feito com
+            <i class="fa-solid fa-heart"> </i>
+            para voc&ecirc;.
+          </p>
         </div>
       </div>
     </footer>
-
     <a
+      class="whatsapp-float"
       href="https://wa.me/5579999999999"
       target="_blank"
-      class="whatsapp-float"
     >
-      <i class="fa-brands fa-whatsapp"></i>
-      <span class="tooltip">Fale conosco!</span>
+      <i class="fa-brands fa-whatsapp"> </i>
+      <span class="tooltip"> Fale conosco! </span>
     </a>
-
     <script src="./assets/js/produtos.js"></script>
     <script src="./assets/js/cards.js"></script>
     <script src="./assets/js/main.js"></script>

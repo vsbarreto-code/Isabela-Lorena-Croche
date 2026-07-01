@@ -200,7 +200,7 @@
 .product-image-wrap {
   position: relative;
   overflow: hidden;
-  /* Proporção 4:5 — ótima para produtos verticais (bolsas, vestidos) */
+  /* Proporção 4:5 — ótima para produtos verticais (bolsas) */
   aspect-ratio: 4 / 5;
   background: var(--color-accent);
   flex-shrink: 0;
@@ -545,5 +545,71 @@
   .products-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
+  }
+}
+
+/* ---- PREÇOS DOS PRODUTOS ---- */
+.product-price {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.85rem 0.95rem;
+  margin: 0 0 1.15rem;
+  border-radius: 1rem;
+  background: rgba(240, 235, 225, 0.65);
+  border: 1px solid rgba(197, 168, 128, 0.22);
+  text-align: left;
+}
+
+.price-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  line-height: 1.25;
+}
+
+.price-line span {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(44, 42, 40, 0.58);
+}
+
+.price-line strong {
+  font-size: clamp(0.92rem, 2vw, 1.05rem);
+  color: var(--color-dark);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.price-pix strong {
+  color: var(--color-whatsapp-dark);
+}
+
+.product-price small {
+  display: block;
+  padding-top: 0.15rem;
+  color: rgba(44, 42, 40, 0.55);
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+
+@media (max-width: 479px) {
+  .product-price {
+    padding: 0.75rem;
+    margin-bottom: 0.95rem;
+  }
+
+  .price-line {
+    flex-direction: column;
+    gap: 0.15rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .product-price small {
+    text-align: center;
   }
 }

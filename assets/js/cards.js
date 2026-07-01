@@ -1,12 +1,34 @@
 // ============================================================
-// CARDS — geração de HTML, troca de variantes e lazy loading
+// CARDS — geração de HTML, troca de variantes, preços e WhatsApp
 // ============================================================
 
-function getWhatsappLink(productName, cor = null) {
-  let m = `Olá! Estava navegando no site do Atelier e me apaixonei pela peça: *${productName}*.`;
-  if (cor)
-    m = `Olá! Estava navegando no site do Atelier e me apaixonei pela peça: *${productName}* na cor *${cor}*.`;
-  m += ` Gostaria de saber detalhes como valor e prazo de confecção.`;
+function getPrecoTexto(produto) {
+  if (!produto.preco) return "";
+
+  const partes = [];
+  if (produto.preco.pix) partes.push(`Pix ${produto.preco.pix}`);
+  if (produto.preco.parcelas && produto.preco.valorParcela) {
+    partes.push(
+      `${produto.preco.parcelas}x de ${produto.preco.valorParcela} no cartão`,
+    );
+  }
+  return partes.join(" ou ");
+}
+
+function getWhatsappLink(produto, cor = null) {
+  const nome = typeof produto === "string" ? produto : produto.nome;
+  const precoTexto = typeof produto === "string" ? "" : getPrecoTexto(produto);
+
+  let m = `Olá! Estava navegando no site do Atelier e me interessei pela bolsa: *${nome}*.`;
+  if (cor) {
+    m = `Olá! Estava navegando no site do Atelier e me interessei pela bolsa: *${nome}* na cor *${cor}*.`;
+  }
+
+  if (precoTexto) {
+    m += ` Vi no site o valor: ${precoTexto}.`;
+  }
+
+  m += ` Gostaria de saber disponibilidade e prazo de confecção.`;
   return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(m)}`;
 }
 
@@ -15,8 +37,6 @@ const FALLBACK_SVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 
 const FALLBACK_POR_CATEGORIA = {
   Bolsas: FALLBACK_SVG,
-  Vestidos: FALLBACK_SVG,
-  Decoração: FALLBACK_SVG,
 };
 
 function setFallback(imgEl, categoria) {
@@ -71,14 +91,41 @@ function changeProductVariant(
   btnElement.classList.add("active");
 
   const waBtn = document.getElementById(`wa-${prefix}-${produtoId}`);
-  if (waBtn)
-    waBtn.href = getWhatsappLink(waBtn.getAttribute("data-nome"), corNome);
+  const produto = produtos.find((p) => p.id === produtoId);
+  if (waBtn && produto) {
+    waBtn.href = getWhatsappLink(produto, corNome);
+  }
+}
+
+function generatePriceHTML(produto) {
+  if (!produto.preco) return "";
+
+  const pix = produto.preco.pix
+    ? `<div class="price-line price-pix"><span>Pix</span><strong>${produto.preco.pix}</strong></div>`
+    : "";
+
+  const parcelado =
+    produto.preco.parcelas && produto.preco.valorParcela
+      ? `<div class="price-line price-installment"><span>Cartão</span><strong>${produto.preco.parcelas}x de ${produto.preco.valorParcela}</strong></div>`
+      : "";
+
+  const totalParcelado = produto.preco.parcelado
+    ? `<small>Total parcelado: ${produto.preco.parcelado}</small>`
+    : "";
+
+  return `
+    <div class="product-price" aria-label="Preço da ${produto.nome}">
+      ${pix}
+      ${parcelado}
+      ${totalParcelado}
+    </div>
+  `;
 }
 
 function generateCardHTML(produto, prefix) {
   const defaultImagem = produto.variantes[0].imagem;
   const defaultCor = produto.variantes[0].corNome;
-  const waLink = getWhatsappLink(produto.nome, defaultCor);
+  const waLink = getWhatsappLink(produto, defaultCor);
 
   let coresHTML = `<div class="variants">`;
   produto.variantes.forEach((v, i) => {
@@ -121,6 +168,7 @@ function generateCardHTML(produto, prefix) {
         <h3>${produto.nome}</h3>
         <p>${produto.descricao}</p>
 
+        ${generatePriceHTML(produto)}
         ${coresHTML}
 
         <a
