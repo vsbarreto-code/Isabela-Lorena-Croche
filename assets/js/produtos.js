@@ -70,9 +70,9 @@ const produtos = [
     nome: "Bolsa Ryzia",
     imagemCapa: "./assets/img/bolsa-preta-com-sapato.jpeg",
     descricao:
-      "Modelo versátil e delicado para compor looks leves. Produção manual com pontos firmes e acabamento cuidadoso.",
+      "Bolsa artesanal em crochê com design estruturado, alça de mão e corrente. Elegante, versátil e perfeita para compor looks casuais ou mais sofisticados.",
     descricaoDetalhada:
-      "Uma opção elegante para quem gosta de uma bolsa com presença, mas sem perder a leveza artesanal. O design combina com produções casuais, passeios e ocasiões especiais.",
+      "A Bolsa Ryzia une o charme do crochê artesanal com um visual moderno e marcante. Seu formato estruturado traz presença ao look, enquanto a corrente dourada adiciona um toque delicado de sofisticação. É uma peça versátil, ideal para usar em passeios, encontros, eventos leves ou produções mais elegantes.",
     destaque: true,
     categoria: "Bolsas",
     badge: "Novo",
@@ -83,7 +83,8 @@ const produtos = [
       valorParcela: "R$ 56,63",
     },
     detalhes: {
-      subtitulo: "Versátil, moderna e fácil de combinar.",
+      subtitulo:
+        "Uma bolsa artesanal moderna, estruturada e fácil de combinar.",
       medidas: "Medidas aproximadas sob consulta no WhatsApp",
       material: "Crochê artesanal com acabamento premium",
       prazo: "Produção sob encomenda, conforme disponibilidade",
@@ -98,15 +99,15 @@ const produtos = [
     galeria: [
       {
         imagem: "./assets/img/dupla-bolsa-chanel-preto-branco.jpeg",
-        legenda: "Composição com duas opções de cor",
+        legenda: "Ryzia em duas versões clássicas",
       },
       {
         imagem: "./assets/img/bolsa-chanel-branco.jpeg",
-        legenda: "Modelo claro em tom Linho",
+        legenda: "Versão Branco para produções leves",
       },
       {
         imagem: "./assets/img/bolsa-preta-com-sapato.jpeg",
-        legenda: "Versão Preto Noite em composição elegante",
+        legenda: "Versão Preto em look elegante",
       },
     ],
     variantes: [
@@ -155,11 +156,11 @@ const produtos = [
     galeria: [
       {
         imagem: "./assets/img/bolsa-marrom-designer-diferente-perto.jpeg",
-        legenda: "Vista principal na cor Café",
+        legenda: "Raimunda em tom Ferrugem",
       },
       {
         imagem: "./assets/img/bolsa-marrom-designer-diferente-costa.jpeg",
-        legenda: "Vista principal na cor Café",
+        legenda: "Detalhe da textura artesanal",
       },
     ],
     variantes: [
@@ -202,7 +203,7 @@ const produtos = [
     galeria: [
       {
         imagem: "./assets/img/bolsa-preta-oval.jpeg",
-        legenda: "Vista principal na cor Café Intenso",
+        legenda: "Vista principal na cor Preta",
       },
     ],
     variantes: [
@@ -245,7 +246,7 @@ const produtos = [
     galeria: [
       {
         imagem: "./assets/img/bolsa-oval-lateral-vermelha.jpeg",
-        legenda: "Vista principal na cor Café Intenso",
+        legenda: "Vista principal na cor Pink",
       },
     ],
     variantes: [

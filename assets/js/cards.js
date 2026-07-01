@@ -24,11 +24,11 @@ function getWhatsappLink(produto, cor = null) {
     m = `Olá! Estava navegando no site do Atelier e me interessei pela bolsa: *${nome}* na cor *${cor}*.`;
   }
 
-  if (precoTexto) {
-    m += ` Vi no site o valor: ${precoTexto}.`;
-  }
+  // if (precoTexto) {
+  //   m += ` Vi no site o valor: ${precoTexto}.`;
+  // }
 
-  m += ` Gostaria de saber disponibilidade e prazo de confecção.`;
+  // m += ` Gostaria de saber disponibilidade e prazo de confecção.`;
   return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(m)}`;
 }
 
