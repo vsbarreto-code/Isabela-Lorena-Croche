@@ -12,7 +12,7 @@ const whatsappNumber = "5579999999999";
 const produtos = [
   {
     id: 1,
-    nome: "Bolsa Amarelada",
+    nome: "Bolsa Raíssa",
     descricao:
       "Bolsa de ombro espaçosa com trama elegante. Ideal para o dia a dia, forrada e com acabamento artesanal.",
     descricaoDetalhada:
@@ -29,7 +29,7 @@ const produtos = [
     detalhes: {
       subtitulo: "Modelo espaçoso, delicado e perfeito para o dia a dia.",
       medidas: "Medidas aproximadas sob consulta no WhatsApp",
-      material: "Fio selecionado para crochê artesanal",
+      material: " Fio de Malha",
       prazo: "Produção sob encomenda, conforme disponibilidade",
       diferenciais: [
         "Trama artesanal com acabamento cuidadoso",
@@ -52,20 +52,26 @@ const produtos = [
     ],
     variantes: [
       {
+        corHex:
+          "linear-gradient(135deg, #9A9B4F 0%, #F4E5A6 32%, #D60F3E 64%, #B8A7D9 100%)",
+        corNome: "Mix",
+        imagem: "/assets/img/conjunto-4-bolsas-coloridas.jpeg",
+      },
+      {
         corHex: "#F4E5B1",
-        corNome: "Baunilha",
+        corNome: "Amarelo Bebê",
         imagem: "./assets/img/bolsa-amarelada.jpeg",
       },
       {
         corHex: "#D60F3E",
-        corNome: "Cereja",
+        corNome: "Pink",
         imagem: "./assets/img/bolsa-vermelha-normal.jpeg",
       },
     ],
   },
   {
     id: 2,
-    nome: "Bolsa Shopper 'Areia'",
+    nome: "Bolsa Ryzia",
     descricao:
       "Modelo versátil e delicado para compor looks leves. Produção manual com pontos firmes e acabamento cuidadoso.",
     descricaoDetalhada:
@@ -120,7 +126,7 @@ const produtos = [
   },
   {
     id: 3,
-    nome: "Bolsa Mini 'Vinho'",
+    nome: "Bolsa Raimunda",
     descricao:
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
@@ -138,7 +144,7 @@ const produtos = [
       subtitulo:
         "Compacta e elegante para eventos, passeios e looks especiais.",
       medidas: "Medidas aproximadas sob consulta no WhatsApp",
-      material: "Fio de crochê com estrutura firme",
+      material: "Fio Náutico",
       prazo: "Produção sob encomenda, conforme disponibilidade",
       diferenciais: [
         "Tamanho prático para levar o essencial",
@@ -149,7 +155,11 @@ const produtos = [
     },
     galeria: [
       {
-        imagem: "./assets/img/bolsa-marrom-menor-designer-diferente.jpeg",
+        imagem: "/assets/img/bolsa-marrom-designer-diferente-perto.jpeg",
+        legenda: "Vista principal na cor Café",
+      },
+      {
+        imagem: "/assets/img/bolsa-marrom-designer-diferente-costa.jpeg",
         legenda: "Vista principal na cor Café",
       },
     ],
@@ -157,7 +167,7 @@ const produtos = [
       {
         corHex: "#64370D",
         corNome: "Café",
-        imagem: "./assets/img/bolsa-marrom-menor-designer-diferente.jpeg",
+        imagem: "/assets/img/bolsa-marrom-menor-designer-diferente.jpeg",
       },
     ],
   },
@@ -200,6 +210,53 @@ const produtos = [
         corHex: "#14120F",
         corNome: "Café Intenso",
         imagem: "./assets/img/bolsa-preta-oval.jpeg",
+      },
+    ],
+  },
+  {
+    id: 5,
+    nome: "Bolsa Eliza",
+    descricao:
+      "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
+    descricaoDetalhada:
+      "Um modelo compacto em tom escuro, com visual marcante e sofisticado. Ideal para quem busca uma bolsa artesanal discreta, elegante e fácil de usar em diferentes produções.",
+    destaque: false,
+    categoria: "Bolsas",
+    badge: "Novo",
+    preco: {
+      pix: "R$ 129,90",
+      parcelado: "R$ 139,90",
+      parcelas: 2,
+      valorParcela: "R$ 69,95",
+    },
+    detalhes: {
+      subtitulo: "Clássica, compacta e sofisticada.",
+      medidas: "Medidas aproximadas sob consulta no WhatsApp",
+      material: "Crochê artesanal com estrutura firme",
+      prazo: "Produção sob encomenda, conforme disponibilidade",
+      diferenciais: [
+        "Cor escura fácil de combinar",
+        "Design compacto e elegante",
+        "Acabamento artesanal feito com cuidado",
+        "Boa escolha para eventos e uso casual chic",
+      ],
+    },
+    galeria: [
+      {
+        imagem: "/assets/img/bolsa-oval-lateral-vermelha.jpeg",
+        legenda: "Vista principal na cor Café Intenso",
+      },
+    ],
+    variantes: [
+      {
+        corHex: "#F17805",
+        corNome: "Café Intenso",
+        imagem: "/assets/img/bolsa-oval-lateral-laranja.jpeg",
+      },
+      {
+        corHex: "#FB0046",
+        corNome: "Café Intenso",
+        imagem: "/assets/img/bolsa-oval-lateral-vermelha.jpeg",
       },
     ],
   },
