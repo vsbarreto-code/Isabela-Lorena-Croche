@@ -7,16 +7,21 @@
 
 /* ---- CONTAINER PRINCIPAL ---- */
 
-.site-footer {
-  background: #fff;
-  border-top: 1px solid rgba(197, 168, 128, 0.12);
-  padding: clamp(3rem, 6vw, 4.5rem) 0 2rem;
+/* Logo do footer */
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  text-decoration: none;
+  margin-bottom: 1.25rem;
 }
 
-.site-footer .inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 clamp(1rem, 3vw, 1.5rem);
+.footer-logo img {
+  display: block;
+  width: clamp(150px, 18vw, 260px);
+  max-height: 80px;
+  height: auto;
+  object-fit: contain;
 }
 
 /* ---- GRID DE COLUNAS ---- */

@@ -5,7 +5,7 @@
 .catalog-page {
   background: var(--color-light);
   min-height: 100vh;
-  padding: clamp(4rem, 8vw, 5.5rem) 0 clamp(4rem, 7vw, 6rem);
+  /* padding: clamp(4rem, 8vw, 5.5rem) 0 clamp(4rem, 7vw, 6rem); */
 }
 
 /* ---- HEADER ---- */
