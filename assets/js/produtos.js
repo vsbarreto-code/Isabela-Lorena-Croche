@@ -4,15 +4,17 @@
 // Como usar a página individual:
 // - Cada produto precisa ter um id único.
 // - O botão "Ver detalhes" abre: produto.html?id=ID_DO_PRODUTO.
-// - Para adicionar mais fotos na página individual, preencha o campo galeria.
-// - O campo variantes continua sendo usado para trocar as cores nos cards.
+// - imagemCapa aparece apenas nos cards da home/catálogo.
+// - galeria aparece apenas na página individual do produto.
+// - variantes continua sendo usado para trocar as cores nos cards e na página individual.
 // ============================================================
-const whatsappNumber = "5579999999999";
+const whatsappNumber = "5579999802943";
 
 const produtos = [
   {
     id: 1,
     nome: "Bolsa Raíssa",
+    imagemCapa: "./assets/img/conjunto-4-bolsas-coloridas.jpeg",
     descricao:
       "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado. Um modelo elegante para usar do dia a dia aos momentos especiais.",
     descricaoDetalhada:
@@ -49,18 +51,8 @@ const produtos = [
         imagem: "./assets/img/bolsa-vermelha-normal.jpeg",
         legenda: "Bolsa Raíssa na cor Pink",
       },
-      {
-        imagem: "./assets/img/conjunto-4-bolsas-coloridas.jpeg",
-        legenda: "Opções de cores disponíveis para encomenda",
-      },
     ],
     variantes: [
-      {
-        corHex:
-          "linear-gradient(135deg, #9A9B4F 0%, #F4E5A6 32%, #D60F3E 64%, #B8A7D9 100%)",
-        corNome: "Mix",
-        imagem: "./assets/img/conjunto-4-bolsas-coloridas.jpeg",
-      },
       {
         corHex: "#F4E5B1",
         corNome: "Amarelo Bebê",
@@ -76,6 +68,7 @@ const produtos = [
   {
     id: 2,
     nome: "Bolsa Ryzia",
+    imagemCapa: "./assets/img/bolsa-preta-com-sapato.jpeg",
     descricao:
       "Modelo versátil e delicado para compor looks leves. Produção manual com pontos firmes e acabamento cuidadoso.",
     descricaoDetalhada:
@@ -132,6 +125,7 @@ const produtos = [
   {
     id: 3,
     nome: "Bolsa Raimunda",
+    imagemCapa: "./assets/img/bolsa-marrom-menor-designer-diferente.jpeg",
     descricao:
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
@@ -178,7 +172,8 @@ const produtos = [
   },
   {
     id: 4,
-    nome: "Bolsa Ines",
+    nome: "Bolsa Inês",
+    imagemCapa: "./assets/img/bolsa-preta-oval.jpeg",
     descricao:
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
@@ -221,6 +216,7 @@ const produtos = [
   {
     id: 5,
     nome: "Bolsa Eliza",
+    imagemCapa: "./assets/img/bolsa-oval-lateral-laranja.jpeg",
     descricao:
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
@@ -248,7 +244,7 @@ const produtos = [
     },
     galeria: [
       {
-        imagem: "//assets/img/bolsa-oval-lateral-vermelha.jpeg",
+        imagem: "./assets/img/bolsa-oval-lateral-vermelha.jpeg",
         legenda: "Vista principal na cor Café Intenso",
       },
     ],

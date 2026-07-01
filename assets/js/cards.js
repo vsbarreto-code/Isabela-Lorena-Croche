@@ -129,7 +129,8 @@ function jsParam(value) {
 function generateCardHTML(produto, prefix) {
   const variantes = Array.isArray(produto.variantes) ? produto.variantes : [];
   const primeiraVariante = variantes[0] || {};
-  const defaultImagem = primeiraVariante.imagem || FALLBACK_SVG;
+  const defaultImagem =
+    produto.imagemCapa || primeiraVariante.imagem || FALLBACK_SVG;
   const defaultCor = primeiraVariante.corNome || "Modelo principal";
   const waLink = getWhatsappLink(produto, defaultCor);
   const detalhesLink = produto.detalheUrl || `produto.html?id=${produto.id}`;

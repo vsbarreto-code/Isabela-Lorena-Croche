@@ -316,3 +316,64 @@
     padding: 0.3rem 0.6rem;
   }
 }
+
+/* ============================================================
+   RESPONSIVIDADE DO CATÁLOGO
+   Página bolsas.html.
+   ============================================================ */
+
+@media (max-width: 767px) {
+  .catalog-page .catalog-header {
+    padding: 2.2rem var(--inner-padding) 0;
+    margin-bottom: 2rem;
+  }
+
+  .catalog-page .catalog-header .section-title {
+    font-size: clamp(1.8rem, 10vw, 2.45rem);
+  }
+
+  .catalog-page .catalog-header .section-subtitle {
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .catalog-grid-wrap {
+    padding-inline: var(--inner-padding);
+  }
+
+  .catalog-page .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+
+  .catalog-page .product-image-wrap {
+    aspect-ratio: 4 / 4.85;
+  }
+
+  .catalog-page .product-card .content {
+    padding: 1.15rem;
+  }
+}
+
+@media (min-width: 560px) and (max-width: 899px) {
+  .catalog-page .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  .catalog-page .products-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 380px) {
+  .catalog-page .product-card h3 {
+    font-size: 1.15rem;
+  }
+
+  .catalog-page .product-card p {
+    font-size: 0.84rem;
+  }
+}

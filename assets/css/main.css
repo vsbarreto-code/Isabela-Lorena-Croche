@@ -283,3 +283,49 @@ button {
   background: rgba(197, 168, 128, 0.25);
   color: var(--color-dark);
 }
+
+/* ============================================================
+   AJUSTES RESPONSIVOS GLOBAIS
+   Mantém regras gerais aqui para evitar repetição nas páginas.
+   ============================================================ */
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  min-width: 320px;
+}
+
+.inner {
+  width: min(100%, 1280px);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --inner-padding: clamp(1rem, 5vw, 1.25rem);
+    --radius-card: 1.25rem;
+  }
+
+  .section-title {
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 359px) {
+  :root {
+    --inner-padding: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

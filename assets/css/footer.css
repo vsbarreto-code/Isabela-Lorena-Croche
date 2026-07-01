@@ -503,3 +503,55 @@
   color: rgba(197, 168, 128, 0.6);
   margin: 0 0.15rem;
 }
+
+/* ============================================================
+   RESPONSIVIDADE DO FOOTER
+   Rodapé global.
+   ============================================================ */
+
+@media (max-width: 767px) {
+  .site-footer {
+    padding: 3rem 0 2rem;
+  }
+
+  .site-footer .inner {
+    padding-inline: var(--inner-padding);
+  }
+
+  .footer-grid {
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .footer-brand > p {
+    margin-inline: auto;
+  }
+
+  .footer-logo {
+    justify-content: center;
+  }
+
+  .footer-logo img {
+    width: clamp(145px, 56vw, 220px);
+    max-height: 70px;
+  }
+
+  .footer-socials {
+    justify-content: center;
+  }
+
+  .footer-contact li {
+    justify-content: center;
+    text-align: left;
+  }
+
+  .footer-links a {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .footer-grid {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}

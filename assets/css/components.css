@@ -660,3 +660,110 @@
   font-size: 1rem;
   color: var(--color-primary);
 }
+
+/* ============================================================
+   RESPONSIVIDADE DOS COMPONENTES
+   Cards, botões, preço, benefícios e WhatsApp flutuante.
+   ============================================================ */
+
+@media (max-width: 767px) {
+  .benefits-bar {
+    padding: 1.1rem 0;
+  }
+
+  .benefits-bar .inner {
+    gap: 0.9rem;
+    padding-inline: var(--inner-padding);
+  }
+
+  .benefit-item {
+    padding-inline: 0.35rem;
+  }
+
+  .benefit-item h4 {
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+  }
+
+  .benefit-item p {
+    font-size: 0.66rem;
+    line-height: 1.35;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+
+  .product-card {
+    border-radius: 1.35rem;
+  }
+
+  .product-card .content {
+    padding: 1.15rem;
+  }
+
+  .product-card h3 {
+    font-size: 1.35rem;
+  }
+
+  .product-card p {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  .product-image-wrap {
+    aspect-ratio: 4 / 4.8;
+  }
+
+  #grid-destaques .product-image-wrap {
+    aspect-ratio: 4 / 4.7;
+  }
+
+  .btn-dark,
+  .btn-outline,
+  .btn-whatsapp,
+  .btn-details {
+    width: 100%;
+    min-height: 50px;
+  }
+
+  .whatsapp-float {
+    right: 1rem;
+    bottom: 1rem;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.45rem;
+  }
+
+  .whatsapp-float .tooltip {
+    display: none;
+  }
+}
+
+@media (min-width: 560px) and (max-width: 899px) {
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  .products-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 380px) {
+  .product-card .content {
+    padding: 1rem;
+  }
+
+  .product-card h3 {
+    font-size: 1.18rem;
+  }
+
+  .price-line {
+    align-items: center;
+  }
+}

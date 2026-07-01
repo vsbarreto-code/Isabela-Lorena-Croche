@@ -298,3 +298,91 @@
   margin-top: 1.25rem;
   border-bottom: none !important;
 }
+
+/* ============================================================
+   RESPONSIVIDADE DO HEADER
+   Regras específicas do header ficam neste arquivo.
+   ============================================================ */
+
+@media (max-width: 899px) {
+  .site-header .inner {
+    min-height: 76px;
+    padding: 0.6rem var(--inner-padding);
+  }
+
+  .site-header .logo img {
+    width: clamp(142px, 48vw, 220px);
+    max-height: 62px;
+  }
+
+  .nav-desktop,
+  .header-cta {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.65rem;
+    height: 2.65rem;
+    border-radius: 999px;
+    background: rgba(240, 235, 225, 0.7);
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: var(--header-height, 76px);
+    left: 0;
+    right: 0;
+    z-index: 49;
+    max-height: calc(100vh - 76px);
+    overflow-y: auto;
+  }
+
+  .mobile-menu .inner-mobile {
+    padding: 1.25rem var(--inner-padding) 1.5rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .nav-desktop {
+    display: flex;
+    gap: clamp(1.2rem, 2.4vw, 2.5rem);
+  }
+
+  .header-cta {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1180px) {
+  .site-header .logo img {
+    width: clamp(185px, 20vw, 250px);
+    max-height: 82px;
+  }
+
+  .site-header .inner {
+    min-height: 88px;
+  }
+
+  .nav-desktop a {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+  }
+
+  .header-cta {
+    padding-inline: 1rem;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .site-header .logo img {
+    width: clamp(130px, 44vw, 180px);
+  }
+}

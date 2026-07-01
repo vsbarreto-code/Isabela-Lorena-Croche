@@ -43,7 +43,10 @@
 
     (produto.galeria || []).forEach((item) => adicionar(item));
     (produto.variantes || []).forEach((item) =>
-      adicionar(item, item.corNome ? `Variação ${item.corNome}` : "Variação da bolsa"),
+      adicionar(
+        item,
+        item.corNome ? `Variação ${item.corNome}` : "Variação da bolsa",
+      ),
     );
 
     if (imagens.length === 0) {
@@ -294,7 +297,9 @@
       atualizarWhatsApp();
 
       const imagemDaCor = btn.dataset.imagem;
-      const indexDaImagem = imagens.findIndex((foto) => foto.imagem === imagemDaCor);
+      const indexDaImagem = imagens.findIndex(
+        (foto) => foto.imagem === imagemDaCor,
+      );
       if (indexDaImagem >= 0) selecionarImagem(indexDaImagem);
     });
   });

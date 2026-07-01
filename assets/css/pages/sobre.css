@@ -201,3 +201,60 @@
   color: rgba(44, 42, 40, 0.72);
   line-height: 1.7;
 }
+
+/* ============================================================
+   RESPONSIVIDADE DA PÁGINA SOBRE
+   Card de história, imagem e textos.
+   ============================================================ */
+
+@media (max-width: 767px) {
+  .sobre-section {
+    padding: 2.6rem 0 3.5rem;
+  }
+
+  .sobre-section .inner {
+    padding-inline: var(--inner-padding);
+  }
+
+  .sobre-card {
+    gap: 1.6rem;
+    padding: 1.15rem;
+    border-radius: 1.45rem;
+  }
+
+  .sobre-img-wrap img {
+    height: auto;
+    aspect-ratio: 4 / 4.8;
+    border-radius: 1.25rem;
+  }
+
+  .sobre-text {
+    text-align: left;
+  }
+
+  .sobre-text .section-title {
+    font-size: clamp(1.85rem, 10vw, 2.4rem);
+  }
+
+  .sobre-text p {
+    font-size: 0.92rem;
+    line-height: 1.75;
+  }
+
+  .sobre-text .custom-note {
+    padding: 1rem;
+    margin-top: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  .sobre-card {
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  .sobre-img-wrap img {
+    height: auto;
+    aspect-ratio: 4 / 4.5;
+  }
+}
