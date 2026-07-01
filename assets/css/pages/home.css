@@ -134,6 +134,19 @@
   margin: 0 auto;
   position: relative;
 }
+
+.hero-img-wrap {
+  position: relative;
+  z-index: 2;
+
+  border-radius: 9999px 9999px 4rem 4rem;
+  overflow: hidden;
+  border: 10px solid #fff;
+  box-shadow: var(--shadow-soft);
+  max-width: 22rem;
+  margin: 0 auto;
+}
+
 @media (min-width: 1024px) {
   .hero-visual {
     width: 50%;
@@ -142,14 +155,12 @@
   }
 }
 
-.hero-img-wrap {
-  border-radius: 9999px 9999px 4rem 4rem;
-  overflow: hidden;
-  border: 10px solid #fff;
-  box-shadow: var(--shadow-soft);
-  max-width: 22rem;
-  margin: 0 auto;
+.hero-orb-3,
+.hero-orb-4 {
+  z-index: 0;
+  pointer-events: none;
 }
+
 .hero-img-wrap img {
   width: 100%;
   aspect-ratio: 4/5;

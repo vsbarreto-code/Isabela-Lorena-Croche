@@ -97,7 +97,7 @@ const produtos = [
       diferenciais: [
         "Produzida artesanalmente em crochê com fio de malha extra premium",
         "Possui duas alças, permitindo versatilidade no uso",
-        "Corrente frontal que traz um toque sofisticado (Podendo ser alterado para cor prata)",
+        "Corrente que traz um toque sofisticado (Podendo ser alterado para cor prata)",
         "Tamanho ideal para carregar itens essenciais ",
         "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",
       ],
@@ -198,7 +198,7 @@ const produtos = [
       material: "Fio de Malha",
       prazo: "Produção sob encomenda, conforme disponibilidade",
       diferenciais: [
-        "Produzida artesanalmente em crochê com fio de malha",
+        "Produzida artesanalmente em crochê com fio de malha extra premium",
         "Design trançado traz um toque de elegância",
         "Tamanho prático para levar o essencial",
         "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",

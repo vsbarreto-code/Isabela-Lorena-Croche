@@ -73,12 +73,7 @@
 }
 
 .gallery-main-wrap::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.45), transparent 34%);
-  z-index: 1;
-  pointer-events: none;
+  display: none;
 }
 
 .gallery-main-img {
