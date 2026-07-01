@@ -119,12 +119,12 @@ const produtos = [
     variantes: [
       {
         corHex: "#D2CDC4",
-        corNome: "Linho",
+        corNome: "Branco",
         imagem: "./assets/img/bolsa-chanel-branco.jpeg",
       },
       {
         corHex: "#151517",
-        corNome: "Preto Noite",
+        corNome: "Preto",
         imagem: "./assets/img/bolsa-preta-com-sapato.jpeg",
       },
     ],
@@ -171,7 +171,7 @@ const produtos = [
     variantes: [
       {
         corHex: "#64370D",
-        corNome: "Café",
+        corNome: "Ferrugem",
         imagem: "./assets/img/bolsa-marrom-menor-designer-diferente.jpeg",
       },
     ],
@@ -213,7 +213,7 @@ const produtos = [
     variantes: [
       {
         corHex: "#14120F",
-        corNome: "Café Intenso",
+        corNome: "Preto",
         imagem: "./assets/img/bolsa-preta-oval.jpeg",
       },
     ],
@@ -255,12 +255,12 @@ const produtos = [
     variantes: [
       {
         corHex: "#F17805",
-        corNome: "Café Intenso",
+        corNome: "Ferrugem",
         imagem: "./assets/img/bolsa-oval-lateral-laranja.jpeg",
       },
       {
         corHex: "#FB0046",
-        corNome: "Café Intenso",
+        corNome: "Pink",
         imagem: "./assets/img/bolsa-oval-lateral-vermelha.jpeg",
       },
     ],
