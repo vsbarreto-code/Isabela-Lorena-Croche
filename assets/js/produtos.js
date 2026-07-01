@@ -26,8 +26,13 @@ const produtos = [
     variantes: [
       {
         corHex: "#F4E5B1",
-        corNome: "Café Escuro",
+        corNome: "Baunilha",
         imagem: "/assets/img/bolsa-amarelada.jpeg",
+      },
+      {
+        corHex: "#D60F3E",
+        corNome: "Cereja",
+        imagem: "/assets/img/bolsa-vermelha-normal.jpeg",
       },
       // {
       //   corHex: "#440512",
@@ -58,12 +63,12 @@ const produtos = [
       },
       {
         corHex: "#D2CDC4",
-        corNome: "Café Escuro",
+        corNome: "Linho",
         imagem: "/assets/img/bolsa-chanel-branco.jpeg",
       },
       {
         corHex: "#151517",
-        corNome: "Vinho",
+        corNome: "Preto Noite",
         imagem: "/assets/img/bolsa-preta-com-sapato.jpeg",
       },
     ],
@@ -85,7 +90,7 @@ const produtos = [
     variantes: [
       {
         corHex: "#64370D",
-        corNome: "Vinho",
+        corNome: "Café",
         imagem: "/assets/img/bolsa-marrom-menor-designer-diferente.jpeg",
       },
       // {
@@ -111,35 +116,8 @@ const produtos = [
     },
     variantes: [
       {
-        corHex: "#D60F3E",
-        corNome: "Vinho",
-        imagem: "/assets/img/bolsa-vermelha-normal.jpeg",
-      },
-      // {
-      //   corHex: "#D9CE9E",
-      //   corNome: "Café Escuro",
-      //   imagem: "./assets/img/bolsa-amarela.jpeg",
-      // },
-    ],
-  },
-  {
-    id: 5,
-    nome: "Bolsa Mini 'Vinho'",
-    descricao:
-      "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
-    destaque: false,
-    categoria: "Bolsas",
-    badge: "Novo",
-    preco: {
-      pix: "R$ 129,90",
-      parcelado: "R$ 139,90",
-      parcelas: 2,
-      valorParcela: "R$ 69,95",
-    },
-    variantes: [
-      {
         corHex: "#14120F",
-        corNome: "Vinho",
+        corNome: "Café Intenso",
         imagem: "/assets/img/bolsa-preta-oval.jpeg",
       },
       // {
