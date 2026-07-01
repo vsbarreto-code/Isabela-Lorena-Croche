@@ -14,9 +14,9 @@ const produtos = [
     id: 1,
     nome: "Bolsa Raíssa",
     descricao:
-      "Bolsa de ombro espaçosa com trama elegante. Ideal para o dia a dia, forrada e com acabamento artesanal.",
+      "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado. Um modelo elegante para usar do dia a dia aos momentos especiais.",
     descricaoDetalhada:
-      "Uma bolsa artesanal pensada para acompanhar a rotina com elegância, leveza e presença. O modelo tem visual delicado, acabamento manual e combina muito bem com looks neutros, casuais e produções mais arrumadas.",
+      "A Bolsa Raíssa foi criada para quem gosta de unir delicadeza, presença e praticidade em uma única peça. Feita artesanalmente em fio de malha, ela tem trama encorpada, visual sofisticado e detalhes dourados que valorizam o acabamento. É uma bolsa versátil, perfeita para compor looks leves, casuais ou mais arrumados, mantendo o charme do feito à mão.",
     destaque: true,
     categoria: "Bolsas",
     badge: "Novo",
@@ -27,35 +27,39 @@ const produtos = [
       valorParcela: "R$ 59,97",
     },
     detalhes: {
-      subtitulo: "Modelo espaçoso, delicado e perfeito para o dia a dia.",
+      subtitulo:
+        "Uma bolsa artesanal marcante, delicada no visual e cheia de charme nos detalhes.",
       medidas: "Medidas aproximadas sob consulta no WhatsApp",
       material: " Fio de Malha",
       prazo: "Produção sob encomenda, conforme disponibilidade",
       diferenciais: [
-        "Trama artesanal com acabamento cuidadoso",
-        "Boa capacidade para itens essenciais do dia a dia",
-        "Pode ser encomendada em outras cores disponíveis",
-        "Atendimento local em Aracaju, SE",
+        "Produzida artesanalmente em crochê com fio de malha extra premium",
+        "Possui duas alças, permitindo versatilidade no uso",
+        "Corrente frontal que traz um toque sofisticado (Podendo ser alterado para cor prata)",
+        "Tamanho ideal para carregar itens essenciais ",
+        "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",
       ],
     },
     galeria: [
       {
         imagem: "./assets/img/bolsa-amarelada.jpeg",
-        legenda: "Vista principal da bolsa na cor Baunilha",
+        legenda: "Bolsa Raíssa na cor Amarelo Bebê",
       },
       {
         imagem: "./assets/img/bolsa-vermelha-normal.jpeg",
-        legenda: "Variação na cor Cereja",
+        legenda: "Bolsa Raíssa na cor Pink",
       },
-      // Para adicionar mais fotos desse produto, copie este formato:
-      // { imagem: "./assets/img/nome-da-foto.jpeg", legenda: "Detalhe da alça" },
+      {
+        imagem: "./assets/img/conjunto-4-bolsas-coloridas.jpeg",
+        legenda: "Opções de cores disponíveis para encomenda",
+      },
     ],
     variantes: [
       {
         corHex:
           "linear-gradient(135deg, #9A9B4F 0%, #F4E5A6 32%, #D60F3E 64%, #B8A7D9 100%)",
         corNome: "Mix",
-        imagem: "/assets/img/conjunto-4-bolsas-coloridas.jpeg",
+        imagem: "./assets/img/conjunto-4-bolsas-coloridas.jpeg",
       },
       {
         corHex: "#F4E5B1",
@@ -91,10 +95,11 @@ const produtos = [
       material: "Crochê artesanal com acabamento premium",
       prazo: "Produção sob encomenda, conforme disponibilidade",
       diferenciais: [
-        "Modelo sofisticado para diferentes ocasiões",
-        "Acabamento manual ponto a ponto",
-        "Opções de cores para combinar com o seu estilo",
-        "Ideal para presentear ou usar em ocasiões especiais",
+        "Produzida artesanalmente em crochê com fio de malha extra premium",
+        "Possui duas alças, permitindo versatilidade no uso",
+        "Corrente frontal que traz um toque sofisticado (Podendo ser alterado para cor prata)",
+        "Tamanho ideal para carregar itens essenciais ",
+        "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",
       ],
     },
     galeria: [
@@ -147,19 +152,19 @@ const produtos = [
       material: "Fio Náutico",
       prazo: "Produção sob encomenda, conforme disponibilidade",
       diferenciais: [
+        "Produzida artesanalmente em crochê com fio náutico",
+        "Possui alça em corrente, trazendo um toque de sofisticação e delicadeza (Podendo ser alterado para cor prata)",
         "Tamanho prático para levar o essencial",
-        "Visual elegante para composições mais arrumadas",
-        "Peça artesanal com acabamento delicado",
-        "Possibilidade de encomenda em outras cores",
+        "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",
       ],
     },
     galeria: [
       {
-        imagem: "/assets/img/bolsa-marrom-designer-diferente-perto.jpeg",
+        imagem: "./assets/img/bolsa-marrom-designer-diferente-perto.jpeg",
         legenda: "Vista principal na cor Café",
       },
       {
-        imagem: "/assets/img/bolsa-marrom-designer-diferente-costa.jpeg",
+        imagem: "./assets/img/bolsa-marrom-designer-diferente-costa.jpeg",
         legenda: "Vista principal na cor Café",
       },
     ],
@@ -167,13 +172,13 @@ const produtos = [
       {
         corHex: "#64370D",
         corNome: "Café",
-        imagem: "/assets/img/bolsa-marrom-menor-designer-diferente.jpeg",
+        imagem: "./assets/img/bolsa-marrom-menor-designer-diferente.jpeg",
       },
     ],
   },
   {
     id: 4,
-    nome: "Bolsa Mini 'Noite'",
+    nome: "Bolsa Ines",
     descricao:
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
@@ -190,13 +195,13 @@ const produtos = [
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
       medidas: "Medidas aproximadas sob consulta no WhatsApp",
-      material: "Crochê artesanal com estrutura firme",
+      material: "Fio de Malha",
       prazo: "Produção sob encomenda, conforme disponibilidade",
       diferenciais: [
-        "Cor escura fácil de combinar",
-        "Design compacto e elegante",
-        "Acabamento artesanal feito com cuidado",
-        "Boa escolha para eventos e uso casual chic",
+        "Produzida artesanalmente em crochê com fio de malha",
+        "Design trançado traz um toque de elegância",
+        "Tamanho prático para levar o essencial",
+        "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",
       ],
     },
     galeria: [
@@ -232,7 +237,7 @@ const produtos = [
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
       medidas: "Medidas aproximadas sob consulta no WhatsApp",
-      material: "Crochê artesanal com estrutura firme",
+      material: "Fio de malha",
       prazo: "Produção sob encomenda, conforme disponibilidade",
       diferenciais: [
         "Cor escura fácil de combinar",
@@ -243,7 +248,7 @@ const produtos = [
     },
     galeria: [
       {
-        imagem: "/assets/img/bolsa-oval-lateral-vermelha.jpeg",
+        imagem: "//assets/img/bolsa-oval-lateral-vermelha.jpeg",
         legenda: "Vista principal na cor Café Intenso",
       },
     ],
@@ -251,12 +256,12 @@ const produtos = [
       {
         corHex: "#F17805",
         corNome: "Café Intenso",
-        imagem: "/assets/img/bolsa-oval-lateral-laranja.jpeg",
+        imagem: "./assets/img/bolsa-oval-lateral-laranja.jpeg",
       },
       {
         corHex: "#FB0046",
         corNome: "Café Intenso",
-        imagem: "/assets/img/bolsa-oval-lateral-vermelha.jpeg",
+        imagem: "./assets/img/bolsa-oval-lateral-vermelha.jpeg",
       },
     ],
   },
