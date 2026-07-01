@@ -63,7 +63,7 @@ function changeProductVariant(
   categoria,
 ) {
   const imgEl = document.getElementById(`img-${prefix}-${produtoId}`);
-  if (imgEl) {
+  if (imgEl && imagemUrl) {
     const wrap = imgEl.closest(".product-image-wrap");
     if (wrap) wrap.classList.remove("img-loaded");
 
@@ -122,35 +122,45 @@ function generatePriceHTML(produto) {
   `;
 }
 
-function generateCardHTML(produto, prefix) {
-  const defaultImagem = produto.variantes[0].imagem;
-  const defaultCor = produto.variantes[0].corNome;
-  const waLink = getWhatsappLink(produto, defaultCor);
+function jsParam(value) {
+  return JSON.stringify(String(value || ""));
+}
 
-  let coresHTML = `<div class="variants">`;
-  produto.variantes.forEach((v, i) => {
-    coresHTML += `
-      <button
-        onmouseenter="changeProductVariant(
-          ${produto.id},
-          '${prefix}',
-          '${v.imagem}',
-          this,
-          '${v.corNome}',
-          '${produto.categoria}'
-        )"
-        class="variant-btn ${i === 0 ? "active" : ""}"
-        style="background:${v.corHex}"
-        title="${v.corNome}"
-        aria-label="Ver variante ${v.corNome}"
-      ></button>
-    `;
-  });
-  coresHTML += `</div>`;
+function generateCardHTML(produto, prefix) {
+  const variantes = Array.isArray(produto.variantes) ? produto.variantes : [];
+  const primeiraVariante = variantes[0] || {};
+  const defaultImagem = primeiraVariante.imagem || FALLBACK_SVG;
+  const defaultCor = primeiraVariante.corNome || "Modelo principal";
+  const waLink = getWhatsappLink(produto, defaultCor);
+  const detalhesLink = produto.detalheUrl || `produto.html?id=${produto.id}`;
+
+  let coresHTML = "";
+
+  if (variantes.length > 0) {
+    coresHTML = `<div class="variants" aria-label="Cores disponíveis">`;
+    variantes.forEach((v, i) => {
+      const corNome = v.corNome || `Opção ${i + 1}`;
+      const corHex = v.corHex || "#f0ebe1";
+      const imagem = v.imagem || defaultImagem;
+
+      coresHTML += `
+        <button
+          type="button"
+          onmouseenter='changeProductVariant(${produto.id}, ${jsParam(prefix)}, ${jsParam(imagem)}, this, ${jsParam(corNome)}, ${jsParam(produto.categoria)})'
+          onclick='changeProductVariant(${produto.id}, ${jsParam(prefix)}, ${jsParam(imagem)}, this, ${jsParam(corNome)}, ${jsParam(produto.categoria)})'
+          class="variant-btn ${i === 0 ? "active" : ""}"
+          style="background:${corHex}"
+          title="${corNome}"
+          aria-label="Ver variante ${corNome}"
+        ></button>
+      `;
+    });
+    coresHTML += `</div>`;
+  }
 
   return `
-    <div class="product-card">
-      <div class="product-image-wrap">
+    <article class="product-card">
+      <a class="product-image-wrap" href="${detalhesLink}" aria-label="Ver detalhes da ${produto.nome}">
         <img
           id="img-${prefix}-${produto.id}"
           src="${defaultImagem}"
@@ -162,7 +172,7 @@ function generateCardHTML(produto, prefix) {
           onerror="setFallback(this,'${produto.categoria}')"
         />
         <span class="product-badge">${produto.badge}</span>
-      </div>
+      </a>
 
       <div class="content">
         <h3>${produto.nome}</h3>
@@ -171,19 +181,26 @@ function generateCardHTML(produto, prefix) {
         ${generatePriceHTML(produto)}
         ${coresHTML}
 
-        <a
-          id="wa-${prefix}-${produto.id}"
-          data-nome="${produto.nome}"
-          href="${waLink}"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-whatsapp"
-        >
-          <i class="fa-brands fa-whatsapp"></i>
-          Consultar / Encomendar
-        </a>
+        <div class="product-actions">
+          <a href="${detalhesLink}" class="btn-details">
+            <i class="fa-regular fa-images"></i>
+            Ver mais detalhes
+          </a>
+
+          <a
+            id="wa-${prefix}-${produto.id}"
+            data-nome="${produto.nome}"
+            href="${waLink}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-whatsapp"
+          >
+            <i class="fa-brands fa-whatsapp"></i>
+            Consultar / Encomendar
+          </a>
+        </div>
       </div>
-    </div>
+    </article>
   `;
 }
 
@@ -191,3 +208,5 @@ function generateCardHTML(produto, prefix) {
 window.setFallback = setFallback;
 window.onImageLoad = onImageLoad;
 window.changeProductVariant = changeProductVariant;
+window.getWhatsappLink = getWhatsappLink;
+window.generatePriceHTML = generatePriceHTML;
