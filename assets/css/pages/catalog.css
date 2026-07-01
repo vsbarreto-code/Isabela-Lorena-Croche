@@ -1,0 +1,318 @@
+/* ============================================================
+   pages/catalog.css
+   ============================================================ */
+
+.catalog-page {
+  background: var(--color-light);
+  min-height: 100vh;
+  padding: clamp(4rem, 8vw, 5.5rem) 0 clamp(4rem, 7vw, 6rem);
+}
+
+/* ---- HEADER ---- */
+
+.catalog-page .catalog-header {
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  padding: clamp(2rem, 4vw, 3rem) 1.5rem 0;
+}
+
+.catalog-page .catalog-header .section-label {
+  margin-bottom: 0.75rem;
+}
+
+.catalog-page .catalog-header .section-title {
+  margin-bottom: 0.85rem;
+}
+
+.catalog-page .catalog-header .section-subtitle {
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.catalog-page .catalog-header .divider {
+  width: 3.5rem;
+  height: 1px;
+  background: rgba(197, 168, 128, 0.4);
+  margin: 1.75rem auto 0;
+}
+
+/* ---- WRAPPER ---- */
+
+.catalog-grid-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 1.5rem);
+}
+
+/* ---- GRID ---- */
+
+.catalog-page .products-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 480px) {
+  .catalog-page .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .catalog-page .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 960px) {
+  .catalog-page .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .catalog-page .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* ---- CARD ---- */
+
+.catalog-page .product-card {
+  background: #fff;
+  border-radius: 1.6rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.catalog-page .product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(197, 168, 128, 0.2);
+}
+
+/* ---- IMAGE WRAP ---- */
+/*
+  Usa aspect-ratio para manter proporção consistente
+  independente do tamanho da coluna no grid.
+  4:5 é ideal para fotos de produtos (bolsas, vestidos).
+*/
+
+.catalog-page .product-image-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+
+/* Fallback para browsers sem suporte a aspect-ratio */
+@supports not (aspect-ratio: 4 / 5) {
+  .catalog-page .product-image-wrap {
+    height: var(--img-height-md);
+  }
+
+  @media (min-width: 768px) {
+    .catalog-page .product-image-wrap {
+      height: var(--img-height-lg);
+    }
+  }
+}
+
+/* ---- PRODUTO IMAGEM ---- */
+
+.catalog-page .product-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.75s ease;
+  z-index: 1;
+}
+
+.catalog-page .product-card:hover .product-img {
+  transform: scale(1.06);
+}
+
+/* ---- BADGE ---- */
+
+.catalog-page .product-badge {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+}
+
+/* ---- CONTENT ---- */
+
+.catalog-page .product-card .content {
+  padding: clamp(1rem, 2.5vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.catalog-page .product-card h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  color: var(--color-dark);
+  margin-bottom: 0.55rem;
+  line-height: 1.25;
+}
+
+.catalog-page .product-card p {
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  line-height: 1.65;
+  color: rgba(44, 42, 40, 0.7);
+  margin-bottom: 1.1rem;
+  flex-grow: 1;
+}
+
+/* ---- VARIANTES ---- */
+
+.catalog-page .variants {
+  display: flex;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.catalog-page .variant-btn {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    outline-offset 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+  flex-shrink: 0;
+}
+
+.catalog-page .variant-btn:hover {
+  transform: scale(1.2);
+}
+
+.catalog-page .variant-btn.active {
+  transform: scale(1.25);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* ---- BOTÃO ---- */
+
+.catalog-page .btn-whatsapp {
+  margin-top: auto;
+  width: 100%;
+}
+
+/* ---- ESTADOS VAZIOS ---- */
+
+.catalog-empty {
+  text-align: center;
+  padding: 4rem 1.25rem;
+  color: rgba(44, 42, 40, 0.45);
+  font-size: 0.95rem;
+  grid-column: 1 / -1;
+}
+
+/* ============================================================
+   RESPONSIVO MOBILE (< 480px)
+   ============================================================ */
+
+@media (max-width: 479px) {
+  .catalog-page {
+    padding-top: 4rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .catalog-page .catalog-header {
+    padding: 1.75rem 1.1rem 0;
+    margin-bottom: 2.25rem;
+  }
+
+  .catalog-grid-wrap {
+    padding: 0 0.85rem;
+  }
+
+  .catalog-page .products-grid {
+    gap: 1rem;
+  }
+
+  .catalog-page .product-card {
+    border-radius: 1.25rem;
+  }
+
+  /* Proporção um pouco menos alta em mobile para ver mais cards */
+  .catalog-page .product-image-wrap {
+    aspect-ratio: 3 / 4;
+  }
+
+  .catalog-page .product-card .content {
+    padding: 1rem 1.1rem 1.25rem;
+  }
+
+  .catalog-page .product-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .catalog-page .product-card p {
+    font-size: 0.78rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .catalog-page .variants {
+    margin-bottom: 1rem;
+  }
+
+  .catalog-page .btn-whatsapp {
+    min-height: 48px;
+    font-size: 0.82rem;
+  }
+}
+
+/* ============================================================
+   RESPONSIVO SMALL (360px–479px) — dois cards na linha
+   mantendo boa proporção
+   ============================================================ */
+
+@media (min-width: 360px) and (max-width: 479px) {
+  .catalog-page .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+
+  .catalog-page .product-badge {
+    top: 0.6rem;
+    left: 0.6rem;
+    font-size: 0.58rem;
+    padding: 0.3rem 0.6rem;
+  }
+}

@@ -1,0 +1,203 @@
+/* ============================================================
+   pages/sobre.css — Página "Nossa História"
+   Depende de: main.css (variáveis), components.css (section-label,
+   section-title, highlight-word, cta-section, btn-whatsapp)
+   ============================================================ */
+
+/* ---- PÁGINA ---- */
+
+/*
+  Fundo branco simples para contrastar com o card e a CTA.
+  O main.css define background: var(--color-light) no body;
+  aqui sobrescrevemos só nesta página.
+*/
+.sobre-page {
+  background: #fff;
+}
+
+/* ---- SEÇÃO PRINCIPAL ---- */
+
+.sobre-section {
+  padding: clamp(3.5rem, 7vw, 6rem) 0;
+}
+
+.sobre-section .inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 1.5rem);
+}
+
+/* ---- CARD PRINCIPAL ---- */
+
+/*
+  Card contentor com fundo levemente amarfanhado e borda sutil.
+  Em mobile empilha verticalmente; a partir de 900px vira layout
+  side-by-side (imagem | texto).
+*/
+.sobre-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  background: rgba(250, 249, 246, 0.7);
+  border-radius: 2rem;
+  padding: clamp(1.5rem, 4vw, 3.5rem) clamp(1.25rem, 4vw, 4rem);
+  border: 1px solid rgba(197, 168, 128, 0.14);
+
+  /* Sombra muito leve para destacar o card do fundo branco */
+  box-shadow: 0 4px 32px -8px rgba(0, 0, 0, 0.04);
+}
+
+/* Layout horizontal a partir de 900 px */
+@media (min-width: 900px) {
+  .sobre-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
+  }
+}
+
+/* ---- IMAGEM ---- */
+
+/*
+  Wrapper posicionado relativamente para abrigar o frame decorativo.
+  Em desktop ocupa ~42% da largura do card.
+*/
+.sobre-img-wrap {
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+@media (min-width: 900px) {
+  .sobre-img-wrap {
+    width: 42%;
+  }
+}
+
+/*
+  Altura fixa escalonada por breakpoint:
+  – mobile : 22rem  (proporção retrato compacta)
+  – tablet : 26rem
+  – desktop: 30rem
+  object-position: center top prioriza o rosto/parte superior do produto.
+*/
+.sobre-img-wrap img {
+  width: 100%;
+  height: clamp(22rem, 40vw, 30rem);
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-soft);
+
+  /* Fica acima do frame decorativo */
+  position: relative;
+  z-index: 1;
+  display: block;
+
+  /* Transição suave caso a imagem carregue tardiamente */
+  transition: transform 0.6s ease;
+}
+
+/* Leve zoom no hover, igual aos product-cards */
+.sobre-img-wrap:hover img {
+  transform: scale(1.025);
+}
+
+/* ---- FRAME DECORATIVO ---- */
+
+/*
+  Borda offset que cria efeito de "profundidade" atrás da imagem.
+  Oculto em mobile muito pequeno para evitar overflow horizontal.
+*/
+.sobre-img-frame {
+  position: absolute;
+  bottom: -0.75rem;
+  right: -0.75rem;
+  width: 100%;
+  height: 100%;
+  border: 1.5px solid rgba(197, 168, 128, 0.3);
+  border-radius: 1.5rem;
+
+  /* Fica atrás da imagem */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Esconde em telas muito pequenas para não vazar */
+@media (max-width: 479px) {
+  .sobre-img-frame {
+    display: none;
+  }
+}
+
+/* ---- BLOCO DE TEXTO ---- */
+
+/*
+  flex: 1 garante que o texto ocupe o espaço restante ao lado
+  da imagem em layout horizontal. min-width: 0 evita overflow
+  quando o texto é muito longo (bug clássico de flex).
+*/
+.sobre-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.sobre-text .section-label {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.sobre-text .section-title {
+  margin-bottom: 1.75rem;
+  line-height: 1.2;
+}
+
+/* Parágrafos do texto corrido */
+.sobre-text p {
+  font-size: clamp(0.9rem, 1.6vw, 1rem);
+  color: rgba(44, 42, 40, 0.78);
+  font-weight: 300;
+  line-height: 1.85;
+  margin-bottom: 1.1rem;
+}
+
+/* Remove margem do último parágrafo antes de elementos seguintes */
+.sobre-text p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* ---- NOTA PERSONALIZADA (blockquote estilizado) ---- */
+
+/*
+  Destaque informativo sobre encomendas personalizadas.
+  Borda esquerda colorida + fundo amarfanhado sutil.
+*/
+.sobre-text .custom-note {
+  margin-top: 1.75rem;
+  padding: 1.1rem 1.35rem;
+  background: rgba(197, 168, 128, 0.07);
+  border-left: 3px solid rgba(197, 168, 128, 0.5);
+  border-radius: 0 0.85rem 0.85rem 0;
+
+  /* Garante que o border-radius do lado esquerdo não apareça */
+  overflow: hidden;
+}
+
+/* Label estilo "chip" de título da nota */
+.sobre-text .custom-note .label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+/* Texto da nota sem margem inferior — é o último elemento do card */
+.sobre-text .custom-note p {
+  font-size: 0.88rem;
+  margin-bottom: 0;
+  color: rgba(44, 42, 40, 0.72);
+  line-height: 1.7;
+}

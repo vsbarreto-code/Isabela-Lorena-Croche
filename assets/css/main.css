@@ -1,0 +1,285 @@
+/* ============================================================
+   MAIN.CSS — variáveis globais, reset e estilos de base
+   Carregado PRIMEIRO em todas as páginas.
+   Todos os outros arquivos CSS dependem das variáveis aqui
+   definidas.
+   ============================================================ */
+
+/* ============================================================
+   VARIÁVEIS CSS (design tokens)
+   ============================================================ */
+
+:root {
+  /* ---- Paleta de cores ---- */
+  --color-light: #faf9f6; /* fundo geral das páginas        */
+  --color-primary: #c5a880; /* dourado — cor de destaque       */
+  --color-primary-light: #d6bf9e; /* versão clara do dourado         */
+  --color-dark: #2c2a28; /* texto e títulos principais      */
+  --color-accent: #f0ebe1; /* fundo de cards e skeletons      */
+  --color-whatsapp: #25d366; /* verde WhatsApp oficial          */
+  --color-whatsapp-dark: #1eae53; /* hover do botão WhatsApp         */
+
+  /* ---- Bordas arredondadas ---- */
+  --radius-card: 1.5rem;
+
+  /* ---- Sombras ---- */
+  --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 20px 40px -10px rgba(197, 168, 128, 0.18);
+
+  /* ---- Tipografia ---- */
+  --font-serif: "Playfair Display", serif; /* títulos e destaques     */
+  --font-sans: "Inter", sans-serif; /* corpo e interface        */
+
+  /* ---- Espaçamentos responsivos (usados via var()) ---- */
+  --section-gap: clamp(3rem, 6vw, 5.5rem);
+  --inner-padding: clamp(1rem, 4vw, 1.5rem);
+
+  /* ---- Alturas de fallback para imagens de produto ----
+     Usadas apenas em browsers sem suporte a aspect-ratio.       */
+  --img-height-mobile: 220px;
+  --img-height-sm: 260px;
+  --img-height-md: 300px;
+  --img-height-lg: 320px;
+}
+
+/* ============================================================
+   RESET GLOBAL
+   box-sizing: border-box em todos os elementos elimina a
+   necessidade de calcular bordas/paddings manualmente.
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Rolagem suave para âncoras (#destaques, etc.) */
+html {
+  scroll-behavior: smooth;
+
+  /* Previne aumento automático de fonte em iOS ao girar o device */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* ---- CORPO ---- */
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-light);
+  color: var(--color-dark);
+
+  /* Suaviza a renderização de fontes no macOS/iOS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Evita scrollbar horizontal acidental */
+  overflow-x: hidden;
+
+  /* Layout em coluna para que o footer fique fixo no rodapé
+     mesmo em páginas com pouco conteúdo                         */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* O <main> cresce para preencher o espaço entre header e footer */
+main {
+  flex-grow: 1;
+}
+
+/* ---- ELEMENTOS BÁSICOS ---- */
+
+/* Imagens não vazam do container */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Remove sublinhado de links — cada componente define sua cor */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Botões herdam a fonte do body (padrão do browser não herda) */
+button {
+  font-family: inherit;
+}
+
+/* ============================================================
+   UTILITÁRIOS GLOBAIS
+   ============================================================ */
+
+/*
+  Aplica itálico dourado nos trechos de título em destaque.
+  Usado via <span class="highlight-word"> no HTML.
+*/
+.highlight-word {
+  font-style: italic;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+/*
+  Wrapper de largura máxima reutilizado em todas as seções.
+  Pode ser sobrescrito localmente se necessário.
+*/
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--inner-padding);
+}
+
+/* ============================================================
+   ANIMAÇÕES
+   ============================================================ */
+
+/* Entrada suave da página inteira ao carregar */
+.page-view {
+  animation: elegantFadeIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes elegantFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Flutuação contínua — usada nos orbs decorativos do hero */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Revelação de imagem após carregamento lazy */
+@keyframes imgReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Shimmer do skeleton loader de imagens (definido em components.css) */
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ============================================================
+   IMAGEM DE PRODUTO (estilos globais)
+   Complementados e sobrescritos em components.css e catalog.css
+   ============================================================ */
+
+/*
+  Base da imagem: cobre o wrapper por completo (position:absolute
+  + inset:0 definidos nos contextos que usam aspect-ratio).
+  Transition dupla: zoom suave + fade de opacidade no lazy-load.
+*/
+.product-img {
+  background: var(--color-accent);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition:
+    transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.15s ease;
+}
+
+/* Zoom suave no hover do card */
+.product-card:hover .product-img {
+  transform: scale(1.05);
+}
+
+/* Animação de fade-in após o carregamento da imagem */
+.product-img.loaded {
+  animation: imgReveal 0.45s ease forwards;
+}
+
+/*
+  Estado de erro: quando a imagem falha ao carregar e o fallback
+  SVG é inserido, ajustamos o object-fit para não distorcer o ícone
+  e adicionamos leve opacidade.
+*/
+.product-img[data-error="true"],
+.product-img.img-error {
+  object-fit: contain;
+  padding: 1.5rem;
+  background: var(--color-accent);
+  opacity: 0.5;
+}
+
+/* ============================================================
+   GRID DE DESTAQUES (home)
+   Transição de opacidade controlada pelo filtro (filtros.js)
+   ============================================================ */
+
+#grid-destaques {
+  transition: opacity 0.25s ease-in-out;
+}
+
+/* ============================================================
+   SCROLLBAR CUSTOMIZADA (Webkit)
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-light);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-light);
+  border-radius: 4px;
+}
+
+/* ============================================================
+   ACESSIBILIDADE
+   ============================================================ */
+
+/*
+  Anel de foco visível para navegação por teclado.
+  Removido visualmente com :focus (não :focus-visible) para não
+  afetar cliques com mouse.
+*/
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   SELEÇÃO DE TEXTO
+   ============================================================ */
+
+::selection {
+  background: rgba(197, 168, 128, 0.25);
+  color: var(--color-dark);
+}

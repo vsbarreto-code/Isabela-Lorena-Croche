@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atelier Fios & Artes - Crochê Feito com Amor</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- CSS próprio (ordem importa) -->
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/header.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/pages/home.css" />
+    <link rel="stylesheet" href="./assets/css/footer.css" />
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+      <div class="inner">
+        <a href="index.html" class="logo">
+          <i class="fa-solid fa-fan"></i>
+          Fios & Artes
+        </a>
+
+        <nav class="nav-desktop">
+          <a href="index.html">Início</a>
+
+          <div class="dropdown">
+            <button>
+              Catálogo
+              <i class="fa-solid fa-chevron-down chevron"></i>
+            </button>
+            <div class="dropdown-panel">
+              <a href="bolsas.html"><i class="fa-solid fa-minus"></i> Bolsas</a>
+              <a href="decoracao.html"
+                ><i class="fa-solid fa-minus"></i> Decoração</a
+              >
+              <a href="vestidos.html"
+                ><i class="fa-solid fa-minus"></i> Vestidos</a
+              >
+            </div>
+          </div>
+
+          <a href="sobre.html">Nossa História</a>
+        </nav>
+
+        <a
+          href="https://wa.me/5579999999999"
+          target="_blank"
+          class="header-cta"
+        >
+          <i class="fa-brands fa-whatsapp"></i> Fale Conosco
+        </a>
+
+        <button class="menu-toggle" id="menu-btn" aria-label="Abrir menu">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="mobile-menu hidden" id="mobile-menu">
+        <div class="inner-mobile">
+          <a href="index.html">Início</a>
+          <span class="mobile-cat-title">Catálogo</span>
+          <div class="mobile-sub">
+            <a href="bolsas.html">Bolsas</a>
+            <a href="decoracao.html">Decoração</a>
+            <a href="vestidos.html">Vestidos</a>
+          </div>
+          <a href="sobre.html">Nossa História</a>
+          <a
+            href="https://wa.me/5579999999999"
+            target="_blank"
+            class="mobile-cta"
+          >
+            <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ===== HERO ===== -->
+      <section class="hero">
+        <div class="hero-orb-1"></div>
+        <div class="hero-orb-2"></div>
+        <div class="inner">
+          <div class="hero-text">
+            <span class="hero-badge">Artesanal &amp; Brasileiro</span>
+            <h1 class="hero-title">
+              Bolsas e acessórios com
+              <span class="highlight-word">alma</span> e afeto.
+            </h1>
+            <p class="hero-desc">
+              Peças exclusivas em crochê e palha, tecidas fio a fio para trazer
+              elegância e sustentabilidade ao seu estilo.
+            </p>
+            <div class="hero-actions">
+              <a href="#destaques" class="btn-dark">Ver Destaques</a>
+              <a href="sobre.html" class="btn-outline">Conheça o Atelier</a>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-img-wrap">
+              <img
+                src="https://img.elo7.com.br/product/zoom/4AE4A44/bolsa-tote-em-croche-artesanal-marrom-bolsa-de-croche.jpg"
+                alt="Bolsa de Crochê Artesanal"
+                onerror="
+                  this.src =
+                    'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80'
+                "
+              />
+            </div>
+            <div class="hero-orb-3"></div>
+            <div class="hero-orb-4"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== BARRA DE BENEFÍCIOS ===== -->
+      <div class="benefits-bar">
+        <div class="inner">
+          <div class="benefit-item">
+            <i class="fa-solid fa-hands-holding-circle"></i>
+            <h4>100% Artesanal</h4>
+            <p>Feito à mão com afeto</p>
+          </div>
+          <div class="benefit-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <h4>Apenas Aracaju</h4>
+            <p>Entregas e retiradas locais</p>
+          </div>
+          <div class="benefit-item">
+            <i class="fa-brands fa-whatsapp"></i>
+            <h4>Encomendas via Whats</h4>
+            <p>Detalhes e pagamentos</p>
+          </div>
+          <div class="benefit-item">
+            <i class="fa-solid fa-heart"></i>
+            <h4>Produção Hobby</h4>
+            <p>No meu próprio tempo</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== DESTAQUES ===== -->
+      <section class="section-destaques" id="destaques">
+        <div class="inner">
+          <div class="header">
+            <span class="section-label">Mais Desejados</span>
+            <h2 class="section-title">
+              Destaques do <span class="highlight-word">Momento</span>
+            </h2>
+            <p class="section-subtitle">
+              As peças queridinhas do nosso atelier, perfeitas para inspirar o
+              seu estilo.
+            </p>
+          </div>
+
+          <div class="filter-tabs">
+            <button
+              onclick="filtrarDestaques('Todos', this)"
+              class="filter-tab active"
+            >
+              Todos
+            </button>
+            <button
+              onclick="filtrarDestaques('Bolsas', this)"
+              class="filter-tab"
+            >
+              Bolsas
+            </button>
+            <button
+              onclick="filtrarDestaques('Vestidos', this)"
+              class="filter-tab"
+            >
+              Vestidos
+            </button>
+            <button
+              onclick="filtrarDestaques('Decoração', this)"
+              class="filter-tab"
+            >
+              Decoração
+            </button>
+          </div>
+
+          <div id="grid-destaques" class="products-grid"></div>
+        </div>
+      </section>
+
+      <!-- ===== DEPOIMENTOS ===== -->
+      <section class="section-reviews">
+        <div class="inner">
+          <div class="header">
+            <span class="section-label">Comunidade</span>
+            <h2 class="section-title">
+              O que dizem nossas
+              <span class="highlight-word">clientes de Aracaju</span>
+            </h2>
+          </div>
+
+          <div class="reviews-grid">
+            <!-- Card 1 — branco -->
+            <div class="review-card">
+              <i class="fa-solid fa-quote-right quote-icon"></i>
+              <div class="stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <p class="review-text">
+                "A bolsa Aurora virou meu xodó! O acabamento é impecável e
+                combina perfeitamente com os passeios de fim de tarde na Orla de
+                Atalaia."
+              </p>
+              <div class="reviewer">
+                <div class="avatar">M</div>
+                <div>
+                  <p class="reviewer-name">Mariana S.</p>
+                  <p class="reviewer-loc">Bairro Jardins, Aracaju</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 — escuro -->
+            <div class="review-card">
+              <i class="fa-solid fa-quote-right quote-icon"></i>
+              <div class="stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <p class="review-text">
+                "Encomendei um cesto organizador e superou minhas expectativas.
+                A entrega foi feita em mãos, com um bilhetinho lindo! Deixou meu
+                apartamento muito mais aconchegante."
+              </p>
+              <div class="reviewer">
+                <div class="avatar">C</div>
+                <div>
+                  <p class="reviewer-name">Clara T.</p>
+                  <p class="reviewer-loc">13 de Julho, Aracaju</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 — quente/accent -->
+            <div class="review-card">
+              <i class="fa-solid fa-quote-right quote-icon"></i>
+              <div class="stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <p class="review-text">
+                "O atendimento pelo WhatsApp foi maravilhoso! Pedi a Bolsa Mini
+                Palha com detalhes na cor telha e ficou perfeita para usar nos
+                finais de semana na praia de Aruana."
+              </p>
+              <div class="reviewer">
+                <div class="avatar">J</div>
+                <div>
+                  <p class="reviewer-name">Juliana M.</p>
+                  <p class="reviewer-loc">Aruana, Aracaju</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CTA ===== -->
+      <section class="cta-section">
+        <div class="inner">
+          <h2>
+            Pronta para ter uma peça
+            <span class="highlight-word">exclusiva</span>?
+          </h2>
+          <p>
+            Me chame no WhatsApp. Vamos conversar sobre paletas de cores,
+            modelos ideais e eu te passo todos os detalhes de valores com muito
+            carinho.
+          </p>
+          <a
+            href="https://wa.me/5579999999999"
+            target="_blank"
+            class="btn-whatsapp"
+          >
+            <i class="fa-brands fa-whatsapp"></i> Fazer Encomenda Personalizada
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+      <div class="inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="logo">
+              <i class="fa-solid fa-fan"></i> Fios & Artes
+            </a>
+            <p>
+              Atelier de crochê artesanal. Criando belezas ponto a ponto com
+              fios selecionados, responsabilidade e muito afeto.
+            </p>
+            <div class="footer-socials">
+              <a href="#" aria-label="Instagram"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
+              <a href="#" aria-label="Pinterest"
+                ><i class="fa-brands fa-pinterest-p"></i
+              ></a>
+              <a href="#" aria-label="Facebook"
+                ><i class="fa-brands fa-facebook-f"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3>Navegação Rápida</h3>
+            <ul class="footer-links">
+              <li>
+                <a href="index.html"
+                  ><i class="fa-solid fa-caret-right"></i> Início</a
+                >
+              </li>
+              <li>
+                <a href="bolsas.html"
+                  ><i class="fa-solid fa-caret-right"></i> Catálogo de Bolsas</a
+                >
+              </li>
+              <li>
+                <a href="decoracao.html"
+                  ><i class="fa-solid fa-caret-right"></i> Catálogo de
+                  Decoração</a
+                >
+              </li>
+              <li>
+                <a href="vestidos.html"
+                  ><i class="fa-solid fa-caret-right"></i> Catálogo de
+                  Vestidos</a
+                >
+              </li>
+              <li>
+                <a href="sobre.html"
+                  ><i class="fa-solid fa-caret-right"></i> Quem Somos</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Contato & Atendimento</h3>
+            <ul class="footer-contact">
+              <li>
+                <div class="icon"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="text">
+                  <p>(79) 99999-9999</p>
+                  <p>Atendimento de seg. a sex.</p>
+                </div>
+              </li>
+              <li>
+                <div class="icon"><i class="fa-regular fa-envelope"></i></div>
+                <div class="text"><p>contato@fioseartes.com.br</p></div>
+              </li>
+              <li>
+                <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="text">
+                  <p>Entregas exclusivas em Aracaju, SE.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; <span id="year"></span> Atelier Fios & Artes. Todos os
+            direitos reservados.
+          </p>
+          <p>Feito com <i class="fa-solid fa-heart"></i> para você.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp flutuante -->
+    <a
+      href="https://wa.me/5579999999999"
+      target="_blank"
+      class="whatsapp-float"
+      aria-label="WhatsApp"
+    >
+      <i class="fa-brands fa-whatsapp"></i>
+      <span class="tooltip">Fale conosco!</span>
+    </a>
+
+    <!-- JS -->
+    <script src="./assets/js/produtos.js"></script>
+    <script src="./assets/js/cards.js"></script>
+    <script src="./assets/js/filtros.js"></script>
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>

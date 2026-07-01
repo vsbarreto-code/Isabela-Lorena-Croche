@@ -1,0 +1,422 @@
+/* ============================================================
+   pages/home.css — hero, filtros, depoimentos
+   ============================================================ */
+
+/* ---- HERO ---- */
+.hero {
+  position: relative;
+  padding: 5rem 0 6rem;
+  overflow: hidden;
+  background: var(--color-light);
+}
+@media (min-width: 1024px) {
+  .hero {
+    padding: 7rem 0 8rem;
+  }
+}
+
+.hero-orb-1 {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 60%;
+  height: 120%;
+  background: rgba(197, 168, 128, 0.06);
+  border-radius: 100%;
+  filter: blur(60px);
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+.hero-orb-2 {
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 40%;
+  height: 60%;
+  background: rgba(240, 235, 225, 0.5);
+  border-radius: 100%;
+  filter: blur(60px);
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 2s;
+  pointer-events: none;
+}
+
+.hero .inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+@media (min-width: 1024px) {
+  .hero .inner {
+    flex-direction: row;
+    gap: 5rem;
+  }
+}
+
+.hero-text {
+  text-align: center;
+  z-index: 1;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  .hero-text {
+    text-align: left;
+    width: 50%;
+  }
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  background: rgba(240, 235, 225, 0.6);
+  border: 1px solid rgba(197, 168, 128, 0.22);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 6vw, 3.8rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--color-dark);
+  margin-bottom: 1.25rem;
+}
+
+.hero-desc {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: rgba(44, 42, 40, 0.75);
+  font-weight: 300;
+  line-height: 1.75;
+  margin-bottom: 2.25rem;
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 1024px) {
+  .hero-desc {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+@media (min-width: 480px) {
+  .hero-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+@media (min-width: 1024px) {
+  .hero-actions {
+    justify-content: flex-start;
+  }
+}
+
+/* Hero image */
+.hero-visual {
+  width: 100%;
+  max-width: 26rem;
+  margin: 0 auto;
+  position: relative;
+}
+@media (min-width: 1024px) {
+  .hero-visual {
+    width: 50%;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+.hero-img-wrap {
+  border-radius: 9999px 9999px 4rem 4rem;
+  overflow: hidden;
+  border: 10px solid #fff;
+  box-shadow: var(--shadow-soft);
+  max-width: 22rem;
+  margin: 0 auto;
+}
+.hero-img-wrap img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  transition: transform 1.5s ease;
+}
+.hero-img-wrap:hover img {
+  transform: scale(1.05);
+}
+
+.hero-orb-3 {
+  position: absolute;
+  top: 2rem;
+  right: -1.5rem;
+  width: 8rem;
+  height: 8rem;
+  background: rgba(197, 168, 128, 0.12);
+  border-radius: 100%;
+  filter: blur(20px);
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 1s;
+}
+.hero-orb-4 {
+  position: absolute;
+  bottom: -2rem;
+  left: -1.5rem;
+  width: 12rem;
+  height: 12rem;
+  background: var(--color-accent);
+  border-radius: 100%;
+  filter: blur(24px);
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+/* ---- DESTAQUES ---- */
+.section-destaques {
+  padding: 5rem 0;
+  background: #fff;
+}
+.section-destaques .inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+.section-destaques .header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.section-destaques .header .section-subtitle {
+  margin: 0.75rem auto 0;
+}
+
+/* Filtro tabs */
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 2rem;
+  border-bottom: 1px solid rgba(197, 168, 128, 0.12);
+  padding-bottom: 1rem;
+  margin-bottom: 3rem;
+}
+.filter-tab {
+  padding-bottom: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  color: rgba(44, 42, 40, 0.45);
+  transition:
+    color 0.25s,
+    border-color 0.25s;
+}
+.filter-tab:hover {
+  color: var(--color-primary);
+}
+/* Filtro tabs */
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.filter-tab {
+  position: relative;
+  padding: 0.3rem 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgba(44, 42, 40, 0.45);
+  transition: color 0.3s ease;
+}
+
+/* underline animado */
+.filter-tab::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 0%;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.filter-tab:hover {
+  color: var(--color-dark);
+}
+
+.filter-tab:hover::after {
+  width: 100%;
+}
+
+.filter-tab.active {
+  color: var(--color-dark);
+}
+
+.filter-tab.active::after {
+  width: 100%;
+}
+
+/* ---- DEPOIMENTOS ---- */
+.section-reviews {
+  padding: 5rem 0;
+  background: var(--color-light);
+}
+.section-reviews .inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+.section-reviews .header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.section-reviews .header .section-subtitle {
+  margin: 0.5rem auto 0;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .reviews-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* Cards de review com visual diferenciado */
+.review-card {
+  border-radius: 1.5rem;
+  padding: 2rem 1.75rem 1.75rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 24px -8px rgba(0, 0, 0, 0.07);
+}
+
+/* Card 1 — fundo branco clássico */
+.review-card:nth-child(1) {
+  background: #fff;
+  border: 1px solid rgba(197, 168, 128, 0.15);
+}
+/* Card 2 — fundo escuro sofisticado */
+.review-card:nth-child(2) {
+  background: var(--color-dark);
+  color: #fff;
+}
+.review-card:nth-child(2) .review-text {
+  color: rgba(255, 255, 255, 0.8);
+}
+.review-card:nth-child(2) .reviewer-name {
+  color: #fff;
+}
+.review-card:nth-child(2) .reviewer-loc {
+  color: rgba(255, 255, 255, 0.45);
+}
+.review-card:nth-child(2) .stars {
+  color: var(--color-primary);
+}
+.review-card:nth-child(2) .avatar {
+  background: rgba(197, 168, 128, 0.25);
+  color: var(--color-primary);
+}
+.review-card:nth-child(2) .quote-icon {
+  color: rgba(197, 168, 128, 0.15);
+}
+
+/* Card 3 — fundo tom quente */
+.review-card:nth-child(3) {
+  background: var(--color-accent);
+  border: 1px solid rgba(197, 168, 128, 0.2);
+}
+
+/* Elementos internos comuns */
+.review-card .quote-icon {
+  font-size: 2.5rem;
+  color: rgba(197, 168, 128, 0.18);
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  line-height: 1;
+}
+.review-card .stars {
+  display: flex;
+  gap: 0.15rem;
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+.review-card .review-text {
+  font-size: 0.9rem;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(44, 42, 40, 0.8);
+  margin-bottom: 1.5rem;
+}
+.review-card .reviewer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.review-card .avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: rgba(197, 168, 128, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+.review-card .reviewer-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  line-height: 1.2;
+}
+.review-card .reviewer-loc {
+  font-size: 0.72rem;
+  color: rgba(44, 42, 40, 0.45);
+  margin-top: 0.1rem;
+}
+
+/* .filter-tab.active {
+  background: var(--color-primary);
+  color: white;
+} */
