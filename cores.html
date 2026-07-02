@@ -3,11 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Bolsas | Isabela Lorena Crochê</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;display=swap"
       rel="stylesheet"
     />
     <link
@@ -17,11 +16,11 @@
     <link href="./assets/css/main.css" rel="stylesheet" />
     <link href="./assets/css/header.css" rel="stylesheet" />
     <link href="./assets/css/components.css" rel="stylesheet" />
-    <link href="./assets/css/pages/catalog.css" rel="stylesheet" />
+    <link href="./assets/css/pages/cores.css" rel="stylesheet" />
     <link href="./assets/css/footer.css" rel="stylesheet" />
+    <title>Cores Disponíveis | Isabela Lorena Crochê</title>
   </head>
   <body>
-    <!-- HEADER (igual ao index) -->
     <header class="site-header">
       <div class="inner">
         <a class="logo" href="index.html" aria-label="Isabela Lorena Crochê">
@@ -60,48 +59,61 @@
         </div>
       </div>
     </header>
-    <main>
-      <div class="catalog-page">
-        <div class="catalog-header">
-          <span class="section-label"> Cat&aacute;logo Exclusivo </span>
-          <h1 class="section-title">
-            Bolsas de
-            <span class="highlight-word"> Croch&ecirc; Artesanal </span>
-          </h1>
-          <p class="section-subtitle" style="margin: 0.75rem auto 0">
-            Feitas &agrave; m&atilde;o com fios selecionados, cada bolsa carrega
-            eleg&acirc;ncia, durabilidade, pre&ccedil;o Pix e
-            op&ccedil;&otilde;es de parcelamento.
-          </p>
-          <div class="divider"></div>
-        </div>
-        <div class="catalog-grid-wrap">
-          <div class="products-grid" id="grid-bolsas"></div>
-        </div>
-      </div>
-      <section class="cta-section">
+    <main class="page-view">
+      <section class="colors-hero">
         <div class="inner">
-          <h2>
-            Quer uma cor
-            <span class="highlight-word"> diferente </span>
-            ?
-          </h2>
-          <p>
-            Fa&ccedil;o sob encomenda! Me conta no WhatsApp o modelo e as cores
-            que voc&ecirc; sonha.
+          <span class="section-label">Paleta do Atelier</span>
+          <h1 class="section-title">
+            Escolha a cor da sua
+            <span class="highlight-word">bolsa artesanal</span>
+          </h1>
+          <p class="section-subtitle">
+            Consulte as cores disponíveis por tipo de fio e escolha sua favorita
+            antes de finalizar a encomenda pelo WhatsApp.
           </p>
-          <a
-            class="btn-whatsapp"
-            href="https://wa.me/5579999802943"
-            target="_blank"
-          >
-            <i class="fa-brands fa-whatsapp"> </i>
-            Fazer Encomenda
-          </a>
+        </div>
+      </section>
+      <section class="colors-page" aria-labelledby="titulo-cores">
+        <div class="inner">
+          <div class="colors-toolbar">
+            <label class="colors-search-wrap" for="colors-search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input
+                id="colors-search"
+                type="search"
+                placeholder="Buscar cor: rosa, jade, marrom..."
+                autocomplete="off"
+              />
+            </label>
+            <div
+              class="colors-filters"
+              id="colors-filters"
+              aria-label="Filtrar cores"
+            ></div>
+          </div>
+          <div class="colors-meta">
+            <p id="colors-count">Carregando cores...</p>
+          </div>
+          <div class="colors-grid" id="colors-grid"></div>
+          <p class="colors-note">
+            As cores podem variar um pouco conforme a iluminação da foto e a
+            tela do celular. A disponibilidade também pode mudar conforme o
+            estoque dos fios.
+          </p>
+          <div class="colors-cta">
+            <a
+              class="btn-whatsapp"
+              href="https://wa.me/5579999802943"
+              target="_blank"
+              rel="noopener"
+            >
+              <i class="fa-brands fa-whatsapp"></i>
+              Tirar dúvida sobre uma cor
+            </a>
+          </div>
         </div>
       </section>
     </main>
-    <!-- ===== FOOTER ===== -->
     <footer class="site-footer">
       <div class="inner">
         <div class="footer-grid">
@@ -186,20 +198,18 @@
         </div>
       </div>
     </footer>
-    <!-- WhatsApp flutuante -->
     <a
       aria-label="WhatsApp"
       class="whatsapp-float"
       href="https://wa.me/5579999802943"
       target="_blank"
+      rel="noopener"
     >
-      <i class="fa-brands fa-whatsapp"> </i>
-      <span class="tooltip"> Fale conosco! </span>
+      <i class="fa-brands fa-whatsapp"></i>
+      <span class="tooltip">Fale conosco!</span>
     </a>
-    <!-- JS -->
-    <script src="./assets/js/produtos.js"></script>
-    <script src="./assets/js/cards.js"></script>
-    <script src="./assets/js/filtros.js"></script>
+    <script src="./assets/js/cores.js"></script>
+    <script src="./assets/js/cores-ui.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>
