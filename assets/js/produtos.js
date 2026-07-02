@@ -237,10 +237,10 @@ const produtos = [
       material: "Fio de malha",
       prazo: "Produção sob encomenda, conforme disponibilidade",
       diferenciais: [
-        "Cor escura fácil de combinar",
-        "Design compacto e elegante",
-        "Acabamento artesanal feito com cuidado",
-        "Boa escolha para eventos e uso casual chic",
+        "Produzida com fio de malha extra premium",
+        "Design trançado combina perfeitamente o sofisticado com o moderno",
+        "Correntes podem ser personalizadas (Dourado ou prata)",
+        "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",
       ],
     },
     galeria: [
