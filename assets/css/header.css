@@ -1,14 +1,23 @@
 /* ============================================================
    HEADER.CSS — header sticky, nav e menu mobile
    ============================================================ */
+body {
+  padding-top: 105px;
+}
 
 .site-header {
   background: #ffffff;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  position: sticky;
+
+  /* Faz o header acompanhar a página ao rolar */
+  position: fixed;
   top: 0;
-  z-index: 50;
+  left: 0;
+  width: 100%;
+
+  z-index: 999;
+
   border-bottom: 1px solid rgba(197, 168, 128, 0.12);
   box-shadow: 0 2px 16px -4px rgba(0, 0, 0, 0.04);
   transition: all 0.3s ease;
@@ -82,7 +91,7 @@
 
 /* Nav desktop */
 .nav-desktop {
-  display: fixed;
+  display: none;
   gap: 2.5rem;
   align-items: center;
 }
@@ -305,6 +314,10 @@
    ============================================================ */
 
 @media (max-width: 899px) {
+  body {
+    padding-top: 76px;
+  }
+
   .site-header .inner {
     min-height: 76px;
     padding: 0.6rem var(--inner-padding);
@@ -332,10 +345,10 @@
 
   .mobile-menu {
     position: fixed;
-    top: var(--header-height, 76px);
+    top: 76px;
     left: 0;
     right: 0;
-    z-index: 49;
+    z-index: 998;
     max-height: calc(100vh - 76px);
     overflow-y: auto;
   }

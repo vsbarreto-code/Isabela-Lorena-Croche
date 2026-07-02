@@ -301,7 +301,7 @@ const produtos = [
     variantes: [
       {
         corHex: "#A98BDA",
-        corNome: "Lilas",
+        corNome: "Lilás",
         imagem: "/assets/img/bolsa-aurora.jpeg",
       },
       // {
