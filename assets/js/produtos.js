@@ -262,6 +262,55 @@ const produtos = [
       },
     ],
   },
+  {
+    id: 6,
+    nome: "Bolsa Aurora",
+    imagemCapa: "/assets/img/bolsa-aurora.jpeg",
+    descricao:
+      "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado. Um modelo elegante para usar do dia a dia aos momentos especiais.",
+    descricaoDetalhada:
+      "A Bolsa Raíssa foi criada para quem gosta de unir delicadeza, presença e praticidade em uma única peça. Feita artesanalmente em fio de malha, ela tem trama encorpada, visual sofisticado e detalhes dourados que valorizam o acabamento. É uma bolsa versátil, perfeita para compor looks leves, casuais ou mais arrumados, mantendo o charme do feito à mão.",
+    destaque: false,
+    categoria: "Bolsas",
+    badge: "Novo",
+    preco: {
+      pix: "R$ 129,90",
+      parcelado: "R$ 139,90",
+      parcelas: 2,
+      valorParcela: "R$ 69,95",
+    },
+    detalhes: {
+      subtitulo: "Clássica, compacta e sofisticada.",
+      medidas: "Medidas aproximadas sob consulta no WhatsApp",
+      material: "Fio de malha",
+      prazo: "Produção sob encomenda, conforme disponibilidade",
+      diferenciais: [
+        "Produzida artesanalmente em crochê com fio de malha extra premium",
+        "Possui duas alças, permitindo versatilidade no uso",
+        "Corrente que traz um toque sofisticado (Podendo ser alterado para cor prata)",
+        "Tamanho ideal para carregar itens essenciais",
+        "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",
+      ],
+    },
+    galeria: [
+      {
+        imagem: "/assets/img/bolsa-aurora.jpeg",
+        legenda: "Vista principal na cor Lilas",
+      },
+    ],
+    variantes: [
+      {
+        corHex: "#A98BDA",
+        corNome: "Lilas",
+        imagem: "/assets/img/bolsa-aurora.jpeg",
+      },
+      // {
+      //   corHex: "#FB0046",
+      //   corNome: "Pink",
+      //   imagem: "./assets/img/bolsa-oval-lateral-vermelha.jpeg",
+      // },
+    ],
+  },
 ];
 
 // Fallbacks por categoria
