@@ -286,8 +286,8 @@ const produtos = [
       prazo: "Produção sob encomenda, conforme disponibilidade",
       diferenciais: [
         "Produzida artesanalmente em crochê com fio de malha extra premium",
-        "Possui duas alças, permitindo versatilidade no uso",
-        "Corrente que traz um toque sofisticado (Podendo ser alterado para cor prata)",
+        "Possui duas alças, permitindo versatilidade e sofisticação no uso (Podendo ser alteradas para cor prata)",
+        "Corrente que traz um toque sofisticado",
         "Tamanho ideal para carregar itens essenciais",
         "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",
       ],

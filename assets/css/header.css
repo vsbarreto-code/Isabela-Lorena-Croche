@@ -82,7 +82,7 @@
 
 /* Nav desktop */
 .nav-desktop {
-  display: none;
+  display: fixed;
   gap: 2.5rem;
   align-items: center;
 }
