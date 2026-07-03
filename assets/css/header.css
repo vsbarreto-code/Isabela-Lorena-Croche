@@ -324,8 +324,8 @@ body {
   }
 
   .site-header .logo img {
-    width: clamp(142px, 48vw, 220px);
-    max-height: 62px;
+    width: clamp(155px, 52vw, 240px);
+    max-height: 68px;
   }
 
   .nav-desktop,
@@ -396,6 +396,6 @@ body {
 
 @media (max-width: 380px) {
   .site-header .logo img {
-    width: clamp(130px, 44vw, 180px);
+    width: clamp(145px, 50vw, 200px);
   }
 }
