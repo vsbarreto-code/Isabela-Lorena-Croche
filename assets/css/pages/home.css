@@ -11,7 +11,7 @@
   position: relative;
   max-width: 1280px;
   margin: 0 auto;
-  padding: clamp(1rem, 3vw, 2rem) 1.25rem;
+  padding: clamp(1rem, 3vw, 2rem) 1.25rem 1.25rem;
   background: var(--color-light);
 }
 
@@ -34,7 +34,8 @@
   display: block;
 }
 
-.banner-slide a {
+.banner-slide a,
+.banner-slide picture {
   display: block;
   width: 100%;
   height: 100%;
@@ -56,11 +57,17 @@
   height: 42px;
   border: none;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.75);
   color: #2f2f2f;
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   z-index: 2;
+  transition: 0.25s ease;
+}
+
+.banner-btn:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.05);
 }
 
 .banner-prev {
@@ -74,48 +81,59 @@
 .banner-dots {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  margin-top: 0.9rem;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
 }
 
 .banner-dot {
-  width: 9px;
-  height: 9px;
+  width: 7px;
+  height: 7px;
   border: none;
   border-radius: 999px;
-  background: rgba(47, 47, 47, 0.25);
+  background: rgba(47, 47, 47, 0.22);
   cursor: pointer;
   transition: 0.25s ease;
 }
 
 .banner-dot.active {
-  width: 24px;
+  width: 22px;
   background: #c5a880;
 }
 
-@media (max-width: 768px) {
+/* Mobile */
+@media (max-width: 767px) {
   .banner-carousel {
-    padding: 0.75rem 1rem 1.25rem;
+    max-width: none;
+    width: 100%;
+    padding: 0.65rem 0 1rem;
   }
 
   .banner-carousel-wrapper {
+    width: calc(100% - 1rem);
+    margin: 0 auto;
     border-radius: 18px;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 5;
   }
 
   .banner-btn {
-    width: 34px;
-    height: 34px;
+    display: none !important;
   }
 
-  .banner-prev {
-    left: 1.25rem;
+  .banner-dots {
+    margin-top: 0.65rem;
   }
 
-  .banner-next {
-    right: 1.25rem;
+  .banner-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .banner-dot.active {
+    width: 20px;
   }
 }
+
 /* ---- HERO ---- */
 .hero {
   position: relative;
