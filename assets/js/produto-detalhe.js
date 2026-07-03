@@ -38,10 +38,12 @@
             : item.legenda || item.corNome || fallbackLegenda,
         corNome: typeof item === "string" ? null : item.corNome || null,
       });
+
       usados.add(imagem);
     }
 
     (produto.galeria || []).forEach((item) => adicionar(item));
+
     (produto.variantes || []).forEach((item) =>
       adicionar(
         item,
@@ -50,33 +52,46 @@
     );
 
     if (imagens.length === 0) {
-      imagens.push({ imagem: FALLBACK_SVG, legenda: "Foto da bolsa" });
+      imagens.push({
+        imagem: FALLBACK_SVG,
+        legenda: "Foto da bolsa",
+      });
     }
 
     return imagens;
   }
 
+  function getFioById(fioId) {
+    return fiosDisponiveis.find((fio) => fio.id === fioId);
+  }
+
+  function getCorById(fioId, corId) {
+    const fio = getFioById(fioId);
+    return fio?.cores.find((cor) => cor.id === corId);
+  }
+
   if (!produto) {
     document.title = "Bolsa não encontrada | Isabela Lorena Crochê";
+
     root.innerHTML = `
       <div class="produto-not-found">
         <span class="section-label">Produto não encontrado</span>
         <h1 class="section-title">Não encontrei essa bolsa.</h1>
-        <p>O link pode estar incorreto ou o produto pode ter sido removido do catálogo.</p>
+        <p>
+          O link pode estar incorreto ou o produto pode ter sido removido do catálogo.
+        </p>
         <a class="btn-dark" href="bolsas.html">Voltar para bolsas</a>
       </div>
     `;
+
     return;
   }
+
+  window.produtoAtual = produto;
 
   document.title = `${produto.nome} | Isabela Lorena Crochê`;
 
   const imagens = normalizarImagens(produto);
-  const primeiraCor = produto.variantes?.[0]?.corNome || null;
-  let imagemAtual = 0;
-  let corSelecionada = primeiraCor;
-  let autoplay = null;
-
   const detalhes = produto.detalhes || {};
   const diferenciais = detalhes.diferenciais || [
     "Peça artesanal feita com cuidado",
@@ -84,13 +99,35 @@
     "Possibilidade de verificar cores disponíveis",
   ];
 
-  function getLinkWhatsApp() {
-    if (typeof getWhatsappLink === "function") {
-      return getWhatsappLink(produto, corSelecionada);
+  let imagemAtual = 0;
+  let autoplay = null;
+  let fioSelecionado = "";
+  let corSelecionada = "";
+
+  function renderPrice(produto) {
+    if (typeof generatePriceHTML === "function") {
+      return generatePriceHTML(produto);
     }
 
-    const mensagem = `Olá! Tenho interesse na bolsa ${produto.nome}. Gostaria de saber disponibilidade e prazo de confecção.`;
-    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensagem)}`;
+    if (!produto.preco) return "";
+
+    return `
+      <div class="product-price">
+        <div class="price-line price-pix">
+          <span>Pix</span>
+          <strong>${escapeHTML(produto.preco.pix)}</strong>
+        </div>
+
+        <div class="price-line">
+          <span>Cartão</span>
+          <strong>
+            ${produto.preco.parcelas}x de ${escapeHTML(produto.preco.valorParcela)}
+          </strong>
+        </div>
+
+        <small>Total parcelado: ${escapeHTML(produto.preco.parcelado)}</small>
+      </div>
+    `;
   }
 
   function renderThumbs() {
@@ -103,48 +140,132 @@
             data-index="${index}"
             aria-label="Ver imagem ${index + 1} de ${imagens.length}"
           >
-            <img src="${escapeHTML(foto.imagem)}" alt="${escapeHTML(foto.legenda)}" loading="lazy" />
+            <img
+              src="${escapeHTML(foto.imagem)}"
+              alt="${escapeHTML(foto.legenda)}"
+              loading="lazy"
+            />
           </button>
         `,
       )
       .join("");
   }
 
-  function renderVariantes() {
-    if (!produto.variantes || produto.variantes.length === 0) return "";
+  function renderOpcoesProducao(produto) {
+    if (!produto.opcoesProducao || produto.opcoesProducao.length === 0) {
+      return `
+        <section class="produto-production-section">
+          <p class="detail-label">Cores e fios</p>
+
+          <p class="production-help">
+            Este modelo pode ter opções de cores sob consulta. Chame no WhatsApp
+            para verificar disponibilidade do fio e da cor desejada.
+          </p>
+        </section>
+      `;
+    }
 
     return `
-      <div class="produto-color-section">
-        <p class="detail-label">Cores / variações</p>
-        <div class="produto-color-options">
-          ${produto.variantes
-            .map((v, index) => {
-              const corNome = v.corNome || `Opção ${index + 1}`;
-              const corHex = v.corHex || "#f0ebe1";
+      <section class="produto-production-section">
+        <p class="detail-label">Escolha o fio e a cor</p>
+
+        <p class="production-help">
+          Nem todos os modelos podem ser feitos com todos os fios. Escolha uma
+          opção disponível abaixo e confirme a produção pelo WhatsApp.
+        </p>
+
+        <div class="production-fios">
+          ${produto.opcoesProducao
+            .map((opcao, index) => {
+              const fio = getFioById(opcao.fioId);
+              if (!fio) return "";
 
               return `
                 <button
                   type="button"
-                  class="produto-color-btn ${index === 0 ? "active" : ""}"
-                  style="--color:${escapeHTML(corHex)}"
-                  data-cor="${escapeHTML(corNome)}"
-                  data-imagem="${escapeHTML(v.imagem || "")}"
-                  aria-label="Selecionar cor ${escapeHTML(corNome)}"
+                  class="production-fio-btn ${index === 0 ? "active" : ""}"
+                  data-fio-id="${escapeHTML(fio.id)}"
                 >
-                  <span></span>
-                  ${escapeHTML(corNome)}
+                  ${escapeHTML(fio.nome)}
                 </button>
               `;
             })
             .join("")}
         </div>
-      </div>
+
+        <div class="production-colors">
+          ${produto.opcoesProducao
+            .map((opcao, index) => {
+              const fio = getFioById(opcao.fioId);
+              if (!fio) return "";
+
+              return `
+                <div
+                  class="production-color-group ${index === 0 ? "active" : ""}"
+                  data-fio-id="${escapeHTML(fio.id)}"
+                >
+                  ${opcao.cores
+                    .map((item) => {
+                      const cor = getCorById(fio.id, item.corId);
+                      if (!cor) return "";
+
+                      const disponivel = item.disponivel !== false;
+
+                      return `
+                        <button
+                          type="button"
+                          class="production-color-dot ${
+                            disponivel ? "" : "unavailable"
+                          }"
+                          style="--color: ${escapeHTML(cor.corHex)}"
+                          data-fio-id="${escapeHTML(fio.id)}"
+                          data-fio-nome="${escapeHTML(fio.nome)}"
+                          data-cor-id="${escapeHTML(cor.id)}"
+                          data-cor-nome="${escapeHTML(cor.nome)}"
+                          data-imagem="${escapeHTML(item.imagem || "")}"
+                          title="${escapeHTML(cor.nome)}${
+                            disponivel ? "" : " — indisponível"
+                          }"
+                          aria-label="${escapeHTML(cor.nome)}${
+                            disponivel ? "" : " indisponível"
+                          }"
+                          ${disponivel ? "" : "disabled"}
+                        >
+                          <span></span>
+                        </button>
+                      `;
+                    })
+                    .join("")}
+                </div>
+              `;
+            })
+            .join("")}
+        </div>
+
+        <p class="selected-production-text" id="selected-production-text">
+          Selecione uma cor disponível.
+        </p>
+      </section>
     `;
+  }
+
+  function getLinkWhatsApp() {
+    let mensagem = `Olá! Tenho interesse na ${produto.nome}.`;
+
+    if (fioSelecionado && corSelecionada) {
+      mensagem += ` Gostaria de encomendar no ${fioSelecionado}, cor ${corSelecionada}.`;
+    } else {
+      mensagem += ` Gostaria de saber disponibilidade, prazo de produção e opções de cores.`;
+    }
+
+    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      mensagem,
+    )}`;
   }
 
   root.innerHTML = `
     <div class="produto-detail-grid">
-      <section class="produto-gallery" aria-label="Galeria de imagens da ${escapeHTML(produto.nome)}">
+      <div class="produto-gallery">
         <div class="gallery-main-wrap">
           <img
             id="gallery-main-img"
@@ -156,75 +277,115 @@
           ${
             imagens.length > 1
               ? `
-                <button type="button" class="gallery-nav gallery-prev" id="gallery-prev" aria-label="Imagem anterior">
+                <button
+                  class="gallery-nav gallery-prev"
+                  id="gallery-prev"
+                  type="button"
+                  aria-label="Imagem anterior"
+                >
                   <i class="fa-solid fa-chevron-left"></i>
                 </button>
-                <button type="button" class="gallery-nav gallery-next" id="gallery-next" aria-label="Próxima imagem">
+
+                <button
+                  class="gallery-nav gallery-next"
+                  id="gallery-next"
+                  type="button"
+                  aria-label="Próxima imagem"
+                >
                   <i class="fa-solid fa-chevron-right"></i>
                 </button>
+
+                <span class="gallery-counter" id="gallery-counter">
+                  1 / ${imagens.length}
+                </span>
               `
               : ""
           }
-
-          <span class="gallery-counter" id="gallery-counter">1 / ${imagens.length}</span>
         </div>
 
-        <p class="gallery-caption" id="gallery-caption">${escapeHTML(imagens[0].legenda)}</p>
+        <p class="gallery-caption" id="gallery-caption">
+          ${escapeHTML(imagens[0].legenda)}
+        </p>
 
-        ${imagens.length > 1 ? `<div class="gallery-thumbs">${renderThumbs()}</div>` : ""}
-      </section>
+        ${
+          imagens.length > 1
+            ? `<div class="gallery-thumbs">${renderThumbs()}</div>`
+            : ""
+        }
+      </div>
 
-      <section class="produto-info" aria-label="Informações da bolsa">
-        <a class="back-link" href="bolsas.html">
-          <i class="fa-solid fa-arrow-left-long"></i>
+      <article class="produto-info">
+        <a href="bolsas.html" class="back-link">
+          <i class="fa-solid fa-arrow-left"></i>
           Voltar para bolsas
         </a>
 
-        <span class="section-label">${escapeHTML(produto.badge || "Bolsa artesanal")}</span>
-        <h1 class="section-title">${escapeHTML(produto.nome)}</h1>
-        <p class="produto-subtitle">${escapeHTML(detalhes.subtitulo || produto.descricao)}</p>
-        <p class="produto-description">${escapeHTML(produto.descricaoDetalhada || produto.descricao)}</p>
+        <span class="section-label">Detalhes da bolsa</span>
 
-        ${typeof generatePriceHTML === "function" ? generatePriceHTML(produto) : ""}
-        ${renderVariantes()}
+        <h1 class="section-title">${escapeHTML(produto.nome)}</h1>
+
+        <p class="produto-subtitle">
+          ${escapeHTML(detalhes.subtitulo || produto.descricao || "")}
+        </p>
+
+        <p class="produto-description">
+          ${escapeHTML(produto.descricaoDetalhada || produto.descricao || "")}
+        </p>
+
+        ${renderPrice(produto)}
+
+        ${renderOpcoesProducao(produto)}
 
         <div class="produto-actions-main">
-          <a id="produto-wa-btn" class="btn-whatsapp" href="${getLinkWhatsApp()}" target="_blank" rel="noopener noreferrer">
+          <a
+            id="produto-wa-btn"
+            class="btn-whatsapp"
+            href="${getLinkWhatsApp()}"
+            target="_blank"
+            rel="noopener"
+          >
             <i class="fa-brands fa-whatsapp"></i>
             Encomendar pelo WhatsApp
           </a>
+
           <a class="btn-details btn-secondary-detail" href="bolsas.html">
             <i class="fa-solid fa-bag-shopping"></i>
-            Ver outras bolsas
+            Ver catálogo
           </a>
         </div>
 
         <div class="produto-detail-card">
           <h2>Por que essa bolsa encanta?</h2>
+
           <ul>
-            ${diferenciais.map((item) => `<li>${escapeHTML(item)}</li>`).join("")}
+            ${diferenciais
+              .map((item) => `<li>${escapeHTML(item)}</li>`)
+              .join("")}
           </ul>
         </div>
 
         <div class="produto-meta-grid">
           <div>
             <span>Material</span>
-            <strong>${escapeHTML(detalhes.material || "Crochê artesanal")}</strong>
+            <strong>${escapeHTML(detalhes.material || "Sob consulta")}</strong>
           </div>
+
           <div>
             <span>Medidas</span>
             <strong>${escapeHTML(detalhes.medidas || "Sob consulta")}</strong>
           </div>
+
           <div>
             <span>Prazo</span>
-            <strong>${escapeHTML(detalhes.prazo || "Sob encomenda")}</strong>
+            <strong>${escapeHTML(detalhes.prazo || "Sob consulta")}</strong>
           </div>
+
           <div>
             <span>Entrega</span>
-            <strong>Aracaju, SE</strong>
+            <strong>Entregas e retiradas locais em Aracaju, SE.</strong>
           </div>
         </div>
-      </section>
+      </article>
     </div>
   `;
 
@@ -237,7 +398,9 @@
   const waBtn = document.getElementById("produto-wa-btn");
 
   function atualizarWhatsApp() {
-    if (waBtn) waBtn.href = getLinkWhatsApp();
+    if (waBtn) {
+      waBtn.href = getLinkWhatsApp();
+    }
   }
 
   function selecionarImagem(index, resetTimer = true) {
@@ -247,12 +410,15 @@
     const foto = imagens[imagemAtual];
 
     mainImg.style.opacity = "0";
+
     setTimeout(() => {
       mainImg.src = foto.imagem;
       mainImg.alt = foto.legenda;
+
       mainImg.onload = () => {
         mainImg.style.opacity = "1";
       };
+
       mainImg.onerror = () => {
         mainImg.src = FALLBACK_SVG;
         mainImg.style.opacity = "1";
@@ -277,6 +443,91 @@
     }, 4500);
   }
 
+  function selecionarCorProducao(button) {
+    if (!button || button.disabled) return;
+
+    const currentGroup = button.closest(".production-color-group");
+
+    currentGroup
+      ?.querySelectorAll(".production-color-dot")
+      .forEach((btn) => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    fioSelecionado = button.dataset.fioNome || "";
+    corSelecionada = button.dataset.corNome || "";
+
+    const selectedText = document.getElementById("selected-production-text");
+
+    if (selectedText) {
+      selectedText.textContent = `Selecionado: ${fioSelecionado} — ${corSelecionada}`;
+    }
+
+    const imagemDaCor = button.dataset.imagem;
+
+    if (imagemDaCor) {
+      const indexDaImagem = imagens.findIndex(
+        (foto) => foto.imagem === imagemDaCor,
+      );
+
+      if (indexDaImagem >= 0) {
+        selecionarImagem(indexDaImagem);
+      } else if (mainImg) {
+        mainImg.src = imagemDaCor;
+
+        if (caption) {
+          caption.textContent = `${fioSelecionado} na cor ${corSelecionada}`;
+        }
+      }
+    }
+
+    atualizarWhatsApp();
+  }
+
+  function initProductionOptions() {
+    const fioButtons = document.querySelectorAll(".production-fio-btn");
+    const colorGroups = document.querySelectorAll(".production-color-group");
+
+    fioButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const fioId = button.dataset.fioId;
+
+        fioButtons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        colorGroups.forEach((group) => {
+          const isActive = group.dataset.fioId === fioId;
+          group.classList.toggle("active", isActive);
+
+          if (isActive) {
+            group
+              .querySelectorAll(".production-color-dot")
+              .forEach((btn) => btn.classList.remove("active"));
+
+            const firstAvailable = group.querySelector(
+              ".production-color-dot:not(.unavailable):not(:disabled)",
+            );
+
+            selecionarCorProducao(firstAvailable);
+          }
+        });
+      });
+    });
+
+    document.querySelectorAll(".production-color-dot").forEach((button) => {
+      button.addEventListener("click", () => {
+        selecionarCorProducao(button);
+      });
+    });
+
+    const firstGroup = document.querySelector(".production-color-group.active");
+    const firstAvailable = firstGroup?.querySelector(
+      ".production-color-dot:not(.unavailable):not(:disabled)",
+    );
+
+    selecionarCorProducao(firstAvailable);
+  }
+
   thumbs.forEach((thumb) => {
     thumb.addEventListener("click", () => {
       selecionarImagem(Number(thumb.dataset.index));
@@ -286,23 +537,7 @@
   prevBtn?.addEventListener("click", () => selecionarImagem(imagemAtual - 1));
   nextBtn?.addEventListener("click", () => selecionarImagem(imagemAtual + 1));
 
-  document.querySelectorAll(".produto-color-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      document
-        .querySelectorAll(".produto-color-btn")
-        .forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      corSelecionada = btn.dataset.cor || null;
-      atualizarWhatsApp();
-
-      const imagemDaCor = btn.dataset.imagem;
-      const indexDaImagem = imagens.findIndex(
-        (foto) => foto.imagem === imagemDaCor,
-      );
-      if (indexDaImagem >= 0) selecionarImagem(indexDaImagem);
-    });
-  });
-
+  initProductionOptions();
+  atualizarWhatsApp();
   iniciarAutoplay();
 })();

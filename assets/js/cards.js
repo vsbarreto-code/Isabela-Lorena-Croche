@@ -129,42 +129,28 @@ function jsParam(value) {
 function generateCardHTML(produto, prefix) {
   const variantes = Array.isArray(produto.variantes) ? produto.variantes : [];
   const primeiraVariante = variantes[0] || {};
-  const defaultImagem =
-    produto.imagemCapa || primeiraVariante.imagem || FALLBACK_SVG;
-  const defaultCor = primeiraVariante.corNome || "Modelo principal";
-  const waLink = getWhatsappLink(produto, defaultCor);
+  const primeiraGaleria = Array.isArray(produto.galeria)
+    ? produto.galeria[0]
+    : null;
+
+  const imagemCard =
+    produto.imagemCapa ||
+    primeiraGaleria?.imagem ||
+    primeiraVariante.imagem ||
+    FALLBACK_SVG;
+
   const detalhesLink = produto.detalheUrl || `produto.html?id=${produto.id}`;
 
-  let coresHTML = "";
-
-  if (variantes.length > 0) {
-    coresHTML = `<div class="variants" aria-label="Cores disponíveis">`;
-    variantes.forEach((v, i) => {
-      const corNome = v.corNome || `Opção ${i + 1}`;
-      const corHex = v.corHex || "#f0ebe1";
-      const imagem = v.imagem || defaultImagem;
-
-      coresHTML += `
-        <button
-          type="button"
-          onmouseenter='changeProductVariant(${produto.id}, ${jsParam(prefix)}, ${jsParam(imagem)}, this, ${jsParam(corNome)}, ${jsParam(produto.categoria)})'
-          onclick='changeProductVariant(${produto.id}, ${jsParam(prefix)}, ${jsParam(imagem)}, this, ${jsParam(corNome)}, ${jsParam(produto.categoria)})'
-          class="variant-btn ${i === 0 ? "active" : ""}"
-          style="background:${corHex}"
-          title="${corNome}"
-          aria-label="Ver variante ${corNome}"
-        ></button>
-      `;
-    });
-    coresHTML += `</div>`;
-  }
-
   return `
-    <article class="product-card">
-      <a class="product-image-wrap" href="${detalhesLink}" aria-label="Ver detalhes da ${produto.nome}">
+    <article class="product-card product-card-simple">
+      <a
+        class="product-image-wrap"
+        href="${detalhesLink}"
+        aria-label="Ver detalhes da ${produto.nome}"
+      >
         <img
           id="img-${prefix}-${produto.id}"
-          src="${defaultImagem}"
+          src="${imagemCard}"
           alt="${produto.nome}"
           class="product-img"
           loading="lazy"
@@ -172,32 +158,18 @@ function generateCardHTML(produto, prefix) {
           onload="onImageLoad(this)"
           onerror="setFallback(this,'${produto.categoria}')"
         />
-        <span class="product-badge">${produto.badge}</span>
+        ${produto.badge ? `<span class="product-badge">${produto.badge}</span>` : ""}
       </a>
 
       <div class="content">
         <h3>${produto.nome}</h3>
-        <p>${produto.descricao}</p>
 
         ${generatePriceHTML(produto)}
-        ${coresHTML}
 
         <div class="product-actions">
           <a href="${detalhesLink}" class="btn-details">
             <i class="fa-regular fa-images"></i>
             Ver mais detalhes
-          </a>
-
-          <a
-            id="wa-${prefix}-${produto.id}"
-            data-nome="${produto.nome}"
-            href="${waLink}"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-whatsapp"
-          >
-            <i class="fa-brands fa-whatsapp"></i>
-            Consultar / Encomendar
           </a>
         </div>
       </div>

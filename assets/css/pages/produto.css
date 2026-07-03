@@ -437,6 +437,10 @@
    ============================================================ */
 
 @media (max-width: 767px) {
+  .production-color-dot {
+    width: 2.15rem;
+    height: 2.15rem;
+  }
   .produto-hero-mini {
     padding-top: 1.1rem;
   }
@@ -557,5 +561,220 @@
 
   .produto-gallery {
     top: 105px;
+  }
+}
+
+/* ============================================================
+   SELEÇÃO DE FIO E COR — PRODUTO INDIVIDUAL
+   ============================================================ */
+
+.produto-production-section {
+  margin: 1.35rem 0;
+}
+
+.production-help {
+  margin: -0.25rem 0 0.9rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: rgba(44, 42, 40, 0.58);
+}
+
+/* Botões dos fios */
+.production-fios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.production-fio-btn {
+  min-height: 38px;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(197, 168, 128, 0.28);
+  background: #fff;
+  color: rgba(44, 42, 40, 0.68);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.production-fio-btn:hover,
+.production-fio-btn.active {
+  background: var(--color-light);
+  border-color: var(--color-primary);
+  color: var(--color-dark);
+  transform: translateY(-1px);
+}
+
+/* Grupo das cores */
+.production-colors {
+  margin-top: 0.4rem;
+}
+
+.production-color-group {
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  padding: 0.9rem;
+  border-radius: 1rem;
+  background: rgba(250, 249, 246, 0.92);
+  border: 1px solid rgba(197, 168, 128, 0.22);
+}
+
+.production-color-group.active {
+  display: flex;
+}
+
+/* Bolinhas de cor */
+.production-color-dot {
+  position: relative;
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  background: var(--color);
+  box-shadow:
+    0 0 0 1px rgba(197, 168, 128, 0.38),
+    0 4px 12px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.production-color-dot span {
+  display: none;
+}
+
+.production-color-dot:hover,
+.production-color-dot.active {
+  transform: translateY(-2px) scale(1.06);
+  box-shadow:
+    0 0 0 3px rgba(197, 168, 128, 0.38),
+    0 8px 18px rgba(0, 0, 0, 0.14);
+}
+
+/* Cor indisponível com X */
+/* Cor indisponível com X bem visível */
+.production-color-dot.unavailable,
+.production-color-dot:disabled {
+  opacity: 1 !important;
+  cursor: not-allowed;
+  filter: grayscale(0.25);
+  position: relative;
+}
+
+.production-color-dot.unavailable::before,
+.production-color-dot.unavailable::after,
+.production-color-dot:disabled::before,
+.production-color-dot:disabled::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2rem;
+  height: 3px;
+  border-radius: 999px;
+  background: #2c2a28;
+  z-index: 3;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.85);
+}
+
+.production-color-dot.unavailable::before,
+.production-color-dot:disabled::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.production-color-dot.unavailable::after,
+.production-color-dot:disabled::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.production-color-dot.unavailable::marker,
+.production-color-dot:disabled::marker {
+  display: none;
+}
+
+.production-color-dot.unavailable::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.production-color-dot.unavailable::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.selected-production-text {
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+  color: rgba(44, 42, 40, 0.62);
+  line-height: 1.5;
+}
+
+@media (max-width: 767px) {
+  .production-fios {
+    gap: 0.45rem;
+  }
+
+  .production-fio-btn {
+    font-size: 0.7rem;
+    padding-inline: 0.75rem;
+  }
+
+  .production-color-group {
+    gap: 0.6rem;
+  }
+
+  .production-color-dot {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+/* ---- BOTÕES DA PÁGINA DE PRODUTO ---- */
+
+.produto-actions-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  align-items: stretch;
+}
+
+.produto-actions-main .btn-whatsapp,
+.produto-actions-main .btn-details {
+  width: 100%;
+  min-height: 56px;
+  margin-top: 0;
+  padding: 0.85rem 1rem;
+  border-radius: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  text-align: center;
+  line-height: 1.15;
+  white-space: normal;
+}
+
+.produto-actions-main .btn-whatsapp i,
+.produto-actions-main .btn-details i {
+  flex-shrink: 0;
+}
+
+.btn-secondary-detail {
+  background: #fff;
+}
+
+@media (max-width: 767px) {
+  .produto-actions-main {
+    grid-template-columns: 1fr;
+  }
+
+  .produto-actions-main .btn-whatsapp,
+  .produto-actions-main .btn-details {
+    min-height: 52px;
   }
 }
