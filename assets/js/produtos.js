@@ -23,10 +23,10 @@ const produtos = [
     categoria: "Bolsas",
     badge: "Novo",
     preco: {
-      pix: "R$ 159,90",
-      parcelado: "R$ 179,90",
-      parcelas: 3,
-      valorParcela: "R$ 59,97",
+      pix: "R$ 150,00",
+      parcelado: "R$ 159,73",
+      parcelas: 2,
+      valorParcela: "R$ 79,86",
     },
     detalhes: {
       subtitulo:
@@ -77,10 +77,10 @@ const produtos = [
     categoria: "Bolsas",
     badge: "Novo",
     preco: {
-      pix: "R$ 149,90",
-      parcelado: "R$ 169,90",
-      parcelas: 3,
-      valorParcela: "R$ 56,63",
+      pix: "R$ 170,00",
+      parcelado: "R$ 181,03",
+      parcelas: 2,
+      valorParcela: "R$ 90,52",
     },
     detalhes: {
       subtitulo:
@@ -135,10 +135,10 @@ const produtos = [
     categoria: "Bolsas",
     badge: "Novo",
     preco: {
-      pix: "R$ 129,90",
-      parcelado: "R$ 139,90",
+      pix: "R$ 160,00",
+      parcelado: "R$ 170,38",
       parcelas: 2,
-      valorParcela: "R$ 69,95",
+      valorParcela: "R$ 85,19",
     },
     detalhes: {
       subtitulo:
@@ -183,10 +183,10 @@ const produtos = [
     categoria: "Bolsas",
     badge: "Novo",
     preco: {
-      pix: "R$ 129,90",
-      parcelado: "R$ 139,90",
+      pix: "R$ 145,90",
+      parcelado: "R$ 154,41",
       parcelas: 2,
-      valorParcela: "R$ 69,95",
+      valorParcela: "R$ 77,20",
     },
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
@@ -204,6 +204,14 @@ const produtos = [
       {
         imagem: "./assets/img/bolsa-preta-oval.jpeg",
         legenda: "Vista principal na cor Preta",
+      },
+      {
+        imagem: "/assets/img/bolsa-preta-oval-2.jpeg",
+        legenda: "Bolsa Raimunda Preta em composição lifestyle",
+      },
+      {
+        imagem: "/assets/img/bolsa-preta-oval-3.jpeg",
+        legenda: "Vista frontal da Bolsa Raimunda na cor Preta",
       },
     ],
     variantes: [
@@ -226,10 +234,10 @@ const produtos = [
     categoria: "Bolsas",
     badge: "Novo",
     preco: {
-      pix: "R$ 129,90",
-      parcelado: "R$ 139,90",
+      pix: "R$ 160,00",
+      parcelado: "R$ 170,38",
       parcelas: 2,
-      valorParcela: "R$ 69,95",
+      valorParcela: "R$ 85,19",
     },
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
@@ -274,10 +282,10 @@ const produtos = [
     categoria: "Bolsas",
     badge: "Novo",
     preco: {
-      pix: "R$ 129,90",
-      parcelado: "R$ 139,90",
+      pix: "R$ 145,00",
+      parcelado: "R$ 154,41",
       parcelas: 2,
-      valorParcela: "R$ 69,95",
+      valorParcela: "R$ 77,20",
     },
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
