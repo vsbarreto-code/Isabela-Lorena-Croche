@@ -158,7 +158,12 @@ function generateCardHTML(produto, prefix) {
           onload="onImageLoad(this)"
           onerror="setFallback(this,'${produto.categoria}')"
         />
-        ${produto.badge ? `<span class="product-badge">${produto.badge}</span>` : ""}
+
+        ${
+          produto.badge
+            ? `<span class="product-badge">${produto.badge}</span>`
+            : ""
+        }
       </a>
 
       <div class="content">

@@ -1,95 +1,94 @@
 /* ============================================================
-   pages/catalog.css
+   pages/catalog.css — página de bolsas
+   Responsivo: mobile, tablet, desktop
    ============================================================ */
 
 .catalog-page {
   background: var(--color-light);
   min-height: 100vh;
-  /* padding: clamp(4rem, 8vw, 5.5rem) 0 clamp(4rem, 7vw, 6rem); */
+  overflow-x: hidden;
 }
 
-/* ---- HEADER ---- */
+.catalog-page *,
+.catalog-page *::before,
+.catalog-page *::after {
+  box-sizing: border-box;
+}
 
-.catalog-page .catalog-header {
+.catalog-page img {
+  max-width: 100%;
+}
+
+/* ============================================================
+   HEADER DO CATÁLOGO
+   ============================================================ */
+
+.catalog-header {
   text-align: center;
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  padding: clamp(2rem, 4vw, 3rem) 1.5rem 0;
+  padding: clamp(2rem, 5vw, 3.5rem) 1.25rem 0;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
 
-.catalog-page .catalog-header .section-label {
-  margin-bottom: 0.75rem;
-}
-
-.catalog-page .catalog-header .section-title {
-  margin-bottom: 0.85rem;
-}
-
-.catalog-page .catalog-header .section-subtitle {
-  max-width: 580px;
+.catalog-header .inner {
+  max-width: 760px;
   margin: 0 auto;
 }
 
-.catalog-page .catalog-header .divider {
+.catalog-header .section-label {
+  margin-bottom: 0.75rem;
+}
+
+.catalog-header .section-title {
+  margin-bottom: 0.85rem;
+  line-height: 1.12;
+}
+
+.catalog-header .section-subtitle {
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+.catalog-header .divider {
   width: 3.5rem;
   height: 1px;
   background: rgba(197, 168, 128, 0.4);
-  margin: 1.75rem auto 0;
+  margin: 1.65rem auto 0;
 }
 
-/* ---- WRAPPER ---- */
+/* ============================================================
+   GRID
+   ============================================================ */
+
+.catalog-list {
+  padding-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
 
 .catalog-grid-wrap {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 clamp(1rem, 3vw, 1.5rem);
+  padding-inline: clamp(0.9rem, 3vw, 1.5rem);
 }
-
-/* ---- GRID ---- */
 
 .catalog-page .products-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.25rem;
+  gap: 1.15rem;
 }
 
-@media (min-width: 480px) {
-  .catalog-page .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .catalog-page .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-}
-
-@media (min-width: 960px) {
-  .catalog-page .products-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .catalog-page .products-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-  }
-}
-
-/* ---- CARD ---- */
+/* ============================================================
+   CARD
+   ============================================================ */
 
 .catalog-page .product-card {
   background: #fff;
-  border-radius: 1.6rem;
+  border-radius: 1.45rem;
   overflow: hidden;
   box-shadow: var(--shadow-soft);
-  border: 1px solid transparent;
+  border: 1px solid rgba(197, 168, 128, 0.08);
   display: flex;
   flex-direction: column;
+  min-width: 0;
   height: 100%;
   transition:
     transform 0.35s ease,
@@ -98,142 +97,149 @@
 }
 
 .catalog-page .product-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   box-shadow: var(--shadow-hover);
-  border-color: rgba(197, 168, 128, 0.2);
+  border-color: rgba(197, 168, 128, 0.22);
 }
-
-/* ---- IMAGE WRAP ---- */
-/*
-  Usa aspect-ratio para manter proporção consistente
-  independente do tamanho da coluna no grid.
-  4:5 é ideal para fotos de produtos (bolsas).
-*/
 
 .catalog-page .product-image-wrap {
   position: relative;
+  display: block;
   overflow: hidden;
   aspect-ratio: 4 / 5;
   background: var(--color-accent);
   flex-shrink: 0;
 }
 
-/* Fallback para browsers sem suporte a aspect-ratio */
-@supports not (aspect-ratio: 4 / 5) {
-  .catalog-page .product-image-wrap {
-    height: var(--img-height-md);
-  }
-
-  @media (min-width: 768px) {
-    .catalog-page .product-image-wrap {
-      height: var(--img-height-lg);
-    }
-  }
-}
-
-/* ---- PRODUTO IMAGEM ---- */
-
 .catalog-page .product-img {
   position: absolute;
   inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  transition: transform 0.75s ease;
   z-index: 1;
+  transition:
+    transform 0.75s ease,
+    opacity 0.25s ease;
 }
 
 .catalog-page .product-card:hover .product-img {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
-
-/* ---- BADGE ---- */
 
 .catalog-page .product-badge {
   position: absolute;
-  top: 0.85rem;
-  left: 0.85rem;
+  top: 0.8rem;
+  left: 0.8rem;
   z-index: 2;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  padding: 0.4rem 0.8rem;
+  padding: 0.35rem 0.7rem;
   border-radius: 999px;
-  font-size: 0.65rem;
-  font-weight: 600;
+  font-size: 0.62rem;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-dark);
 }
 
-/* ---- CONTENT ---- */
+/* ============================================================
+   CONTEÚDO DO CARD
+   ============================================================ */
 
 .catalog-page .product-card .content {
-  padding: clamp(1rem, 2.5vw, 1.75rem);
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  flex: 1;
+  padding: clamp(0.95rem, 2.5vw, 1.35rem);
   text-align: center;
 }
 
 .catalog-page .product-card h3 {
   font-family: var(--font-serif);
-  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
   color: var(--color-dark);
-  margin-bottom: 0.55rem;
-  line-height: 1.25;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
 }
 
-.catalog-page .product-card p {
-  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
-  line-height: 1.65;
-  color: rgba(44, 42, 40, 0.7);
-  margin-bottom: 1.1rem;
-  flex-grow: 1;
-}
-
-/* ---- VARIANTES ---- */
-
+.catalog-page .product-card p,
 .catalog-page .variants {
-  display: flex;
-  justify-content: center;
-  gap: 0.65rem;
-  margin-bottom: 1.25rem;
-  flex-wrap: wrap;
+  display: none;
 }
 
-.catalog-page .variant-btn {
-  width: 1.1rem;
-  height: 1.1rem;
-  border-radius: 999px;
-  border: 2px solid #fff;
-  cursor: pointer;
-  transition:
-    transform 0.25s ease,
-    outline-offset 0.25s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
-  flex-shrink: 0;
-}
+/* ============================================================
+   PREÇO
+   ============================================================ */
 
-.catalog-page .variant-btn:hover {
-  transform: scale(1.2);
-}
-
-.catalog-page .variant-btn.active {
-  transform: scale(1.25);
-  outline: 2px solid var(--color-primary);
-  outline-offset: 3px;
-}
-
-/* ---- BOTÃO ---- */
-
-.catalog-page .btn-whatsapp {
-  margin-top: auto;
+.catalog-page .product-price {
+  margin: 0 auto 1rem;
   width: 100%;
+  padding: 0.8rem 0.75rem;
+  border-radius: 0.95rem;
+  background: rgba(240, 235, 225, 0.62);
+  border: 1px solid rgba(197, 168, 128, 0.12);
 }
 
-/* ---- ESTADOS VAZIOS ---- */
+.catalog-page .price-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.catalog-page .price-line span {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(44, 42, 40, 0.52);
+}
+
+.catalog-page .price-line strong {
+  font-size: 0.9rem;
+  color: var(--color-dark);
+  line-height: 1.2;
+}
+
+.catalog-page .price-pix strong {
+  color: var(--color-whatsapp);
+}
+
+.catalog-page .product-price small {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.66rem;
+  color: rgba(44, 42, 40, 0.48);
+}
+
+/* ============================================================
+   BOTÃO DO CARD
+   ============================================================ */
+
+.catalog-page .product-actions {
+  margin-top: auto;
+}
+
+.catalog-page .btn-details {
+  width: 100%;
+  min-height: 46px;
+  margin-top: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border-radius: 0.9rem;
+  text-align: center;
+  line-height: 1.15;
+}
+
+/* ============================================================
+   ESTADO VAZIO
+   ============================================================ */
 
 .catalog-empty {
   text-align: center;
@@ -244,136 +250,253 @@
 }
 
 /* ============================================================
-   RESPONSIVO MOBILE (< 480px)
+   NOTA DE CORES
    ============================================================ */
 
-@media (max-width: 479px) {
-  .catalog-page {
-    padding-top: 4rem;
-    padding-bottom: 4.5rem;
+.catalog-color-note {
+  padding: 0 1.25rem clamp(3.5rem, 7vw, 5rem);
+}
+
+.catalog-color-note .inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.color-note-card {
+  text-align: center;
+  background: #fff;
+  border: 1px solid rgba(197, 168, 128, 0.14);
+  border-radius: 1.5rem;
+  padding: clamp(1.3rem, 4vw, 2rem);
+  box-shadow: var(--shadow-soft);
+}
+
+.color-note-card h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.45rem, 4vw, 2rem);
+  font-weight: 500;
+  margin: 0.55rem 0 0.75rem;
+  color: var(--color-dark);
+}
+
+.color-note-card p {
+  max-width: 560px;
+  margin: 0 auto 1.2rem;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: rgba(44, 42, 40, 0.65);
+}
+
+.color-note-card .btn-details {
+  width: min(100%, 320px);
+  margin-inline: auto;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 559px) {
+  .catalog-header {
+    padding: 1.75rem 0.95rem 0;
+    margin-bottom: 1.7rem;
   }
 
-  .catalog-page .catalog-header {
-    padding: 1.75rem 1.1rem 0;
-    margin-bottom: 2.25rem;
+  .catalog-header .section-title {
+    font-size: clamp(1.9rem, 10vw, 2.45rem);
+  }
+
+  .catalog-header .section-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .catalog-header .divider {
+    margin-top: 1.25rem;
   }
 
   .catalog-grid-wrap {
-    padding: 0 0.85rem;
+    padding-inline: 0.9rem;
   }
 
   .catalog-page .products-grid {
-    gap: 1rem;
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
   }
 
   .catalog-page .product-card {
     border-radius: 1.25rem;
   }
 
-  /* Proporção um pouco menos alta em mobile para ver mais cards */
   .catalog-page .product-image-wrap {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 4 / 4.65;
   }
 
   .catalog-page .product-card .content {
-    padding: 1rem 1.1rem 1.25rem;
+    padding: 1rem;
   }
 
   .catalog-page .product-card h3 {
-    font-size: 1.05rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.7rem;
   }
 
-  .catalog-page .product-card p {
-    font-size: 0.78rem;
-    margin-bottom: 0.85rem;
+  .catalog-page .product-price {
+    padding: 0.75rem;
+    margin-bottom: 0.9rem;
   }
 
-  .catalog-page .variants {
-    margin-bottom: 1rem;
-  }
-
-  .catalog-page .btn-whatsapp {
-    min-height: 48px;
+  .catalog-page .btn-details {
+    min-height: 44px;
     font-size: 0.82rem;
   }
-}
 
-/* ============================================================
-   RESPONSIVO SMALL (360px–479px) — dois cards na linha
-   mantendo boa proporção
-   ============================================================ */
-
-@media (min-width: 360px) and (max-width: 479px) {
-  .catalog-page .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.85rem;
-  }
-
-  .catalog-page .product-badge {
-    top: 0.6rem;
-    left: 0.6rem;
-    font-size: 0.58rem;
-    padding: 0.3rem 0.6rem;
+  .catalog-color-note {
+    padding-inline: 0.9rem;
   }
 }
 
 /* ============================================================
-   RESPONSIVIDADE DO CATÁLOGO
-   Página bolsas.html.
+   MOBILE MAIOR / TABLET PEQUENO
    ============================================================ */
 
-@media (max-width: 767px) {
-  .catalog-page .catalog-header {
-    padding: 2.2rem var(--inner-padding) 0;
-    margin-bottom: 2rem;
-  }
-
-  .catalog-page .catalog-header .section-title {
-    font-size: clamp(1.8rem, 10vw, 2.45rem);
-  }
-
-  .catalog-page .catalog-header .section-subtitle {
-    font-size: 0.92rem;
-    line-height: 1.7;
-  }
-
+@media (min-width: 560px) and (max-width: 767px) {
   .catalog-grid-wrap {
-    padding-inline: var(--inner-padding);
+    padding-inline: 1.1rem;
   }
 
   .catalog-page .products-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.15rem;
   }
 
   .catalog-page .product-image-wrap {
-    aspect-ratio: 4 / 4.85;
-  }
-
-  .catalog-page .product-card .content {
-    padding: 1.15rem;
+    aspect-ratio: 4 / 5;
   }
 }
 
-@media (min-width: 560px) and (max-width: 899px) {
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (min-width: 768px) and (max-width: 979px) {
   .catalog-page .products-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.25rem;
+    gap: 1.35rem;
   }
 }
 
-@media (min-width: 900px) and (max-width: 1199px) {
+/* ============================================================
+   DESKTOP MÉDIO
+   ============================================================ */
+
+@media (min-width: 980px) and (max-width: 1199px) {
   .catalog-page .products-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
   }
 }
 
+/* ============================================================
+   DESKTOP GRANDE
+   ============================================================ */
+
+@media (min-width: 1200px) {
+  .catalog-page .products-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.75rem;
+  }
+}
+
+/* ============================================================
+   CELULARES MUITO PEQUENOS
+   ============================================================ */
+
 @media (max-width: 380px) {
+  .catalog-grid-wrap {
+    padding-inline: 0.75rem;
+  }
+
   .catalog-page .product-card h3 {
     font-size: 1.15rem;
   }
 
-  .catalog-page .product-card p {
+  .catalog-page .product-price {
+    padding: 0.7rem 0.6rem;
+  }
+
+  .catalog-page .price-line strong {
     font-size: 0.84rem;
   }
+
+  .catalog-page .product-price small {
+    font-size: 0.62rem;
+  }
+}
+
+/* ============================================================
+   CORREÇÃO FINAL — PREÇO NO CARD COMO NA IMAGEM
+   ============================================================ */
+
+.catalog-page .product-card .product-price {
+  width: 100%;
+  margin: 0 0 1rem;
+  padding: 0.85rem 1rem;
+
+  border-radius: 1rem;
+  background: rgba(240, 235, 225, 0.72);
+  border: 1px solid rgba(197, 168, 128, 0.16);
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  text-align: left;
+}
+
+.catalog-page .product-card .product-price .price-line {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 0.75rem;
+
+  text-align: left;
+}
+
+.catalog-page .product-card .product-price .price-line span {
+  justify-self: start;
+
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(44, 42, 40, 0.55);
+}
+
+.catalog-page .product-card .product-price .price-line strong {
+  justify-self: end;
+
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-dark);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.catalog-page .product-card .product-price .price-pix strong {
+  color: var(--color-whatsapp);
+}
+
+.catalog-page .product-card .product-price small {
+  display: block;
+  width: 100%;
+  margin-top: 0.15rem;
+
+  font-size: 0.68rem;
+  line-height: 1.35;
+  color: rgba(44, 42, 40, 0.48);
+  text-align: left;
 }

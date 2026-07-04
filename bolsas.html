@@ -3,105 +3,132 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
     <title>Bolsas | Isabela Lorena Crochê</title>
+
     <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
       rel="stylesheet"
     />
+
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
     />
+
     <link href="./assets/css/main.css" rel="stylesheet" />
     <link href="./assets/css/header.css" rel="stylesheet" />
     <link href="./assets/css/components.css" rel="stylesheet" />
     <link href="./assets/css/pages/catalog.css" rel="stylesheet" />
     <link href="./assets/css/footer.css" rel="stylesheet" />
   </head>
+
   <body>
-    <!-- HEADER (igual ao index) -->
     <header class="site-header">
       <div class="inner">
         <a class="logo" href="index.html" aria-label="Isabela Lorena Crochê">
           <img src="assets/img/logo.jpeg" alt="Isabela Lorena Crochê" />
         </a>
-        <nav class="nav-desktop">
-          <a href="index.html"> In&iacute;cio </a>
-          <a href="bolsas.html"> Bolsas </a>
-          <a href="sobre.html"> Nossa Hist&oacute;ria </a>
+
+        <nav class="nav-desktop" aria-label="Navegação principal">
+          <a href="index.html">Início</a>
+          <a href="bolsas.html">Bolsas</a>
+          <a href="sobre.html">Nossa História</a>
         </nav>
+
         <a
           class="header-cta"
           href="https://wa.me/5579999802943"
           target="_blank"
+          rel="noopener"
         >
-          <i class="fa-brands fa-whatsapp"> </i>
+          <i class="fa-brands fa-whatsapp"></i>
           Fale Conosco
         </a>
-        <button aria-label="Abrir menu" class="menu-toggle" id="menu-btn">
-          <i class="fa-solid fa-bars-staggered"> </i>
+
+        <button
+          type="button"
+          aria-label="Abrir menu"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          class="menu-toggle"
+          id="menu-btn"
+        >
+          <i class="fa-solid fa-bars-staggered"></i>
         </button>
       </div>
+
       <div class="mobile-menu hidden" id="mobile-menu">
         <div class="inner-mobile">
-          <a href="index.html"> In&iacute;cio </a>
-          <a href="bolsas.html"> Bolsas </a>
-          <a href="sobre.html"> Nossa Hist&oacute;ria </a>
+          <a href="index.html">Início</a>
+          <a href="bolsas.html">Bolsas</a>
+          <a href="sobre.html">Nossa História</a>
+
           <a
             class="mobile-cta"
             href="https://wa.me/5579999802943"
             target="_blank"
+            rel="noopener"
           >
-            <i class="fa-brands fa-whatsapp"> </i>
+            <i class="fa-brands fa-whatsapp"></i>
             Chamar no WhatsApp
           </a>
         </div>
       </div>
     </header>
-    <main>
-      <div class="catalog-page">
-        <div class="catalog-header">
-          <span class="section-label"> Cat&aacute;logo Exclusivo </span>
+
+    <main class="catalog-page">
+      <section class="catalog-header">
+        <div class="inner">
+          <span class="section-label">Catálogo exclusivo</span>
+
           <h1 class="section-title">
             Bolsas de
-            <span class="highlight-word"> Croch&ecirc; Artesanal </span>
+            <span class="highlight-word">Crochê Artesanal</span>
           </h1>
-          <p class="section-subtitle" style="margin: 0.75rem auto 0">
-            Feitas &agrave; m&atilde;o com fios selecionados, cada bolsa carrega
-            eleg&acirc;ncia, durabilidade, pre&ccedil;o Pix e
-            op&ccedil;&otilde;es de parcelamento.
+
+          <p class="section-subtitle">
+            Modelos feitos à mão com acabamento delicado, preço no Pix e opção
+            de parcelamento no cartão.
           </p>
-          <div class="divider"></div>
+
+          <div class="divider" aria-hidden="true"></div>
         </div>
+      </section>
+
+      <section class="catalog-list" aria-label="Lista de bolsas disponíveis">
         <div class="catalog-grid-wrap">
           <div class="products-grid" id="grid-bolsas"></div>
         </div>
-      </div>
-      <section class="cta-section">
+      </section>
+
+      <section class="catalog-color-note">
         <div class="inner">
-          <h2>
-            Quer uma cor
-            <span class="highlight-word"> diferente </span>
-            ?
-          </h2>
-          <p>
-            Fa&ccedil;o sob encomenda! Me conta no WhatsApp o modelo e as cores
-            que voc&ecirc; sonha.
-          </p>
-          <a
-            class="btn-whatsapp"
-            href="https://wa.me/5579999802943"
-            target="_blank"
-          >
-            <i class="fa-brands fa-whatsapp"> </i>
-            Fazer Encomenda
-          </a>
+          <div class="color-note-card">
+            <span class="section-label">Cores disponíveis</span>
+
+            <h2>
+              Quer uma cor
+              <span class="highlight-word">diferente?</span>
+            </h2>
+
+            <p>
+              Na página de detalhes da bolsa você pode consultar os fios e cores
+              disponíveis para aquele modelo.
+            </p>
+
+            <a href="cores.html" class="btn-details">
+              <i class="fa-solid fa-palette"></i>
+              Ver paleta de cores
+            </a>
+          </div>
         </div>
       </section>
     </main>
-    <!-- ===== FOOTER ===== -->
+
     <footer class="site-footer">
       <div class="inner">
         <div class="footer-grid">
@@ -113,57 +140,71 @@
             >
               <img src="assets/img/logo.jpeg" alt="Isabela Lorena Crochê" />
             </a>
+
             <p>
               Atelier de bolsas artesanais em crochê. Produzindo modelos
               sofisticados com fios de qualidade extra premium.
             </p>
+
             <div class="footer-socials">
               <a
                 aria-label="Instagram"
                 href="https://www.instagram.com/isabelalorenacroche/?utm_source=ig_web_button_share_sheet"
                 target="_blank"
+                rel="noopener"
               >
-                <i class="fa-brands fa-instagram"> </i>
+                <i class="fa-brands fa-instagram"></i>
               </a>
             </div>
           </div>
+
           <div class="footer-col">
-            <h3>Navega&ccedil;&atilde;o R&aacute;pida</h3>
+            <h3>Navegação Rápida</h3>
+
             <ul class="footer-links">
               <li>
                 <a href="index.html">
-                  <i class="fa-solid fa-caret-right"> </i>
-                  In&iacute;cio
+                  <i class="fa-solid fa-caret-right"></i>
+                  Início
                 </a>
               </li>
+
               <li>
                 <a href="bolsas.html">
-                  <i class="fa-solid fa-caret-right"> </i>
+                  <i class="fa-solid fa-caret-right"></i>
                   Bolsas
                 </a>
               </li>
+
               <li>
                 <a href="sobre.html">
-                  <i class="fa-solid fa-caret-right"> </i>
+                  <i class="fa-solid fa-caret-right"></i>
                   Quem Somos
                 </a>
               </li>
             </ul>
           </div>
+
           <div class="footer-col">
-            <h3>Contato &amp; Atendimento</h3>
+            <h3>Contato</h3>
+
             <ul class="footer-contact">
               <li>
                 <div class="icon">
-                  <i class="fa-brands fa-whatsapp"> </i>
+                  <i class="fa-brands fa-whatsapp"></i>
                 </div>
+
                 <div class="text">
                   <p>(79) 9 9980-2943</p>
                   <p>Atendimento de seg. a sex.</p>
                 </div>
               </li>
+
               <li>
-                <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="icon">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+
                 <div class="text">
                   <p>Entregas em Aracaju, SE.</p>
                   <p>Consulte taxa e disponibilidade.</p>
@@ -172,34 +213,36 @@
             </ul>
           </div>
         </div>
+
         <div class="footer-bottom">
           <p>
             &copy;
-            <span id="year"> </span>
+            <span id="year"></span>
             Isabela Lorena Crochê
           </p>
+
           <p>
             Feito com
-            <i class="fa-solid fa-heart"> </i>
-            para voc&ecirc;.
+            <i class="fa-solid fa-heart"></i>
+            para você.
           </p>
         </div>
       </div>
     </footer>
-    <!-- WhatsApp flutuante -->
+
     <a
-      aria-label="WhatsApp"
+      aria-label="Abrir conversa no WhatsApp"
       class="whatsapp-float"
       href="https://wa.me/5579999802943"
       target="_blank"
+      rel="noopener"
     >
-      <i class="fa-brands fa-whatsapp"> </i>
-      <span class="tooltip"> Fale conosco! </span>
+      <i class="fa-brands fa-whatsapp"></i>
+      <span class="tooltip">Fale conosco!</span>
     </a>
-    <!-- JS -->
+
     <script src="./assets/js/produtos.js"></script>
     <script src="./assets/js/cards.js"></script>
-    <script src="./assets/js/filtros.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>
