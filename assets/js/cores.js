@@ -48,6 +48,7 @@ const gruposDeCores = [
       { nome: "Marsala", hex: "#A52122" },
       { nome: "Verde Hortelã", hex: "#D5E8DE", borda: "#9B8D7E" },
       { nome: "Babaloo", hex: "#F15288" },
+      { nome: "Verde Musgo", hex: "#43451E" },
     ],
   },
 ];

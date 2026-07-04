@@ -59,6 +59,7 @@ const fiosDisponiveis = [
         borda: "#9B8D7E",
       },
       { id: "babaloo", nome: "Babaloo", corHex: "#F15288" },
+      { id: "verde-musgo,", nome: "Verde Musgo", corHex: "#43451E" },
     ],
   },
 ];
@@ -171,6 +172,10 @@ const produtos = [
             corId: "babaloo",
             disponivel: true,
           },
+          {
+            corId: "verde-musgo",
+            disponivel: true,
+          },
         ],
       },
     ],
@@ -248,6 +253,10 @@ const produtos = [
           { corId: "marsala", disponivel: true },
           { corId: "verde-hortela", disponivel: false },
           { corId: "babaloo", disponivel: true },
+          {
+            corId: "verde-musgo",
+            disponivel: true,
+          },
         ],
       },
     ],
@@ -385,6 +394,10 @@ const produtos = [
           { corId: "marsala", disponivel: true },
           { corId: "verde-hortela", disponivel: false },
           { corId: "babaloo", disponivel: true },
+          {
+            corId: "verde-musgo",
+            disponivel: true,
+          },
         ],
       },
       {
@@ -469,6 +482,10 @@ const produtos = [
           { corId: "marsala", disponivel: true },
           { corId: "verde-hortela", disponivel: false },
           { corId: "babaloo", disponivel: true },
+          {
+            corId: "verde-musgo",
+            disponivel: true,
+          },
         ],
       },
     ],
@@ -532,6 +549,10 @@ const produtos = [
           { corId: "marsala", disponivel: true },
           { corId: "verde-hortela", disponivel: false },
           { corId: "babaloo", disponivel: true },
+          {
+            corId: "verde-musgo",
+            disponivel: true,
+          },
         ],
       },
     ],
