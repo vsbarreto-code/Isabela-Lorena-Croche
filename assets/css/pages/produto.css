@@ -778,3 +778,12 @@
     min-height: 52px;
   }
 }
+
+.gallery-main-wrap {
+  touch-action: pan-y;
+}
+
+.gallery-main-img {
+  user-select: none;
+  -webkit-user-drag: none;
+}

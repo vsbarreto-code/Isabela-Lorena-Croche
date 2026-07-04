@@ -434,6 +434,53 @@
     if (resetTimer) iniciarAutoplay();
   }
 
+  function initGallerySwipe() {
+    const galleryWrap = document.querySelector(".gallery-main-wrap");
+
+    if (!galleryWrap || imagens.length <= 1) return;
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    galleryWrap.addEventListener(
+      "touchstart",
+      (event) => {
+        touchStartX = event.changedTouches[0].screenX;
+        touchStartY = event.changedTouches[0].screenY;
+      },
+      { passive: true },
+    );
+
+    galleryWrap.addEventListener(
+      "touchend",
+      (event) => {
+        touchEndX = event.changedTouches[0].screenX;
+        touchEndY = event.changedTouches[0].screenY;
+
+        const diffX = touchStartX - touchEndX;
+        const diffY = touchStartY - touchEndY;
+
+        const minSwipeDistance = 50;
+
+        // Se o movimento vertical for maior, entende que a pessoa só rolou a página
+        if (Math.abs(diffY) > Math.abs(diffX)) return;
+
+        if (Math.abs(diffX) < minSwipeDistance) return;
+
+        if (diffX > 0) {
+          // Arrastou para esquerda: próxima imagem
+          selecionarImagem(imagemAtual + 1);
+        } else {
+          // Arrastou para direita: imagem anterior
+          selecionarImagem(imagemAtual - 1);
+        }
+      },
+      { passive: true },
+    );
+  }
+
   function iniciarAutoplay() {
     if (autoplay) clearInterval(autoplay);
     if (imagens.length <= 1) return;
@@ -537,6 +584,7 @@
   prevBtn?.addEventListener("click", () => selecionarImagem(imagemAtual - 1));
   nextBtn?.addEventListener("click", () => selecionarImagem(imagemAtual + 1));
 
+  initGallerySwipe();
   initProductionOptions();
   atualizarWhatsApp();
   iniciarAutoplay();
