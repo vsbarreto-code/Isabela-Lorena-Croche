@@ -26,6 +26,7 @@ const fiosDisponiveis = [
       { id: "colorau", nome: "Colorau", corHex: "#94312B" },
       { id: "lilas", nome: "Lilás", corHex: "#C587E6" },
       { id: "sangria", nome: "Sangria", corHex: "#B42A24" },
+      { id: "ferrugem", nome: "Ferrugem", corHex: "#D8733A" },
     ],
   },
   {
@@ -91,7 +92,7 @@ const produtos = [
       diferenciais: [
         "Produzida artesanalmente em crochê com fio de malha extra premium",
         "Possui duas alças, permitindo versatilidade no uso",
-        "Corrente frontal que traz um toque sofisticado",
+        "Você pode escolher entre dois designs (corrente frontal ou lateral)",
         "Tamanho ideal para carregar itens essenciais",
       ],
     },
@@ -282,7 +283,7 @@ const produtos = [
   {
     id: 3,
     nome: "Bolsa Raimunda",
-    imagemCapa: "./assets/img/bolsa-marrom-menor-designer-diferente.jpeg",
+    imagemCapa: "./assets/img/bolsaRaimunda/bolsa-raimunda-3.jpeg",
     descricao:
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
@@ -311,19 +312,21 @@ const produtos = [
     },
     galeria: [
       {
-        imagem: "./assets/img/bolsa-marrom-designer-diferente-perto.jpeg",
+        imagem: "./assets/img/bolsaRaimunda/bolsa-raimunda-2.jpeg",
         legenda: "Raimunda em tom Ferrugem",
       },
       {
-        imagem: "./assets/img/bolsa-marrom-designer-diferente-costa.jpeg",
+        imagem: "./assets/img/bolsaRaimunda/bolsa-raimunda-1.jpeg",
         legenda: "Detalhe da textura artesanal",
       },
     ],
     variantes: [
       {
-        corHex: "#64370D",
-        corNome: "Ferrugem",
-        imagem: "./assets/img/bolsa-marrom-menor-designer-diferente.jpeg",
+        fioId: "fio-nautico",
+        corId: "ferrugem",
+        corHex: "#D8733A",
+        cornome: "Ferrugem",
+        imagem: "./assets/img/bolsaRaimunda/bolsa-raimunda-2.jpeg",
       },
     ],
     opcoesProducao: [
@@ -342,6 +345,7 @@ const produtos = [
           { corId: "colorau", disponivel: true },
           { corId: "lilas", disponivel: true },
           { corId: "sangria", disponivel: true },
+          { corId: "ferrugem", disponivel: true },
         ],
       },
     ],
@@ -349,11 +353,11 @@ const produtos = [
   {
     id: 4,
     nome: "Bolsa Inês",
-    imagemCapa: "./assets/img/bolsa-oval-preta.jpeg",
+    imagemCapa: "./assets/img/bolsaInes/bolsa-ines-1.jpeg",
     descricao:
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
-      "Um modelo compacto em tom escuro, com visual marcante e sofisticado. Ideal para quem busca uma bolsa artesanal discreta, elegante e fácil de usar em diferentes produções.",
+      "Modelo compacto e com visual marcante, a Bolsa Inês é a escolha ideal para quem busca garantir uma ótima primeira impressão ao chegar nos lugares. Com seu design trançado e sua versatilidade em ser produzida tanto em fio náutico como em fio de malha, o cliente escolhe a opção que melhor se adequa ao seu gosto.",
     destaque: true,
     categoria: "Bolsas",
     badge: "Novo",
@@ -376,24 +380,22 @@ const produtos = [
       ],
     },
     galeria: [
-      // {
-      //   imagem: "./assets/img/bolsa-preta-oval.jpeg",
-      //   legenda: "Vista principal na cor Preta",
-      // },
-      // {
-      //   imagem: "/assets/img/bolsa-preta-oval-2.jpeg",
-      //   legenda: "Bolsa Raimunda Preta em composição lifestyle",
-      // },
       {
-        imagem: "/assets/img/bolsa-preta-oval-3.jpeg",
-        legenda: "Vista frontal da Bolsa Raimunda na cor Preta",
+        imagem: "./assets/img/bolsaInes/bolsa-ines-2.jpeg",
+        legenda: "Vista frontal da Bolsa Inês na cor Preta",
+      },
+      {
+        imagem: "./assets/img/bolsaInes/bolsa-ines-1.jpeg",
+        legenda: "Vista frontal da Bolsa Inês na cor Preta",
       },
     ],
     variantes: [
       {
-        corHex: "#14120F",
-        corNome: "Preto",
-        imagem: "./assets/img/bolsa-oval-preta.jpeg",
+        fioId: "fio-malha",
+        corId: "preto",
+        corHex: "#1D1C21",
+        cornome: "Preto",
+        imagem: "./assets/img/bolsaInes/bolsa-ines-2.jpeg",
       },
     ],
     opcoesProducao: [
@@ -433,6 +435,7 @@ const produtos = [
           { corId: "colorau", disponivel: true },
           { corId: "lilas", disponivel: true },
           { corId: "sangria", disponivel: true },
+          { corId: "ferrugem", disponivel: true },
         ],
       },
     ],
@@ -440,7 +443,7 @@ const produtos = [
   {
     id: 5,
     nome: "Bolsa Eliza",
-    imagemCapa: "./assets/img/bolsa-oval-lateral-laranja.jpeg",
+    imagemCapa: "./assets/img/bolsaEliza/bolsa-eliza-1.png",
     descricao:
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
@@ -468,20 +471,28 @@ const produtos = [
     },
     galeria: [
       {
-        imagem: "./assets/img/bolsa-oval-lateral-vermelha.jpeg",
+        imagem: "./assets/img/bolsaEliza/bolsa-eliza-1.png",
+        legenda: "Vista principal na cor Ferrugem",
+      },
+      {
+        imagem: "./assets/img/bolsaEliza/bolsa-eliza-2.jpeg",
         legenda: "Vista principal na cor Pink",
       },
     ],
     variantes: [
       {
-        corHex: "#F17805",
-        corNome: "Ferrugem",
-        imagem: "./assets/img/bolsa-oval-lateral-laranja.jpeg",
+        fioId: "fio-malha",
+        corId: "pink",
+        corHex: "#EF2F5A",
+        cornome: "Pink",
+        imagem: "./assets/img/bolsaEliza/bolsa-eliza-2.jpeg",
       },
       {
-        corHex: "#FB0046",
-        corNome: "Pink",
-        imagem: "./assets/img/bolsa-oval-lateral-vermelha.jpeg",
+        fioId: "fio-malha",
+        corId: "ferrugem",
+        corHex: "#D8733A",
+        cornome: "Ferrugem",
+        imagem: "./assets/img/bolsaEliza/bolsa-eliza-1.png",
       },
     ],
     opcoesProducao: [
@@ -511,7 +522,7 @@ const produtos = [
   {
     id: 6,
     nome: "Bolsa Aurora",
-    imagemCapa: "/assets/img/bolsa-aurora.jpeg",
+    imagemCapa: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
     descricao:
       "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado. Um modelo elegante para usar do dia a dia aos momentos especiais.",
     descricaoDetalhada:
@@ -540,15 +551,17 @@ const produtos = [
     },
     galeria: [
       {
-        imagem: "/assets/img/bolsa-aurora.jpeg",
+        imagem: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
         legenda: "Vista principal na cor Lilas",
       },
     ],
     variantes: [
       {
+        fioId: "fio-malha",
+        corId: "lilas",
         corHex: "#A98BDA",
-        corNome: "Lilás",
-        imagem: "/assets/img/bolsa-aurora.jpeg",
+        cornome: "Lilás",
+        imagem: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
       },
     ],
     opcoesProducao: [

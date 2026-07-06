@@ -26,6 +26,7 @@ const gruposDeCores = [
       { nome: "Colorau", hex: "#94312B" },
       { nome: "Lilás", hex: "#C587E6" },
       { nome: "Sangria", hex: "#B42A24" },
+      { nome: "Ferrugem", hex: "#D8733A" },
     ],
   },
   {
