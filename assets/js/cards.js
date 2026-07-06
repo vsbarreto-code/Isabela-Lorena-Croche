@@ -100,24 +100,78 @@ function changeProductVariant(
 function generatePriceHTML(produto) {
   if (!produto.preco) return "";
 
-  const pix = produto.preco.pix
-    ? `<div class="price-line price-pix"><span>Pix</span><strong>${produto.preco.pix}</strong></div>`
-    : "";
+  const {
+    promocaoAtiva = false,
+    precoOriginal = "",
+    pix = "",
+    parcelado = "",
+    parcelas = "",
+    valorParcela = "",
+  } = produto.preco;
 
-  const parcelado =
-    produto.preco.parcelas && produto.preco.valorParcela
-      ? `<div class="price-line price-installment"><span>Cartão</span><strong>${produto.preco.parcelas}x de ${produto.preco.valorParcela}</strong></div>`
-      : "";
-
-  const totalParcelado = produto.preco.parcelado
-    ? `<small>Total parcelado: ${produto.preco.parcelado}</small>`
-    : "";
+  const temPromocao = promocaoAtiva === true && precoOriginal;
+  const temPix = Boolean(pix);
+  const temCartao = Boolean(parcelas && valorParcela);
 
   return `
-    <div class="product-price" aria-label="Preço da ${produto.nome}">
-      ${pix}
-      ${parcelado}
-      ${totalParcelado}
+    <div
+      class="price-box ${temPromocao ? "price-box--promo" : "price-box--normal"}"
+      aria-label="Preço da ${produto.nome}"
+    >
+      <div class="price-box__top">
+        ${
+          temPromocao
+            ? `
+              <span class="price-box__badge price-box__badge--promo">
+                Promoção
+              </span>
+
+              <span class="price-box__old">
+                De <strong>${precoOriginal}</strong>
+              </span>
+            `
+            : `
+              <span class="price-box__badge price-box__badge--normal">
+                Preço
+              </span>
+
+              <span class="price-box__old price-box__old--empty">
+                Sem preço antigo
+              </span>
+            `
+        }
+      </div>
+
+      ${
+        temPix
+          ? `
+            <div class="price-box__main">
+              <strong>${pix}</strong>
+              <span>no Pix</span>
+            </div>
+          `
+          : ""
+      }
+
+      ${
+        temCartao
+          ? `
+            <div class="price-box__installment">
+              ou <strong>${parcelas}x de ${valorParcela}</strong> no cartão
+            </div>
+          `
+          : ""
+      }
+
+      ${
+        parcelado
+          ? `
+            <small class="price-box__total">
+              Total no cartão: ${parcelado}
+            </small>
+          `
+          : ""
+      }
     </div>
   `;
 }

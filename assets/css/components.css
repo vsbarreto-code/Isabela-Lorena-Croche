@@ -882,3 +882,206 @@
     align-items: center;
   }
 }
+/* ============================================================
+   PREÇO PADRONIZADO — COM E SEM PROMOÇÃO
+   ============================================================ */
+
+.price-box {
+  width: 100%;
+  min-height: 7.35rem;
+  margin: 0 0 1.15rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 1rem;
+  background: linear-gradient(180deg, #fffaf4 0%, #f4ede3 100%);
+  border: 1px solid rgba(197, 168, 128, 0.28);
+  box-shadow: 0 12px 28px -24px rgba(120, 96, 70, 0.45);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Topo sempre existe para manter todos os cards alinhados */
+.price-box__top {
+  min-height: 1.45rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  margin-bottom: 0.45rem;
+}
+
+/* Selo */
+.price-box__badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.28rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.58rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.price-box__badge--promo {
+  background: rgba(34, 197, 94, 0.14);
+  color: #159947;
+}
+
+.price-box__badge--normal {
+  background: rgba(197, 168, 128, 0.14);
+  color: #8b6f4f;
+}
+
+/* Preço antigo */
+.price-box__old {
+  color: rgba(44, 42, 40, 0.55);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.price-box__old strong {
+  position: relative;
+  display: inline-block;
+  color: #9a8f86;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.price-box__old strong::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 50%;
+  height: 2px;
+  background: rgba(180, 38, 38, 0.75);
+  transform: rotate(-4deg);
+  border-radius: 999px;
+}
+
+/* Quando não tem promoção, mantém espaço sem mostrar texto */
+.price-box__old--empty {
+  visibility: hidden;
+}
+
+/* Preço Pix */
+.price-box__main {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+.price-box__main strong {
+  color: var(--color-whatsapp-dark);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.price-box__main span {
+  color: rgba(44, 42, 40, 0.72);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+/* Parcelamento */
+.price-box__installment {
+  margin: 0;
+  color: rgba(44, 42, 40, 0.72);
+  font-size: 0.7rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.price-box__installment strong {
+  color: var(--color-dark);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* Total no cartão */
+.price-box__total {
+  display: block;
+  margin-top: auto;
+  padding-top: 0.45rem;
+  border-top: 1px solid rgba(197, 168, 128, 0.24);
+  color: rgba(44, 42, 40, 0.55);
+  font-size: 0.65rem;
+  line-height: 1.3;
+}
+
+/* Remove interferência de regras antigas */
+.product-card .price-box__installment {
+  flex-grow: 0;
+}
+
+/* Página individual pode ficar maior */
+.produto-info .price-box {
+  max-width: 520px;
+  min-height: auto;
+  padding: 1rem;
+}
+
+.produto-info .price-box__main strong {
+  font-size: clamp(1.55rem, 3vw, 2rem);
+}
+
+.produto-info .price-box__installment {
+  font-size: 0.9rem;
+}
+
+.produto-info .price-box__total {
+  font-size: 0.76rem;
+}
+
+/* Mobile */
+@media (max-width: 479px) {
+  .price-box {
+    min-height: auto;
+    padding: 0.9rem;
+  }
+
+  .price-box__top {
+    margin-bottom: 0.55rem;
+  }
+
+  .price-box__badge {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.65rem;
+  }
+
+  .price-box__old {
+    font-size: 0.68rem;
+  }
+
+  .price-box__old strong {
+    font-size: 0.78rem;
+  }
+
+  .price-box__main strong {
+    font-size: 1.55rem;
+  }
+
+  .price-box__main span {
+    font-size: 0.82rem;
+  }
+
+  .price-box__installment {
+    font-size: 0.82rem;
+  }
+
+  .price-box__total {
+    font-size: 0.72rem;
+  }
+}
