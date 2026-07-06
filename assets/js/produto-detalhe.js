@@ -70,6 +70,37 @@
     return fio?.cores.find((cor) => cor.id === corId);
   }
 
+  function normalizarTexto(value) {
+    return String(value || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim();
+  }
+
+  function getImagemDaCor(produto, fioId, corId, corNome) {
+    // 1. Primeiro tenta pegar imagem diretamente em opcoesProducao
+    const opcao = produto.opcoesProducao?.find((item) => item.fioId === fioId);
+
+    const corOpcao = opcao?.cores?.find((item) => item.corId === corId);
+
+    if (corOpcao?.imagem) {
+      return corOpcao.imagem;
+    }
+
+    // 2. Depois tenta pegar pela lista de variantes
+    const variante = produto.variantes?.find((item) => {
+      const mesmoFio = !item.fioId || item.fioId === fioId;
+      const mesmaCorId = item.corId && item.corId === corId;
+      const mesmaCorNome =
+        normalizarTexto(item.corNome) === normalizarTexto(corNome);
+
+      return mesmoFio && (mesmaCorId || mesmaCorNome);
+    });
+
+    return variante?.imagem || "";
+  }
+
   if (!produto) {
     document.title = "Bolsa não encontrada | Isabela Lorena Crochê";
 
@@ -222,7 +253,7 @@
                           data-fio-nome="${escapeHTML(fio.nome)}"
                           data-cor-id="${escapeHTML(cor.id)}"
                           data-cor-nome="${escapeHTML(cor.nome)}"
-                          data-imagem="${escapeHTML(item.imagem || "")}"
+                          data-imagem="${escapeHTML(getImagemDaCor(produto, fio.id, item.corId, cor.nome))}"
                           title="${escapeHTML(cor.nome)}${
                             disponivel ? "" : " — indisponível"
                           }"
@@ -520,14 +551,31 @@
       if (indexDaImagem >= 0) {
         selecionarImagem(indexDaImagem);
       } else if (mainImg) {
-        mainImg.src = imagemDaCor;
+        mainImg.style.opacity = "0";
+
+        setTimeout(() => {
+          mainImg.src = imagemDaCor;
+          mainImg.alt = `${produto.nome} na cor ${corSelecionada}`;
+
+          mainImg.onload = () => {
+            mainImg.style.opacity = "1";
+          };
+
+          mainImg.onerror = () => {
+            mainImg.src = FALLBACK_SVG;
+            mainImg.style.opacity = "1";
+          };
+        }, 120);
 
         if (caption) {
-          caption.textContent = `${fioSelecionado} na cor ${corSelecionada}`;
+          caption.textContent = `${produto.nome} na cor ${corSelecionada}`;
         }
       }
+    } else {
+      if (caption) {
+        caption.textContent = `Imagem ilustrativa. Cor selecionada: ${corSelecionada}`;
+      }
     }
-
     atualizarWhatsApp();
   }
 

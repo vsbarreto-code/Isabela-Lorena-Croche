@@ -59,7 +59,7 @@ const fiosDisponiveis = [
         borda: "#9B8D7E",
       },
       { id: "babaloo", nome: "Babaloo", corHex: "#F15288" },
-      { id: "verde-musgo,", nome: "Verde Musgo", corHex: "#43451E" },
+      { id: "verde-musgo", nome: "Verde Musgo", corHex: "#43451E" },
     ],
   },
 ];
@@ -68,7 +68,7 @@ const produtos = [
   {
     id: 1,
     nome: "Bolsa Raíssa",
-    imagemCapa: "./assets/img/conjunto-4-bolsas-coloridas.jpeg",
+    imagemCapa: "./assets/img/bolsaRaissa/bolsa-raissa-capa.jpeg",
     descricao:
       "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado.",
     descricaoDetalhada:
@@ -97,25 +97,40 @@ const produtos = [
     },
     galeria: [
       {
-        imagem: "./assets/img/bolsa-amarelada.jpeg",
+        imagem: "./assets/img/bolsaRaissa/bolsa-raissa-2.jpeg",
         legenda: "Bolsa Raíssa na cor Amarelo Bebê",
       },
       {
-        imagem: "./assets/img/bolsa-vermelha-normal.jpeg",
+        imagem: "./assets/img/bolsaRaissa/bolsa-raissa-3.jpeg",
         legenda: "Bolsa Raíssa na cor Pink",
+      },
+      {
+        imagem: "./assets/img/bolsaRaissa/bolsa-raissa-1.jpeg",
+        legenda: "Bolsa Raíssa na cor Verde Musgo",
       },
     ],
 
     variantes: [
       {
-        corHex: "#F4E5B1",
+        fioId: "fio-malha",
+        corId: "amarelo-bebe",
+        corHex: "#FFF6D1",
         corNome: "Amarelo Bebê",
-        imagem: "./assets/img/bolsa-amarelada.jpeg",
+        imagem: "./assets/img/bolsaRaissa/bolsa-raissa-2.jpeg",
       },
       {
-        corHex: "#D60F3E",
-        corNome: "Pink",
-        imagem: "./assets/img/bolsa-vermelha-normal.jpeg",
+        fioId: "fio-malha",
+        corId: "pink",
+        corHex: "#EF2F5A",
+        cornome: "Pink",
+        imagem: "./assets/img/bolsaRaissa/bolsa-raissa-3.jpeg",
+      },
+      {
+        fioId: "fio-malha",
+        corId: "verde-musgo",
+        corHex: "#43451E",
+        cornome: "Verde Musgo",
+        imagem: "./assets/img/bolsaRaissa/bolsa-raissa-1.jpeg",
       },
     ],
 
@@ -130,7 +145,6 @@ const produtos = [
           {
             corId: "pink",
             disponivel: true,
-            imagem: "./assets/img/bolsa-vermelha-normal.jpeg",
           },
           {
             corId: "ferrugem",
@@ -183,7 +197,7 @@ const produtos = [
   {
     id: 2,
     nome: "Bolsa Ryzia",
-    imagemCapa: "./assets/img/bolsa-preta-com-sapato.jpeg",
+    imagemCapa: "./assets/img/bolsaRyzia/bolsa-ryzia-1.jpeg",
     descricao:
       "Bolsa artesanal em crochê com design estruturado, alça de mão e corrente. Elegante, versátil e perfeita para compor looks casuais ou mais sofisticados.",
     descricaoDetalhada:
@@ -213,28 +227,32 @@ const produtos = [
     },
     galeria: [
       {
-        imagem: "./assets/img/dupla-bolsa-chanel-preto-branco.jpeg",
+        imagem: "./assets/img/bolsaRyzia/bolsa-ryzia-3.jpeg",
         legenda: "Ryzia em duas versões clássicas",
       },
       {
-        imagem: "./assets/img/bolsa-chanel-branco.jpeg",
+        imagem: "./assets/img/bolsaRyzia/bolsa-ryzia-1.jpeg",
         legenda: "Versão Branco para produções leves",
       },
       {
-        imagem: "./assets/img/bolsa-preta-com-sapato.jpeg",
+        imagem: "./assets/img/bolsaRyzia/bolsa-ryzia-2.jpeg",
         legenda: "Versão Preto em look elegante",
       },
     ],
     variantes: [
       {
-        corHex: "#D2CDC4",
+        fioId: "fio-malha",
+        corId: "branco",
+        corHex: "#F8F8F4",
         corNome: "Branco",
-        imagem: "./assets/img/bolsa-chanel-branco.jpeg",
+        imagem: "./assets/img/bolsaRyzia/bolsa-ryzia-1.jpeg",
       },
       {
-        corHex: "#151517",
-        corNome: "Preto",
-        imagem: "./assets/img/bolsa-preta-com-sapato.jpeg",
+        fioId: "fio-malha",
+        corId: "preto",
+        corHex: "#1D1C21",
+        cornome: "Preto",
+        imagem: "./assets/img/bolsaRyzia/bolsa-ryzia-2.jpeg",
       },
     ],
     opcoesProducao: [
