@@ -79,11 +79,11 @@ const produtos = [
     badge: "Novo",
     preco: {
       promocaoAtiva: true,
-      precoOriginal: "R$ 200,00",
-      pix: "R$ 150,00",
-      parcelado: "R$ 159,73",
+      precoOriginal: "R$ 150,00",
+      pix: "R$ 140,00",
+      parcelado: "R$ 149,58",
       parcelas: 2,
-      valorParcela: "R$ 79,86",
+      valorParcela: "R$ 74,54",
     },
     detalhes: {
       subtitulo:
@@ -210,11 +210,11 @@ const produtos = [
     badge: "Novo",
     preco: {
       promocaoAtiva: true,
-      precoOriginal: "R$ 210,00",
-      pix: "R$ 170,00",
-      parcelado: "R$ 181,03",
+      precoOriginal: "R$ 170,00",
+      pix: "R$ 160,00",
+      parcelado: "R$ 170,38",
       parcelas: 2,
-      valorParcela: "R$ 90,52",
+      valorParcela: "R$ 85,19",
     },
     detalhes: {
       subtitulo:
@@ -297,11 +297,11 @@ const produtos = [
     badge: "Novo",
     preco: {
       promocaoAtiva: true,
-      precoOriginal: "R$ 210,00",
-      pix: "R$ 160,00",
-      parcelado: "R$ 170,38",
+      precoOriginal: "R$ 160,00",
+      pix: "R$ 150,00",
+      parcelado: "R$ 159,72",
       parcelas: 2,
-      valorParcela: "R$ 85,19",
+      valorParcela: "R$ 79,86",
     },
     detalhes: {
       subtitulo:
@@ -369,11 +369,11 @@ const produtos = [
     badge: "Novo",
     preco: {
       promocaoAtiva: true,
-      precoOriginal: "R$ 290,00",
-      pix: "R$ 145,90",
-      parcelado: "R$ 154,41",
+      precoOriginal: "R$ 145,00",
+      pix: "R$ 135,00",
+      parcelado: "R$ 143,76",
       parcelas: 2,
-      valorParcela: "R$ 77,20",
+      valorParcela: "R$ 71,88",
     },
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
@@ -461,11 +461,11 @@ const produtos = [
     badge: "Novo",
     preco: {
       promocaoAtiva: true,
-      precoOriginal: "R$ 210,00",
-      pix: "R$ 160,00",
-      parcelado: "R$ 170,38",
+      precoOriginal: "R$ 160,00",
+      pix: "R$ 150,00",
+      parcelado: "R$ 159,72",
       parcelas: 2,
-      valorParcela: "R$ 85,19",
+      valorParcela: "R$ 79,86",
     },
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
@@ -542,11 +542,11 @@ const produtos = [
     badge: "Novo",
     preco: {
       promocaoAtiva: true,
-      precoOriginal: "R$ 185,00",
-      pix: "R$ 145,00",
-      parcelado: "R$ 154,41",
+      precoOriginal: "R$ 145,00",
+      pix: "R$ 135,00",
+      parcelado: "R$ 143,76",
       parcelas: 2,
-      valorParcela: "R$ 77,20",
+      valorParcela: "R$ 71,88",
     },
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
