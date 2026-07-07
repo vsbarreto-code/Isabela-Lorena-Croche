@@ -378,10 +378,10 @@ const produtos = [
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
       medidas: "Medidas aproximadas sob consulta no WhatsApp",
-      material: "Fio de Náutico",
+      material: "Fio Náutico ou Fio de Malha",
       prazo: "Produção sob encomenda, conforme disponibilidade",
       diferenciais: [
-        "Produzida artesanalmente em crochê com fio náutico premium",
+        "Produzida artesanalmente em crochê com fio náutico e fio de malha premium",
         "Design trançado traz um toque de elegância",
         "Tamanho prático para levar o essencial",
         "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",
