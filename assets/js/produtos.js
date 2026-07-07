@@ -390,11 +390,11 @@ const produtos = [
     galeria: [
       {
         imagem: "./assets/img/bolsaInes/bolsa-ines-2.jpeg",
-        legenda: "Vista frontal da Bolsa Inês na cor Preta",
+        legenda: "Bolsa em fio náutico",
       },
       {
         imagem: "./assets/img/bolsaInes/bolsa-ines-1.jpeg",
-        legenda: "Vista frontal da Bolsa Inês na cor Preta",
+        legenda: "Bolsa em fio de malha",
       },
     ],
     variantes: [
@@ -536,7 +536,7 @@ const produtos = [
     descricao:
       "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado. Um modelo elegante para usar do dia a dia aos momentos especiais.",
     descricaoDetalhada:
-      "A Bolsa Raíssa foi criada para quem gosta de unir delicadeza, presença e praticidade em uma única peça. Feita artesanalmente em fio de malha, ela tem trama encorpada, visual sofisticado e detalhes dourados que valorizam o acabamento. É uma bolsa versátil, perfeita para compor looks leves, casuais ou mais arrumados, mantendo o charme do feito à mão.",
+      "Mais do que uma bolsa, a Bolsa Aurora é um acessório que transforma qualquer produção. Seu design minimalista, combinado à alça de mão geométrica em metal e à corrente delicada, resulta em uma peça sofisticada, moderna e versátil, perfeita para acompanhar você dos momentos especiais ao dia a dia com elegância.",
     destaque: false,
     categoria: "Bolsas",
     badge: "Novo",
