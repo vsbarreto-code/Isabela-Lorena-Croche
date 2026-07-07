@@ -378,10 +378,10 @@ const produtos = [
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
       medidas: "Medidas aproximadas sob consulta no WhatsApp",
-      material: "Fio de Malha",
+      material: "Fio de Náutico",
       prazo: "Produção sob encomenda, conforme disponibilidade",
       diferenciais: [
-        "Produzida artesanalmente em crochê com fio de malha extra premium",
+        "Produzida artesanalmente em crochê com fio náutico premium",
         "Design trançado traz um toque de elegância",
         "Tamanho prático para levar o essencial",
         "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",
@@ -455,7 +455,7 @@ const produtos = [
     descricao:
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
-      "Um modelo compacto em tom escuro, com visual marcante e sofisticado. Ideal para quem busca uma bolsa artesanal discreta, elegante e fácil de usar em diferentes produções.",
+      "A Bolsa Eliza foi criada para mulheres que valorizam elegância sem abrir mão da versatilidade. Seu design trançado combinado com a delicadeza da alça em corrente conferem um acabamento moderno e refinado. É aquela bolsa que acompanha você em todos os momentos: do casamento ao jantar, do shopping ao happy hour. Um modelo atemporal que complementa diferentes estilos e ocasiões com a mesma elegância.",
     destaque: false,
     categoria: "Bolsas",
     badge: "Novo",
