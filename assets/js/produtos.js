@@ -287,7 +287,7 @@ const produtos = [
   {
     id: 3,
     nome: "Bolsa Raimunda",
-    imagemCapa: "./assets/img/bolsaRaimunda/bolsa-raimunda-3.jpeg",
+    imagemCapa: "./assets/img/bolsaRaimunda/bolsa-raimunda-4.jpeg",
     descricao:
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
