@@ -529,77 +529,77 @@ const produtos = [
       },
     ],
   },
-  {
-    id: 6,
-    nome: "Bolsa Aurora",
-    imagemCapa: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
-    descricao:
-      "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado. Um modelo elegante para usar do dia a dia aos momentos especiais.",
-    descricaoDetalhada:
-      "Mais do que uma bolsa, a Bolsa Aurora é um acessório que transforma qualquer produção. Seu design minimalista, combinado à alça de mão geométrica em metal e à corrente delicada, resulta em uma peça sofisticada, moderna e versátil, perfeita para acompanhar você dos momentos especiais ao dia a dia com elegância.",
-    destaque: false,
-    categoria: "Bolsas",
-    badge: "Novo",
-    preco: {
-      promocaoAtiva: true,
-      precoOriginal: "R$ 145,00",
-      pix: "R$ 135,00",
-      parcelado: "R$ 143,76",
-      parcelas: 2,
-      valorParcela: "R$ 71,88",
-    },
-    detalhes: {
-      subtitulo: "Clássica, compacta e sofisticada.",
-      medidas: "Medidas aproximadas sob consulta no WhatsApp",
-      material: "Fio de malha",
-      prazo: "Produção sob encomenda, conforme disponibilidade",
-      diferenciais: [
-        "Produzida artesanalmente em crochê com fio de malha extra premium",
-        "Possui duas alças, permitindo versatilidade e sofisticação no uso (Podendo ser alteradas para cor prata)",
-        "Corrente que traz um toque sofisticado",
-        "Tamanho ideal para carregar itens essenciais",
-        "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",
-      ],
-    },
-    galeria: [
-      {
-        imagem: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
-        legenda: "Vista principal na cor Lilas",
-      },
-    ],
-    variantes: [
-      {
-        fioId: "fio-malha",
-        corId: "lilas",
-        corHex: "#A98BDA",
-        cornome: "Lilás",
-        imagem: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
-      },
-    ],
-    opcoesProducao: [
-      {
-        fioId: "fio-malha",
-        cores: [
-          { corId: "branco", disponivel: true },
-          { corId: "pink", disponivel: true },
-          { corId: "ferrugem", disponivel: true },
-          { corId: "preto", disponivel: true },
-          { corId: "lilas", disponivel: true },
-          { corId: "amarelo-bebe", disponivel: true },
-          { corId: "mango", disponivel: true },
-          { corId: "marrom", disponivel: true },
-          { corId: "esmeralda", disponivel: true },
-          { corId: "marsala", disponivel: true },
-          { corId: "verde-hortela", disponivel: true },
-          { corId: "babaloo", disponivel: true },
-          {
-            corId: "verde-musgo",
-            disponivel: true,
-          },
-        ],
-      },
-    ],
-  },
+  // {
+  //   id: 6,
+  //   nome: "Bolsa Aurora",
+  //   imagemCapa: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
+  //   descricao:
+  //     "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado. Um modelo elegante para usar do dia a dia aos momentos especiais.",
+  //   descricaoDetalhada:
+  //     "Mais do que uma bolsa, a Bolsa Aurora é um acessório que transforma qualquer produção. Seu design minimalista, combinado à alça de mão geométrica em metal e à corrente delicada, resulta em uma peça sofisticada, moderna e versátil, perfeita para acompanhar você dos momentos especiais ao dia a dia com elegância.",
+  //   destaque: false,
+  //   categoria: "Bolsas",
+  //   badge: "Novo",
+  //   preco: {
+  //     promocaoAtiva: true,
+  //     precoOriginal: "R$ 145,00",
+  //     pix: "R$ 135,00",
+  //     parcelado: "R$ 143,76",
+  //     parcelas: 2,
+  //     valorParcela: "R$ 71,88",
+  //   },
+  //   detalhes: {
+  //     subtitulo: "Clássica, compacta e sofisticada.",
+  //     medidas: "Medidas aproximadas sob consulta no WhatsApp",
+  //     material: "Fio de malha",
+  //     prazo: "Produção sob encomenda, conforme disponibilidade",
+  //     diferenciais: [
+  //       "Produzida artesanalmente em crochê com fio de malha extra premium",
+  //       "Possui duas alças, permitindo versatilidade e sofisticação no uso (Podendo ser alteradas para cor prata)",
+  //       "Corrente que traz um toque sofisticado",
+  //       "Tamanho ideal para carregar itens essenciais",
+  //       "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",
+  //     ],
+  //   },
+  //   galeria: [
+  //     {
+  //       imagem: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
+  //       legenda: "Vista principal na cor Lilas",
+  //     },
+  //   ],
+  //   variantes: [
+  //     {
+  //       fioId: "fio-malha",
+  //       corId: "lilas",
+  //       corHex: "#A98BDA",
+  //       cornome: "Lilás",
+  //       imagem: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
+  //     },
+  //   ],
+  //   opcoesProducao: [
+  //     {
+  //       fioId: "fio-malha",
+  //       cores: [
+  //         { corId: "branco", disponivel: true },
+  //         { corId: "pink", disponivel: true },
+  //         { corId: "ferrugem", disponivel: true },
+  //         { corId: "preto", disponivel: true },
+  //         { corId: "lilas", disponivel: true },
+  //         { corId: "amarelo-bebe", disponivel: true },
+  //         { corId: "mango", disponivel: true },
+  //         { corId: "marrom", disponivel: true },
+  //         { corId: "esmeralda", disponivel: true },
+  //         { corId: "marsala", disponivel: true },
+  //         { corId: "verde-hortela", disponivel: true },
+  //         { corId: "babaloo", disponivel: true },
+  //         {
+  //           corId: "verde-musgo",
+  //           disponivel: true,
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
 ];
 
 // Fallbacks por categoria
