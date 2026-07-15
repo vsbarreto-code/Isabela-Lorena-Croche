@@ -78,12 +78,12 @@ const produtos = [
     categoria: "Bolsas",
     badge: "Novo",
     preco: {
-      promocaoAtiva: true,
+      promocaoAtiva: false,
       precoOriginal: "R$ 150,00",
-      pix: "R$ 140,00",
-      parcelado: "R$ 149,58",
+      pix: "R$ 150,00",
+      parcelado: "R$ 159,73",
       parcelas: 2,
-      valorParcela: "R$ 74,54",
+      valorParcela: "R$ 79,86",
     },
     detalhes: {
       subtitulo:
@@ -207,14 +207,14 @@ const produtos = [
       "A Bolsa Ryzia une o charme do crochê artesanal com um visual moderno e marcante. Seu formato estruturado traz presença ao look, enquanto a corrente dourada adiciona um toque delicado de sofisticação. É uma peça versátil, ideal para usar em passeios, encontros, eventos leves ou produções mais elegantes.",
     destaque: true,
     categoria: "Bolsas",
-    badge: "Novo",
+    badge: "Destaque",
     preco: {
-      promocaoAtiva: true,
+      promocaoAtiva: false,
       precoOriginal: "R$ 170,00",
-      pix: "R$ 160,00",
-      parcelado: "R$ 170,38",
+      pix: "R$ 170,00",
+      parcelado: "R$ 181,03",
       parcelas: 2,
-      valorParcela: "R$ 85,19",
+      valorParcela: "R$ 90,52",
     },
     detalhes: {
       subtitulo:
@@ -296,12 +296,12 @@ const produtos = [
     categoria: "Bolsas",
     badge: "Novo",
     preco: {
-      promocaoAtiva: true,
+      promocaoAtiva: false,
       precoOriginal: "R$ 160,00",
-      pix: "R$ 150,00",
-      parcelado: "R$ 159,72",
+      pix: "R$ 160,00",
+      parcelado: "R$ 170,38",
       parcelas: 2,
-      valorParcela: "R$ 79,86",
+      valorParcela: "R$ 85,19",
     },
     detalhes: {
       subtitulo:
@@ -368,12 +368,12 @@ const produtos = [
     categoria: "Bolsas",
     badge: "Novo",
     preco: {
-      promocaoAtiva: true,
+      promocaoAtiva: false,
       precoOriginal: "R$ 145,00",
-      pix: "R$ 135,00",
-      parcelado: "R$ 143,76",
+      pix: "R$ 145,00",
+      parcelado: "R$ 154,41",
       parcelas: 2,
-      valorParcela: "R$ 71,88",
+      valorParcela: "R$ 77,20",
     },
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
@@ -458,14 +458,14 @@ const produtos = [
       "A Bolsa Eliza foi criada para mulheres que valorizam elegância sem abrir mão da versatilidade. Seu design trançado combinado com a delicadeza da alça em corrente conferem um acabamento moderno e refinado. É aquela bolsa que acompanha você em todos os momentos: do casamento ao jantar, do shopping ao happy hour. Um modelo atemporal que complementa diferentes estilos e ocasiões com a mesma elegância.",
     destaque: false,
     categoria: "Bolsas",
-    badge: "Novo",
+    badge: "Destaque",
     preco: {
-      promocaoAtiva: true,
+      promocaoAtiva: false,
       precoOriginal: "R$ 160,00",
-      pix: "R$ 150,00",
-      parcelado: "R$ 159,72",
+      pix: "R$ 160,00",
+      parcelado: "R$ 170,38",
       parcelas: 2,
-      valorParcela: "R$ 79,86",
+      valorParcela: "R$ 85,19",
     },
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
