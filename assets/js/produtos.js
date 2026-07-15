@@ -200,7 +200,7 @@ const produtos = [
   {
     id: 2,
     nome: "Bolsa Ryzia",
-    imagemCapa: "./assets/img/bolsaRyzia/bolsa-ryzia-1.jpeg",
+    imagemCapa: "./assets/img/bolsaRyzia/bolsa-ryzia-4.png",
     descricao:
       "Bolsa artesanal em crochê com design estruturado, alça de mão e corrente. Elegante, versátil e perfeita para compor looks casuais ou mais sofisticados.",
     descricaoDetalhada:
@@ -240,8 +240,8 @@ const produtos = [
         legenda: "Versão Branco para produções leves",
       },
       {
-        imagem: "./assets/img/bolsaRyzia/bolsa-ryzia-2.jpeg",
-        legenda: "Versão Preto em look elegante",
+        imagem: "./assets/img/bolsaRyzia/bolsa-ryzia-4.png",
+        legenda: "Versão Branco para produções leves",
       },
     ],
     variantes: [
@@ -250,15 +250,15 @@ const produtos = [
         corId: "branco",
         corHex: "#F8F8F4",
         corNome: "Branco",
-        imagem: "./assets/img/bolsaRyzia/bolsa-ryzia-1.jpeg",
+        imagem: "./assets/img/bolsaRyzia/bolsa-ryzia-4.png",
       },
-      {
-        fioId: "fio-malha",
-        corId: "preto",
-        corHex: "#1D1C21",
-        cornome: "Preto",
-        imagem: "./assets/img/bolsaRyzia/bolsa-ryzia-2.jpeg",
-      },
+      // {
+      //   fioId: "fio-malha",
+      //   corId: "preto",
+      //   corHex: "#1D1C21",
+      //   cornome: "Preto",
+      //   imagem: "./assets/img/bolsaRyzia/bolsa-ryzia-2.jpeg",
+      // },
     ],
     opcoesProducao: [
       {
@@ -451,7 +451,7 @@ const produtos = [
   {
     id: 5,
     nome: "Bolsa Eliza",
-    imagemCapa: "./assets/img/bolsaEliza/bolsa-eliza-1.png",
+    imagemCapa: "./assets/img/bolsaEliza/bolsa-eliza-3.jpeg",
     descricao:
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
@@ -481,29 +481,25 @@ const produtos = [
     },
     galeria: [
       {
-        imagem: "./assets/img/bolsaEliza/bolsa-eliza-1.png",
+        imagem: "./assets/img/bolsaEliza/bolsa-eliza-3.jpeg",
         legenda: "Vista principal na cor Ferrugem",
-      },
-      {
-        imagem: "./assets/img/bolsaEliza/bolsa-eliza-2.jpeg",
-        legenda: "Vista principal na cor Pink",
       },
     ],
     variantes: [
-      {
-        fioId: "fio-malha",
-        corId: "pink",
-        corHex: "#EF2F5A",
-        cornome: "Pink",
-        imagem: "./assets/img/bolsaEliza/bolsa-eliza-2.jpeg",
-      },
-      {
-        fioId: "fio-malha",
-        corId: "ferrugem",
-        corHex: "#D8733A",
-        cornome: "Ferrugem",
-        imagem: "./assets/img/bolsaEliza/bolsa-eliza-1.png",
-      },
+      // {
+      //   fioId: "fio-malha",
+      //   corId: "pink",
+      //   corHex: "#EF2F5A",
+      //   cornome: "Pink",
+      //   imagem: "./assets/img/bolsaEliza/bolsa-eliza-2.jpeg",
+      // },
+      // {
+      //   fioId: "fio-malha",
+      //   corId: "ferrugem",
+      //   corHex: "#D8733A",
+      //   cornome: "Ferrugem",
+      //   imagem: "./assets/img/bolsaEliza/bolsa-eliza-3.jpg",
+      // },
     ],
     opcoesProducao: [
       {
