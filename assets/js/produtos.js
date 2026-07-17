@@ -451,7 +451,7 @@ const produtos = [
   {
     id: 5,
     nome: "Bolsa Eliza",
-    imagemCapa: "./assets/img/bolsaEliza/bolsa-eliza-3.jpeg",
+    imagemCapa: "./assets/img/bolsaEliza/bolsa-eliza-4.jpeg",
     descricao:
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
@@ -484,21 +484,26 @@ const produtos = [
         imagem: "./assets/img/bolsaEliza/bolsa-eliza-3.jpeg",
         legenda: "Vista principal na cor Ferrugem",
       },
+      // {
+      //   imagem: "./assets/img/bolsaEliza/bolsa-eliza-4.jpeg",
+      //   legenda: "Vista principal na cor Pink",
+      // },
+
     ],
     variantes: [
+      {
+        fioId: "fio-malha",
+        corId: "ferrugem",
+        corHex: "#D8733A",
+        cornome: "Ferrugem",
+        imagem: "./assets/img/bolsaEliza/bolsa-eliza-3.jpeg",
+      },
       // {
       //   fioId: "fio-malha",
       //   corId: "pink",
       //   corHex: "#EF2F5A",
       //   cornome: "Pink",
-      //   imagem: "./assets/img/bolsaEliza/bolsa-eliza-2.jpeg",
-      // },
-      // {
-      //   fioId: "fio-malha",
-      //   corId: "ferrugem",
-      //   corHex: "#D8733A",
-      //   cornome: "Ferrugem",
-      //   imagem: "./assets/img/bolsaEliza/bolsa-eliza-3.jpg",
+      //   imagem: "./assets/img/bolsaEliza/bolsa-eliza-4.jpeg",
       // },
     ],
     opcoesProducao: [
