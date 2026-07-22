@@ -74,9 +74,9 @@ const produtos = [
       "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado.",
     descricaoDetalhada:
       "A Bolsa Raíssa foi criada para quem gosta de unir delicadeza, presença e praticidade em uma única peça.",
-    destaque: true,
+    destaque: false,
     categoria: "Bolsas",
-    badge: "Novo",
+    badge: "Destaque",
     preco: {
       promocaoAtiva: false,
       precoOriginal: "R$ 150,00",
@@ -292,7 +292,7 @@ const produtos = [
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
       "Compacta, charmosa e elegante. Essa bolsa é ideal para quem quer carregar o essencial com estilo, valorizando uma peça artesanal com acabamento delicado.",
-    destaque: true,
+    destaque: false,
     categoria: "Bolsas",
     badge: "Novo",
     preco: {
@@ -366,7 +366,7 @@ const produtos = [
       "Modelo compacto e com visual marcante, a Bolsa Inês é a escolha ideal para quem busca garantir uma ótima primeira impressão ao chegar nos lugares. Com seu design trançado e sua versatilidade em ser produzida tanto em fio náutico como em fio de malha, o cliente escolhe a opção que melhor se adequa ao seu gosto.",
     destaque: true,
     categoria: "Bolsas",
-    badge: "Novo",
+    badge: "Destaque",
     preco: {
       promocaoAtiva: false,
       precoOriginal: "R$ 145,00",
@@ -456,7 +456,7 @@ const produtos = [
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
       "A Bolsa Eliza foi criada para mulheres que valorizam elegância sem abrir mão da versatilidade. Seu design trançado combinado com a delicadeza da alça em corrente conferem um acabamento moderno e refinado. É aquela bolsa que acompanha você em todos os momentos: do casamento ao jantar, do shopping ao happy hour. Um modelo atemporal que complementa diferentes estilos e ocasiões com a mesma elegância.",
-    destaque: false,
+    destaque: true,
     categoria: "Bolsas",
     badge: "Destaque",
     preco: {
@@ -609,7 +609,7 @@ const produtos = [
       "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado. Um modelo elegante para usar do dia a dia aos momentos especiais.",
     descricaoDetalhada:
       "Com exclusivo ponto em espinha de peixe, a Bolsa Letícia é uma bolsa resistente e espaçosa, perfeita para o uso diário. Seu design versátil combina a alça de mão revestida em crochê com a alça em corrente, proporcionando diferentes formas de uso, unindo conforto e requinte. O tassel lateral acrescenta um toque de charme e exclusividade ao acabamento.",
-    destaque: false,
+    destaque: true,
     categoria: "Bolsas",
     badge: "Novo",
     preco: {
