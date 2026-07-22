@@ -601,6 +601,78 @@ const produtos = [
   //     },
   //   ],
   // },
+  {
+    id: 6,
+    nome: "Bolsa Leticia",
+    imagemCapa: "./assets/img/bolsaLeticia/bolsa-leticia-1.jpeg",
+    descricao:
+      "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado. Um modelo elegante para usar do dia a dia aos momentos especiais.",
+    descricaoDetalhada:
+      "Com exclusivo ponto em espinha de peixe, a Bolsa Letícia é uma bolsa resistente e espaçosa, perfeita para o uso diário. Seu design versátil combina a alça de mão revestida em crochê com a alça em corrente, proporcionando diferentes formas de uso, unindo conforto e requinte. O tassel lateral acrescenta um toque de charme e exclusividade ao acabamento.",
+    destaque: false,
+    categoria: "Bolsas",
+    badge: "Novo",
+    preco: {
+      promocaoAtiva: false,
+      precoOriginal: "R$ 250,00",
+      pix: "R$ 250,00",
+      parcelado: "R$ 261,00",
+      parcelas: 2,
+      valorParcela: "R$ 130,50",
+    },
+    detalhes: {
+      subtitulo: "Clássica, compacta e sofisticada.",
+      medidas: "Medidas aproximadas sob consulta no WhatsApp",
+      material: "Fio de malha",
+      prazo: "Produção sob encomenda, conforme disponibilidade",
+      diferenciais: [
+        "Ponto espinha de peixe",
+        "Fechamento em zíper",
+        "Duas alças sendo uma em corrente e outra revestida em crochê",
+        "Tassel decorativo",
+        "Interior amplo para acomodar seus itens essenciais.",
+        "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",
+      ],
+    },
+    galeria: [
+      {
+        imagem: "./assets/img/bolsaLeticia/bolsa-leticia-1.jpeg",
+        legenda: "Vista principal na cor Preta",
+      },
+    ],
+    variantes: [
+      {
+        fioId: "fio-malha",
+        corId: "preto",
+        corHex: "#1D1C21",
+        cornome: "Preto",
+        imagem: "./assets/img/bolsaLeticia/bolsa-leticia-1.jpeg",
+      },
+    ],
+    opcoesProducao: [
+      {
+        fioId: "fio-malha",
+        cores: [
+          { corId: "branco", disponivel: true },
+          { corId: "pink", disponivel: true },
+          { corId: "ferrugem", disponivel: true },
+          { corId: "preto", disponivel: true },
+          { corId: "lilas", disponivel: true },
+          { corId: "amarelo-bebe", disponivel: true },
+          { corId: "mango", disponivel: true },
+          { corId: "marrom", disponivel: true },
+          { corId: "esmeralda", disponivel: true },
+          { corId: "marsala", disponivel: true },
+          { corId: "verde-hortela", disponivel: true },
+          { corId: "babaloo", disponivel: true },
+          {
+            corId: "verde-musgo",
+            disponivel: true,
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 // Fallbacks por categoria
