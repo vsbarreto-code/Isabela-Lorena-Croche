@@ -603,7 +603,7 @@ const produtos = [
   // },
   {
     id: 6,
-    nome: "Bolsa Leticia",
+    nome: "Bolsa Letícia",
     imagemCapa: "./assets/img/bolsaLeticia/bolsa-leticia-1.jpeg",
     descricao:
       "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado. Um modelo elegante para usar do dia a dia aos momentos especiais.",
