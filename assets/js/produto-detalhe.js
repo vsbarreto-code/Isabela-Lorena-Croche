@@ -135,28 +135,42 @@
   let fioSelecionado = "";
   let corSelecionada = "";
 
+  const tamanhoInicial =
+    typeof getTamanhoMaisBarato === "function"
+      ? getTamanhoMaisBarato(produto)
+      : null;
+
+  let tamanhoSelecionado = tamanhoInicial?.id
+    ? String(tamanhoInicial.id)
+    : "";
+
   function renderPrice(produto) {
     if (typeof generatePriceHTML === "function") {
-      return generatePriceHTML(produto);
+      return generatePriceHTML(produto, tamanhoSelecionado || null);
     }
 
-    if (!produto.preco) return "";
+    const precoAtual =
+      typeof getPrecoProduto === "function"
+        ? getPrecoProduto(produto, tamanhoSelecionado || null)
+        : produto.preco;
+
+    if (!precoAtual) return "";
 
     return `
       <div class="product-price">
         <div class="price-line price-pix">
           <span>Pix</span>
-          <strong>${escapeHTML(produto.preco.pix)}</strong>
+          <strong>${escapeHTML(precoAtual.pix)}</strong>
         </div>
 
         <div class="price-line">
           <span>Cartão</span>
           <strong>
-            ${produto.preco.parcelas}x de ${escapeHTML(produto.preco.valorParcela)}
+            ${precoAtual.parcelas}x de ${escapeHTML(precoAtual.valorParcela)}
           </strong>
         </div>
 
-        <small>Total parcelado: ${escapeHTML(produto.preco.parcelado)}</small>
+        <small>Total parcelado: ${escapeHTML(precoAtual.parcelado)}</small>
       </div>
     `;
   }
@@ -180,6 +194,299 @@
         `,
       )
       .join("");
+  }
+
+  function getTamanhoSelecionado(produto) {
+    if (!tamanhoSelecionado) return null;
+
+    if (typeof getTamanhoPorId === "function") {
+      return getTamanhoPorId(produto, tamanhoSelecionado) || null;
+    }
+
+    return (
+      produto.tamanhos?.find(
+        (item) => String(item.id) === String(tamanhoSelecionado),
+      ) || null
+    );
+  }
+
+  function getDimensoesCadastradas(origem) {
+    if (!origem) return null;
+
+    const dimensoes = origem.dimensoes;
+    if (!dimensoes) return null;
+
+    if (typeof dimensoes === "string") {
+      const texto = dimensoes.trim();
+      return texto ? { texto } : null;
+    }
+
+    if (typeof dimensoes !== "object" || Array.isArray(dimensoes)) {
+      return null;
+    }
+
+    const campos = [
+      ["largura", "Largura"],
+      ["altura", "Altura"],
+      ["profundidade", "Profundidade"],
+      ["comprimento", "Comprimento"],
+      ["diametro", "Diâmetro"],
+      ["base", "Base"],
+      ["abertura", "Abertura"],
+      ["alca", "Alça"],
+    ]
+      .map(([chave, rotulo]) => ({
+        chave,
+        rotulo,
+        valor: dimensoes[chave],
+      }))
+      .filter((campo) => String(campo.valor || "").trim());
+
+    return campos.length ? { campos } : null;
+  }
+
+  function todasDimensoesDosTamanhosEstaoCadastradas(produto) {
+    const tamanhos =
+      typeof getTamanhosDisponiveis === "function"
+        ? getTamanhosDisponiveis(produto)
+        : Array.isArray(produto.tamanhos)
+          ? produto.tamanhos.filter(
+              (tamanho) =>
+                tamanho && tamanho.disponivel !== false && tamanho.preco,
+            )
+          : [];
+
+    return (
+      tamanhos.length > 0 &&
+      tamanhos.every((tamanho) => Boolean(getDimensoesCadastradas(tamanho)))
+    );
+  }
+
+  function getLinkWhatsAppDimensoes() {
+    let mensagem = `Olá! Tenho interesse na ${produto.nome}.`;
+
+    if (tamanhoSelecionado) {
+      const tamanho = getTamanhoSelecionado(produto);
+      mensagem += ` Gostaria de confirmar as medidas do tamanho ${
+        tamanho?.nome || tamanhoSelecionado
+      }.`;
+    } else {
+      mensagem += " Gostaria de confirmar as medidas desse modelo.";
+    }
+
+    if (fioSelecionado && corSelecionada) {
+      mensagem += ` Minha preferência é ${fioSelecionado}, cor ${corSelecionada}.`;
+    }
+
+    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      mensagem,
+    )}`;
+  }
+
+  function renderDimensoesSobConsulta(nomeTamanho = "") {
+    return `
+      <section
+        class="produto-dimensions-section produto-dimensions-section--consult"
+        aria-label="Consulta de medidas da bolsa"
+      >
+        <div class="produto-dimensions-heading">
+          <div>
+            <p class="detail-label">Medidas do modelo</p>
+            <h2>Confirme as proporções antes de encomendar</h2>
+          </div>
+
+          ${
+            nomeTamanho
+              ? `<span class="produto-dimensions-size">Tamanho ${escapeHTML(
+                  nomeTamanho,
+                )}</span>`
+              : ""
+          }
+        </div>
+
+        <div class="produto-dimensions-consult">
+          <div class="produto-dimensions-consult-icon" aria-hidden="true">
+            <i class="fa-solid fa-ruler-combined"></i>
+          </div>
+
+          <div class="produto-dimensions-consult-content">
+            <p>
+              As proporções podem variar levemente conforme o acabamento
+              artesanal deste modelo. Para confirmar as medidas do tamanho
+              escolhido, fale com o Atelier.
+            </p>
+
+            <a
+              class="produto-dimensions-consult-btn"
+              href="${getLinkWhatsAppDimensoes()}"
+              target="_blank"
+              rel="noopener"
+            >
+              <i class="fa-brands fa-whatsapp"></i>
+              Consultar medidas no WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
+  function renderDimensoes(produto) {
+    // false: esconde completamente a área de medidas.
+    if (produto.exibirDimensoes !== true) return "";
+
+    const temTamanhos =
+      typeof produtoTemTamanhos === "function"
+        ? produtoTemTamanhos(produto)
+        : Array.isArray(produto.tamanhos) && produto.tamanhos.length > 0;
+
+    let dimensoes = null;
+    let nomeTamanho = "";
+
+    if (temTamanhos) {
+      const tamanho = getTamanhoSelecionado(produto);
+      nomeTamanho = tamanho?.nome || tamanho?.id || tamanhoSelecionado;
+
+      const forcarConsulta = produto.dimensoesSobConsulta === true;
+      const dimensoesCompletas =
+        todasDimensoesDosTamanhosEstaoCadastradas(produto);
+
+      // Pode forçar a consulta pelo boolean ou simplesmente omitir dimensões.
+      // Em ambos os casos, o cliente recebe uma orientação profissional.
+      if (forcarConsulta || !dimensoesCompletas) {
+        return renderDimensoesSobConsulta(nomeTamanho);
+      }
+
+      dimensoes = getDimensoesCadastradas(tamanho);
+    } else {
+      dimensoes = getDimensoesCadastradas(detalhes);
+
+      if (produto.dimensoesSobConsulta === true || !dimensoes) {
+        return renderDimensoesSobConsulta();
+      }
+    }
+
+    if (!dimensoes) {
+      return renderDimensoesSobConsulta(nomeTamanho);
+    }
+
+    const conteudo = dimensoes.texto
+      ? `
+          <div class="produto-dimensions-text">
+            ${escapeHTML(dimensoes.texto)}
+          </div>
+        `
+      : `
+          <div class="produto-dimensions-grid">
+            ${dimensoes.campos
+              .map(
+                (campo) => `
+                  <div class="produto-dimension-item">
+                    <span>${escapeHTML(campo.rotulo)}</span>
+                    <strong>${escapeHTML(campo.valor)}</strong>
+                  </div>
+                `,
+              )
+              .join("")}
+          </div>
+        `;
+
+    return `
+      <section class="produto-dimensions-section" aria-label="Dimensões da bolsa">
+        <div class="produto-dimensions-heading">
+          <div>
+            <p class="detail-label">Dimensões aproximadas</p>
+            <h2>Proporções do modelo</h2>
+          </div>
+
+          ${
+            nomeTamanho
+              ? `<span class="produto-dimensions-size">Tamanho ${escapeHTML(
+                  nomeTamanho,
+                )}</span>`
+              : ""
+          }
+        </div>
+
+        ${conteudo}
+
+        <p class="produto-dimensions-note">
+          Por ser uma peça artesanal, podem ocorrer pequenas variações nas medidas.
+        </p>
+      </section>
+    `;
+  }
+
+  function renderTamanhos(produto) {
+    const tamanhos = Array.isArray(produto.tamanhos)
+      ? produto.tamanhos.filter(
+          (tamanho) => tamanho && (tamanho.id || tamanho.nome),
+        )
+      : [];
+
+    const temTamanhoDisponivel = tamanhos.some(
+      (tamanho) => tamanho.disponivel !== false && tamanho.preco,
+    );
+
+    if (!tamanhos.length || !temTamanhoDisponivel) return "";
+
+    return `
+      <section class="produto-size-section">
+        <p class="detail-label">Escolha o tamanho</p>
+
+        <p class="production-help">
+          Selecione P, M ou G para atualizar o preço e as informações
+          correspondentes ao tamanho escolhido.
+        </p>
+
+        <div class="production-sizes" role="group" aria-label="Tamanhos da bolsa">
+          ${tamanhos
+            .map((tamanho) => {
+              const idTamanho = String(tamanho.id || tamanho.nome || "");
+              const nomeTamanho = tamanho.nome || tamanho.id || "";
+              const disponivel =
+                tamanho.disponivel !== false && Boolean(tamanho.preco);
+              const ativo =
+                disponivel && idTamanho === String(tamanhoSelecionado);
+
+              return `
+                <button
+                  type="button"
+                  class="production-size-btn ${ativo ? "active" : ""} ${
+                    disponivel ? "" : "unavailable"
+                  }"
+                  data-tamanho-id="${escapeHTML(idTamanho)}"
+                  aria-pressed="${ativo}"
+                  aria-label="Tamanho ${escapeHTML(nomeTamanho)}${
+                    disponivel ? "" : " indisponível"
+                  }"
+                  title="Tamanho ${escapeHTML(nomeTamanho)}${
+                    disponivel ? "" : " — indisponível"
+                  }"
+                  ${disponivel ? "" : 'disabled aria-disabled="true"'}
+                >
+                  <span>${escapeHTML(nomeTamanho)}</span>
+                </button>
+              `;
+            })
+            .join("")}
+        </div>
+
+        <p class="selected-size-text" id="selected-size-text">
+          ${
+            tamanhoSelecionado
+              ? `Tamanho selecionado: ${escapeHTML(
+                  tamanhos.find(
+                    (tamanho) =>
+                      String(tamanho.id || tamanho.nome) ===
+                      String(tamanhoSelecionado),
+                  )?.nome || tamanhoSelecionado,
+                )}`
+              : "Selecione um tamanho disponível."
+          }
+        </p>
+      </section>
+    `;
   }
 
   function renderOpcoesProducao(produto) {
@@ -289,6 +596,26 @@
       mensagem += ` Gostaria de saber disponibilidade, prazo de produção e opções de cores.`;
     }
 
+    if (tamanhoSelecionado) {
+      const tamanho =
+        typeof getTamanhoPorId === "function"
+          ? getTamanhoPorId(produto, tamanhoSelecionado)
+          : produto.tamanhos?.find(
+              (item) => String(item.id) === String(tamanhoSelecionado),
+            );
+
+      mensagem += ` Tamanho: ${tamanho?.nome || tamanhoSelecionado}.`;
+
+      const precoAtual =
+        typeof getPrecoProduto === "function"
+          ? getPrecoProduto(produto, tamanhoSelecionado)
+          : tamanho?.preco;
+
+      if (precoAtual?.pix) {
+        mensagem += ` Valor no Pix: ${precoAtual.pix}.`;
+      }
+    }
+
     return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
       mensagem,
     )}`;
@@ -363,9 +690,17 @@
           ${escapeHTML(produto.descricaoDetalhada || produto.descricao || "")}
         </p>
 
-        ${renderPrice(produto)}
+        <div id="produto-price-root">
+          ${renderPrice(produto)}
+        </div>
 
         ${renderOpcoesProducao(produto)}
+
+        ${renderTamanhos(produto)}
+
+        <div id="produto-dimensions-root">
+          ${renderDimensoes(produto)}
+        </div>
 
         <div class="produto-actions-main">
           <a
@@ -401,10 +736,6 @@
             <strong>${escapeHTML(detalhes.material || "Sob consulta")}</strong>
           </div>
 
-          <div>
-            <span>Medidas</span>
-            <strong>${escapeHTML(detalhes.medidas || "Sob consulta")}</strong>
-          </div>
 
           <div>
             <span>Prazo</span>
@@ -427,6 +758,20 @@
   const prevBtn = document.getElementById("gallery-prev");
   const nextBtn = document.getElementById("gallery-next");
   const waBtn = document.getElementById("produto-wa-btn");
+  const priceRoot = document.getElementById("produto-price-root");
+  const dimensionsRoot = document.getElementById("produto-dimensions-root");
+
+  function atualizarPreco() {
+    if (priceRoot) {
+      priceRoot.innerHTML = renderPrice(produto);
+    }
+  }
+
+  function atualizarDimensoes() {
+    if (dimensionsRoot) {
+      dimensionsRoot.innerHTML = renderDimensoes(produto);
+    }
+  }
 
   function atualizarWhatsApp() {
     if (waBtn) {
@@ -579,6 +924,45 @@
     atualizarWhatsApp();
   }
 
+  function selecionarTamanho(button) {
+    if (!button || button.disabled) return;
+
+    document.querySelectorAll(".production-size-btn").forEach((item) => {
+      const ativo = item === button;
+      item.classList.toggle("active", ativo);
+      item.setAttribute("aria-pressed", String(ativo));
+    });
+
+    tamanhoSelecionado = button.dataset.tamanhoId || "";
+
+    const tamanho =
+      typeof getTamanhoPorId === "function"
+        ? getTamanhoPorId(produto, tamanhoSelecionado)
+        : produto.tamanhos?.find(
+            (item) => String(item.id) === String(tamanhoSelecionado),
+          );
+
+    const selectedText = document.getElementById("selected-size-text");
+
+    if (selectedText) {
+      selectedText.textContent = `Tamanho selecionado: ${
+        tamanho?.nome || tamanhoSelecionado
+      }`;
+    }
+
+    atualizarPreco();
+    atualizarDimensoes();
+    atualizarWhatsApp();
+  }
+
+  function initSizeOptions() {
+    const sizeButtons = document.querySelectorAll(".production-size-btn");
+
+    sizeButtons.forEach((button) => {
+      button.addEventListener("click", () => selecionarTamanho(button));
+    });
+  }
+
   function initProductionOptions() {
     const fioButtons = document.querySelectorAll(".production-fio-btn");
     const colorGroups = document.querySelectorAll(".production-color-group");
@@ -634,6 +1018,9 @@
 
   initGallerySwipe();
   initProductionOptions();
+  initSizeOptions();
+  atualizarPreco();
+  atualizarDimensoes();
   atualizarWhatsApp();
   iniciarAutoplay();
 })();

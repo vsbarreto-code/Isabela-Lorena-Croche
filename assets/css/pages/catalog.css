@@ -500,3 +500,21 @@
   color: rgba(44, 42, 40, 0.48);
   text-align: left;
 }
+
+
+/* ============================================================
+   AJUSTE DE ALTURA DOS CARDS COM TAMANHOS
+   ============================================================ */
+.catalog-page .products-grid {
+  align-items: start;
+}
+
+.catalog-page .product-card {
+  height: auto;
+  align-self: start;
+}
+
+.catalog-page .price-box__size-note,
+.catalog-page .product-size-summary {
+  display: none !important;
+}

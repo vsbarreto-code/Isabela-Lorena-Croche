@@ -1,35 +1,87 @@
 // ============================================================
-// CARDS — geração de HTML, troca de variantes, preços e WhatsApp
+// CARDS — geração de HTML, variantes, preços, tamanhos e WhatsApp
 // ============================================================
 
-function getPrecoTexto(produto) {
-  if (!produto.preco) return "";
+function getTamanhosDisponiveis(produto) {
+  if (!Array.isArray(produto?.tamanhos)) return [];
+
+  return produto.tamanhos.filter(
+    (tamanho) => tamanho && tamanho.disponivel !== false && tamanho.preco,
+  );
+}
+
+function produtoTemTamanhos(produto) {
+  return getTamanhosDisponiveis(produto).length > 0;
+}
+
+function moedaParaNumero(valor) {
+  if (typeof valor === "number") return valor;
+  if (!valor) return Number.POSITIVE_INFINITY;
+
+  const normalizado = String(valor)
+    .replace(/[^\d,.-]/g, "")
+    .replace(/\./g, "")
+    .replace(",", ".");
+
+  const numero = Number(normalizado);
+  return Number.isFinite(numero) ? numero : Number.POSITIVE_INFINITY;
+}
+
+function getTamanhoPorId(produto, tamanhoId) {
+  return getTamanhosDisponiveis(produto).find(
+    (tamanho) => String(tamanho.id) === String(tamanhoId),
+  );
+}
+
+function getTamanhoMaisBarato(produto) {
+  const tamanhos = getTamanhosDisponiveis(produto);
+  if (!tamanhos.length) return null;
+
+  return tamanhos.reduce((menor, atual) => {
+    const precoMenor = moedaParaNumero(menor?.preco?.pix);
+    const precoAtual = moedaParaNumero(atual?.preco?.pix);
+
+    return precoAtual < precoMenor ? atual : menor;
+  });
+}
+
+function getPrecoProduto(produto, tamanhoId = null) {
+  if (!produto) return null;
+
+  if (produtoTemTamanhos(produto)) {
+    const tamanho = tamanhoId
+      ? getTamanhoPorId(produto, tamanhoId)
+      : getTamanhoMaisBarato(produto);
+
+    return tamanho?.preco || produto.preco || null;
+  }
+
+  return produto.preco || null;
+}
+
+function getPrecoTexto(produto, tamanhoId = null) {
+  const preco = getPrecoProduto(produto, tamanhoId);
+  if (!preco) return "";
 
   const partes = [];
-  if (produto.preco.pix) partes.push(`Pix ${produto.preco.pix}`);
-  if (produto.preco.parcelas && produto.preco.valorParcela) {
-    partes.push(
-      `${produto.preco.parcelas}x de ${produto.preco.valorParcela} no cartão`,
-    );
+  if (preco.pix) partes.push(`Pix ${preco.pix}`);
+  if (preco.parcelas && preco.valorParcela) {
+    partes.push(`${preco.parcelas}x de ${preco.valorParcela} no cartão`);
   }
+
   return partes.join(" ou ");
 }
 
 function getWhatsappLink(produto, cor = null) {
   const nome = typeof produto === "string" ? produto : produto.nome;
-  const precoTexto = typeof produto === "string" ? "" : getPrecoTexto(produto);
 
-  let m = `Olá! Estava navegando no site do Atelier e me interessei pela bolsa: *${nome}*.`;
+  let mensagem = `Olá! Estava navegando no site do Atelier e me interessei pela bolsa: *${nome}*.`;
+
   if (cor) {
-    m = `Olá! Estava navegando no site do Atelier e me interessei pela bolsa: *${nome}* na cor *${cor}*.`;
+    mensagem = `Olá! Estava navegando no site do Atelier e me interessei pela bolsa: *${nome}* na cor *${cor}*.`;
   }
 
-  // if (precoTexto) {
-  //   m += ` Vi no site o valor: ${precoTexto}.`;
-  // }
-
-  // m += ` Gostaria de saber disponibilidade e prazo de confecção.`;
-  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(m)}`;
+  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensagem)}`;
 }
 
 // Fallback SVG embutido em base64 — ícone genérico de produto
@@ -47,7 +99,6 @@ function setFallback(imgEl, categoria) {
   if (wrap) wrap.classList.add("img-loaded");
 }
 
-// Marca o wrap como carregado (remove skeleton)
 function onImageLoad(imgEl) {
   imgEl.classList.add("loaded");
   const wrap = imgEl.closest(".product-image-wrap");
@@ -63,6 +114,7 @@ function changeProductVariant(
   categoria,
 ) {
   const imgEl = document.getElementById(`img-${prefix}-${produtoId}`);
+
   if (imgEl && imagemUrl) {
     const wrap = imgEl.closest(".product-image-wrap");
     if (wrap) wrap.classList.remove("img-loaded");
@@ -86,19 +138,28 @@ function changeProductVariant(
   btnElement
     .closest(".product-card")
     .querySelectorAll(".variant-btn")
-    .forEach((b) => b.classList.remove("active"));
+    .forEach((button) => button.classList.remove("active"));
 
   btnElement.classList.add("active");
 
   const waBtn = document.getElementById(`wa-${prefix}-${produtoId}`);
-  const produto = produtos.find((p) => p.id === produtoId);
+  const produto = produtos.find((item) => item.id === produtoId);
+
   if (waBtn && produto) {
     waBtn.href = getWhatsappLink(produto, corNome);
   }
 }
 
-function generatePriceHTML(produto) {
-  if (!produto.preco) return "";
+function generatePriceHTML(produto, tamanhoId = null) {
+  const temTamanhos = produtoTemTamanhos(produto);
+  const tamanho = temTamanhos
+    ? tamanhoId
+      ? getTamanhoPorId(produto, tamanhoId)
+      : getTamanhoMaisBarato(produto)
+    : null;
+
+  const preco = tamanho?.preco || produto.preco;
+  if (!preco) return "";
 
   const {
     promocaoAtiva = false,
@@ -107,16 +168,24 @@ function generatePriceHTML(produto) {
     parcelado = "",
     parcelas = "",
     valorParcela = "",
-  } = produto.preco;
+  } = preco;
 
-  const temPromocao = promocaoAtiva === true && precoOriginal;
+  const temPromocao = promocaoAtiva === true && Boolean(precoOriginal);
   const temPix = Boolean(pix);
   const temCartao = Boolean(parcelas && valorParcela);
+  const mostrarApartir = getTamanhosDisponiveis(produto).length > 1 && !tamanhoId;
+  const nomeTamanho = tamanho?.nome || tamanho?.id || "";
+
+  const badgeNormal = mostrarApartir
+    ? "A partir de"
+    : nomeTamanho && tamanhoId
+      ? `Tamanho ${nomeTamanho}`
+      : "Preço";
 
   return `
     <div
       class="price-box ${temPromocao ? "price-box--promo" : "price-box--normal"}"
-      aria-label="Preço da ${produto.nome}"
+      aria-label="Preço da ${produto.nome}${nomeTamanho ? `, tamanho ${nomeTamanho}` : ""}"
     >
       <div class="price-box__top">
         ${
@@ -132,10 +201,10 @@ function generatePriceHTML(produto) {
             `
             : `
               <span class="price-box__badge price-box__badge--normal">
-                Preço
+                ${badgeNormal}
               </span>
 
-              <span class="price-box__old price-box__old--empty">
+              <span class="price-box__old price-box__old--empty" aria-hidden="true">
                 Sem preço antigo
               </span>
             `
@@ -146,6 +215,11 @@ function generatePriceHTML(produto) {
         temPix
           ? `
             <div class="price-box__main">
+              ${
+                mostrarApartir && temPromocao
+                  ? `<span class="price-box__from">A partir de</span>`
+                  : ""
+              }
               <strong>${pix}</strong>
               <span>no Pix</span>
             </div>
@@ -172,6 +246,7 @@ function generatePriceHTML(produto) {
           `
           : ""
       }
+
     </div>
   `;
 }
@@ -213,17 +288,14 @@ function generateCardHTML(produto, prefix) {
           onerror="setFallback(this,'${produto.categoria}')"
         />
 
-        ${
-          produto.badge
-            ? `<span class="product-badge">${produto.badge}</span>`
-            : ""
-        }
+        ${produto.badge ? `<span class="product-badge">${produto.badge}</span>` : ""}
       </a>
 
       <div class="content">
         <h3>${produto.nome}</h3>
 
         ${generatePriceHTML(produto)}
+
 
         <div class="product-actions">
           <a href="${detalhesLink}" class="btn-details">
@@ -236,9 +308,14 @@ function generateCardHTML(produto, prefix) {
   `;
 }
 
-// Expõe globalmente para uso inline (onerror/onload nos imgs)
+// Expõe globalmente para uso em outros arquivos e eventos inline
 window.setFallback = setFallback;
 window.onImageLoad = onImageLoad;
 window.changeProductVariant = changeProductVariant;
 window.getWhatsappLink = getWhatsappLink;
 window.generatePriceHTML = generatePriceHTML;
+window.getTamanhosDisponiveis = getTamanhosDisponiveis;
+window.produtoTemTamanhos = produtoTemTamanhos;
+window.getTamanhoPorId = getTamanhoPorId;
+window.getTamanhoMaisBarato = getTamanhoMaisBarato;
+window.getPrecoProduto = getPrecoProduto;

@@ -873,3 +873,60 @@
     font-size: 0.82rem;
   }
 }
+
+
+/* ============================================================
+   REFINOS DE RESPONSIVIDADE — DETALHE COM TAMANHOS
+   ============================================================ */
+.produto-detail-grid > *,
+.produto-info,
+.produto-gallery,
+#produto-price-root,
+#produto-dimensions-root {
+  min-width: 0;
+  width: 100%;
+}
+
+.produto-info .price-box {
+  max-width: none;
+  width: 100%;
+}
+
+#produto-dimensions-root:empty {
+  display: none;
+}
+
+@media (min-width: 1181px) {
+  .produto-detail-grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(430px, 1.1fr);
+    gap: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .produto-meta-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 980px) and (max-width: 1180px) {
+  .produto-detail-grid {
+    grid-template-columns: minmax(0, 0.88fr) minmax(420px, 1.12fr);
+    gap: 1.75rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .produto-gallery {
+    width: min(100%, 680px);
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .produto-info .section-title {
+    font-size: clamp(1.85rem, 8.5vw, 2.4rem);
+  }
+
+  .produto-info {
+    overflow: hidden;
+  }
+}

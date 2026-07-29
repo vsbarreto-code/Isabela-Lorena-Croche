@@ -1,0 +1,314 @@
+/* ============================================================
+   TAMANHOS E DIMENSÕES DAS BOLSAS
+   assets/css/pages/tamanhos.css
+   ============================================================ */
+
+.price-box__from {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.15rem;
+  color: rgba(44, 42, 40, 0.62);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.produto-size-section {
+  width: 100%;
+  margin: 1.25rem 0;
+  padding: 1rem;
+  border: 1px solid rgba(197, 168, 128, 0.2);
+  border-radius: 1.2rem;
+  background: rgba(250, 249, 246, 0.72);
+}
+
+.production-sizes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(64px, 1fr));
+  gap: 0.65rem;
+}
+
+.production-size-btn {
+  position: relative;
+  min-width: 0;
+  min-height: 2.9rem;
+  overflow: hidden;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid rgba(197, 168, 128, 0.32);
+  border-radius: 0.9rem;
+  background: #fff;
+  color: rgba(44, 42, 40, 0.72);
+  font-size: 0.84rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.production-size-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: var(--color-primary);
+}
+
+.production-size-btn.active {
+  border-color: var(--color-primary);
+  background: var(--color-light);
+  color: var(--color-dark);
+  box-shadow: 0 6px 16px rgba(120, 96, 70, 0.12);
+}
+
+.production-size-btn.unavailable,
+.production-size-btn:disabled {
+  color: rgba(44, 42, 40, 0.42);
+  background: rgba(240, 235, 225, 0.7);
+  border-color: rgba(44, 42, 40, 0.14);
+  cursor: not-allowed;
+}
+
+.production-size-btn.unavailable::before,
+.production-size-btn.unavailable::after,
+.production-size-btn:disabled::before,
+.production-size-btn:disabled::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 72%;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(44, 42, 40, 0.68);
+  z-index: 2;
+}
+
+.production-size-btn.unavailable::before,
+.production-size-btn:disabled::before {
+  transform: translate(-50%, -50%) rotate(28deg);
+}
+
+.production-size-btn.unavailable::after,
+.production-size-btn:disabled::after {
+  transform: translate(-50%, -50%) rotate(-28deg);
+}
+
+.selected-size-text {
+  margin-top: 0.75rem;
+  color: rgba(44, 42, 40, 0.62);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.produto-dimensions-section {
+  width: 100%;
+  margin: 1.25rem 0;
+  padding: 1.1rem;
+  border: 1px solid rgba(197, 168, 128, 0.2);
+  border-radius: 1.25rem;
+  background: rgba(250, 249, 246, 0.82);
+}
+
+.produto-dimensions-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.produto-dimensions-heading .detail-label {
+  margin-bottom: 0.35rem;
+}
+
+.produto-dimensions-heading h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  font-weight: 500;
+  color: var(--color-dark);
+}
+
+.produto-dimensions-size {
+  flex-shrink: 0;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(197, 168, 128, 0.28);
+  border-radius: 999px;
+  background: #fff;
+  color: rgba(44, 42, 40, 0.72);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.produto-dimensions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.produto-dimension-item {
+  min-width: 0;
+  padding: 0.8rem;
+  border: 1px solid rgba(197, 168, 128, 0.16);
+  border-radius: 0.9rem;
+  background: #fff;
+}
+
+.produto-dimension-item span {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: rgba(44, 42, 40, 0.5);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.produto-dimension-item strong {
+  display: block;
+  overflow-wrap: anywhere;
+  color: rgba(44, 42, 40, 0.8);
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+
+.produto-dimensions-text {
+  padding: 0.85rem;
+  border: 1px solid rgba(197, 168, 128, 0.16);
+  border-radius: 0.9rem;
+  background: #fff;
+  color: rgba(44, 42, 40, 0.72);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.produto-dimensions-note {
+  margin: 0.8rem 0 0;
+  color: rgba(44, 42, 40, 0.54);
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 479px) {
+  .produto-size-section,
+  .produto-dimensions-section {
+    padding: 0.9rem;
+    border-radius: 1rem;
+  }
+
+  .production-sizes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .production-size-btn {
+    min-height: 2.75rem;
+    padding-inline: 0.5rem;
+  }
+
+  .produto-dimensions-heading {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .produto-dimensions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   DIMENSÕES SOB CONSULTA
+   ============================================================ */
+
+.produto-dimensions-section--consult {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(250, 249, 246, 0.96),
+      rgba(240, 235, 225, 0.72)
+    );
+}
+
+.produto-dimensions-consult {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+  padding: 0.95rem;
+  border: 1px solid rgba(197, 168, 128, 0.18);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.produto-dimensions-consult-icon {
+  width: 2.65rem;
+  height: 2.65rem;
+  border-radius: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(197, 168, 128, 0.15);
+  color: var(--color-primary);
+  font-size: 1rem;
+}
+
+.produto-dimensions-consult-content {
+  min-width: 0;
+}
+
+.produto-dimensions-consult-content p {
+  margin: 0;
+  color: rgba(44, 42, 40, 0.66);
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.produto-dimensions-consult-btn {
+  width: fit-content;
+  max-width: 100%;
+  min-height: 42px;
+  margin-top: 0.8rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  border-radius: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(37, 211, 102, 0.08);
+  color: #187a3b;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.produto-dimensions-consult-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(37, 211, 102, 0.48);
+  background: rgba(37, 211, 102, 0.14);
+}
+
+.produto-dimensions-consult-btn i {
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+@media (max-width: 479px) {
+  .produto-dimensions-consult {
+    grid-template-columns: 1fr;
+    padding: 0.85rem;
+  }
+
+  .produto-dimensions-consult-icon {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  .produto-dimensions-consult-btn {
+    width: 100%;
+  }
+}
+

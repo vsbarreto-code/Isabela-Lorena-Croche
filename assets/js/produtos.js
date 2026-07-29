@@ -614,12 +614,83 @@ const produtos = [
     badge: "Novo",
     preco: {
       promocaoAtiva: false,
-      precoOriginal: "R$ 250,00",
-      pix: "R$ 250,00",
-      parcelado: "R$ 261,00",
+      precoOriginal: "R$ 190,00",
+      pix: "R$ 190,00",
+      parcelado: "R$ 210,00",
       parcelas: 2,
-      valorParcela: "R$ 130,50",
+      valorParcela: "R$ 105,00",
     },
+
+    // true: exibe a área de medidas.
+    // false: esconde completamente essa área.
+    exibirDimensoes: false,
+
+    // true: mostra o botão "Consultar medidas no WhatsApp".
+    // false: mostra as dimensões cadastradas.
+    // Mesmo em false, se alguma dimensão estiver ausente, o site
+    // usa automaticamente a consulta pelo WhatsApp.
+    dimensoesSobConsulta: false,
+
+    tamanhos: [
+      {
+        id: "P",
+        nome: "P",
+        disponivel: false, // use false para mostrar o tamanho riscado com X
+        dimensoes: {
+          largura: "28 cm",
+          altura: "20 cm",
+          profundidade: "10 cm",
+          alca: "55 cm",
+        },
+        preco: {
+          promocaoAtiva: false,
+          precoOriginal: "R$ 220,00",
+          pix: "R$ 220,00",
+          parcelado: "R$ 234,30",
+          parcelas: 2,
+          valorParcela: "R$ 117,15",
+        },
+      },
+      {
+        id: "M",
+        nome: "M",
+        disponivel: true,
+        dimensoes: {
+          largura: "32 cm",
+          altura: "24 cm",
+          profundidade: "12 cm",
+          alca: "60 cm",
+        },
+        preco: {
+          promocaoAtiva: false,
+          precoOriginal: "R$ 190,00",
+          pix: "R$ 190,00",
+          parcelado: "R$ 210,00",
+          parcelas: 2,
+          valorParcela: "R$ 105,00",
+        },
+      },
+      {
+        id: "G",
+        nome: "G",
+        disponivel: true,
+        dimensoes: {
+          largura: "36 cm",
+          altura: "28 cm",
+          profundidade: "14 cm",
+          alca: "65 cm",
+        },
+        preco: {
+          promocaoAtiva: false,
+          precoOriginal: "R$ 250,00",
+          pix: "R$ 250,00",
+          parcelado: "R$ 270,00",
+          parcelas: 2,
+          valorParcela: "R$ 135,00",
+        },
+      },
+    ],
+
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
       medidas: "Medidas aproximadas sob consulta no WhatsApp",
@@ -645,7 +716,7 @@ const produtos = [
         fioId: "fio-malha",
         corId: "preto",
         corHex: "#1D1C21",
-        cornome: "Preto",
+        corNome: "Preto",
         imagem: "./assets/img/bolsaLeticia/bolsa-leticia-1.jpeg",
       },
     ],
