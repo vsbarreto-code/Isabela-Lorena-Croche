@@ -20,26 +20,77 @@
       .replaceAll("'", "&#039;");
   }
 
+  function normalizarCaminhoImagem(imagem) {
+    const valor = String(imagem || "")
+      .trim()
+      .replaceAll("\\", "/");
+
+    if (!valor) return "";
+
+    try {
+      const url = new URL(valor, window.location.href);
+
+      // Query e hash não tornam a fotografia diferente.
+      url.search = "";
+      url.hash = "";
+
+      return decodeURIComponent(url.pathname)
+        .replace(/\/{2,}/g, "/")
+        .replace(/\/$/, "");
+    } catch {
+      return valor
+        .replace(/^\.\//, "")
+        .replace(/^\//, "")
+        .replace(/\/{2,}/g, "/");
+    }
+  }
+
   function normalizarImagens(produto) {
     const imagens = [];
-    const usados = new Set();
+    const usados = new Map();
 
     function adicionar(item, fallbackLegenda = "Foto da bolsa") {
       if (!item) return;
 
       const imagem = typeof item === "string" ? item : item.imagem;
-      if (!imagem || usados.has(imagem)) return;
+      const chaveImagem = normalizarCaminhoImagem(imagem);
+
+      if (!imagem || !chaveImagem) return;
+
+      const legendaNova =
+        typeof item === "string"
+          ? fallbackLegenda
+          : item.legenda || item.corNome || fallbackLegenda;
+
+      // A mesma fotografia pode servir para cor, tamanho e galeria.
+      // Ela aparece uma única vez nas miniaturas.
+      if (usados.has(chaveImagem)) {
+        const indexExistente = usados.get(chaveImagem);
+        const fotoExistente = imagens[indexExistente];
+
+        // Conserva a legenda mais informativa.
+        if (
+          fotoExistente &&
+          (!fotoExistente.legenda ||
+            fotoExistente.legenda === "Foto da bolsa") &&
+          legendaNova
+        ) {
+          fotoExistente.legenda = legendaNova;
+        }
+
+        return indexExistente;
+      }
+
+      const index = imagens.length;
 
       imagens.push({
         imagem,
-        legenda:
-          typeof item === "string"
-            ? fallbackLegenda
-            : item.legenda || item.corNome || fallbackLegenda,
+        legenda: legendaNova,
         corNome: typeof item === "string" ? null : item.corNome || null,
       });
 
-      usados.add(imagem);
+      usados.set(chaveImagem, index);
+      return index;
     }
 
     (produto.galeria || []).forEach((item) => adicionar(item));
@@ -949,8 +1000,13 @@
   function selecionarImagemPorUrl(imagemConfig) {
     if (!imagemConfig?.imagem) return false;
 
+    const chaveProcurada = normalizarCaminhoImagem(
+      imagemConfig.imagem,
+    );
+
     const indexDaImagem = imagens.findIndex(
-      (foto) => foto.imagem === imagemConfig.imagem,
+      (foto) =>
+        normalizarCaminhoImagem(foto.imagem) === chaveProcurada,
     );
 
     if (indexDaImagem >= 0) {
