@@ -51,6 +51,48 @@
       ),
     );
 
+    // Fotos cadastradas diretamente em cada tamanho.
+    (produto.tamanhos || []).forEach((tamanho) => {
+      if (!tamanho) return;
+
+      const nomeTamanho = tamanho.nome || tamanho.id || "";
+
+      if (tamanho.imagem) {
+        adicionar(
+          {
+            imagem: tamanho.imagem,
+            legenda:
+              tamanho.legendaImagem ||
+              `${produto.nome} — tamanho ${nomeTamanho}`,
+          },
+          `${produto.nome} — tamanho ${nomeTamanho}`,
+        );
+      }
+
+      // Fotos opcionais para uma combinação específica de tamanho + cor.
+      const imagensPorCor = tamanho.imagensPorCor;
+
+      if (Array.isArray(imagensPorCor)) {
+        imagensPorCor.forEach((item) => {
+          adicionar(
+            item,
+            item?.legenda ||
+              `${produto.nome} — tamanho ${nomeTamanho}`,
+          );
+        });
+      } else if (
+        imagensPorCor &&
+        typeof imagensPorCor === "object"
+      ) {
+        Object.values(imagensPorCor).forEach((item) => {
+          adicionar(
+            item,
+            `${produto.nome} — tamanho ${nomeTamanho}`,
+          );
+        });
+      }
+    });
+
     if (imagens.length === 0) {
       imagens.push({
         imagem: FALLBACK_SVG,
@@ -134,6 +176,7 @@
   let autoplay = null;
   let fioSelecionado = "";
   let corSelecionada = "";
+  let corIdSelecionada = "";
 
   const tamanhoInicial =
     typeof getTamanhoMaisBarato === "function"
@@ -207,6 +250,99 @@
       produto.tamanhos?.find(
         (item) => String(item.id) === String(tamanhoSelecionado),
       ) || null
+    );
+  }
+
+  function normalizarItemImagem(item, legendaPadrao = "Foto da bolsa") {
+    if (!item) return null;
+
+    if (typeof item === "string") {
+      const imagem = item.trim();
+      return imagem
+        ? {
+            imagem,
+            legenda: legendaPadrao,
+          }
+        : null;
+    }
+
+    if (typeof item !== "object" || !item.imagem) {
+      return null;
+    }
+
+    return {
+      imagem: String(item.imagem).trim(),
+      legenda: item.legenda || legendaPadrao,
+    };
+  }
+
+  function getImagemBaseDoTamanho(tamanho) {
+    if (!tamanho) return null;
+
+    const nomeTamanho = tamanho.nome || tamanho.id || "";
+
+    return normalizarItemImagem(
+      tamanho.imagem,
+      tamanho.legendaImagem ||
+        `${produto.nome} — tamanho ${nomeTamanho}`,
+    );
+  }
+
+  function getImagemDoTamanhoPorCor(
+    tamanho,
+    corId = "",
+    corNome = "",
+  ) {
+    if (!tamanho?.imagensPorCor) return null;
+
+    const nomeTamanho = tamanho.nome || tamanho.id || "";
+    const legendaPadrao = `${produto.nome} — tamanho ${nomeTamanho}`;
+
+    if (Array.isArray(tamanho.imagensPorCor)) {
+      const item = tamanho.imagensPorCor.find((imagemCor) => {
+        if (!imagemCor) return false;
+
+        const mesmoId =
+          corId &&
+          imagemCor.corId &&
+          String(imagemCor.corId) === String(corId);
+
+        const mesmoNome =
+          corNome &&
+          imagemCor.corNome &&
+          normalizarTexto(imagemCor.corNome) ===
+            normalizarTexto(corNome);
+
+        return mesmoId || mesmoNome;
+      });
+
+      return normalizarItemImagem(item, legendaPadrao);
+    }
+
+    if (typeof tamanho.imagensPorCor === "object") {
+      const entradas = Object.entries(tamanho.imagensPorCor);
+
+      const entrada = entradas.find(([chave]) => {
+        return (
+          (corId && String(chave) === String(corId)) ||
+          (corNome &&
+            normalizarTexto(chave) === normalizarTexto(corNome))
+        );
+      });
+
+      return normalizarItemImagem(entrada?.[1], legendaPadrao);
+    }
+
+    return null;
+  }
+
+  function getImagemRelacionadaAoTamanho(tamanho) {
+    return (
+      getImagemDoTamanhoPorCor(
+        tamanho,
+        corIdSelecionada,
+        corSelecionada,
+      ) || getImagemBaseDoTamanho(tamanho)
     );
   }
 
@@ -810,6 +946,46 @@
     if (resetTimer) iniciarAutoplay();
   }
 
+  function selecionarImagemPorUrl(imagemConfig) {
+    if (!imagemConfig?.imagem) return false;
+
+    const indexDaImagem = imagens.findIndex(
+      (foto) => foto.imagem === imagemConfig.imagem,
+    );
+
+    if (indexDaImagem >= 0) {
+      selecionarImagem(indexDaImagem);
+      return true;
+    }
+
+    if (!mainImg) return false;
+
+    mainImg.style.opacity = "0";
+
+    setTimeout(() => {
+      mainImg.src = imagemConfig.imagem;
+      mainImg.alt = imagemConfig.legenda || produto.nome;
+
+      mainImg.onload = () => {
+        mainImg.style.opacity = "1";
+      };
+
+      mainImg.onerror = () => {
+        mainImg.src = FALLBACK_SVG;
+        mainImg.style.opacity = "1";
+      };
+    }, 120);
+
+    if (caption) {
+      caption.textContent = imagemConfig.legenda || produto.nome;
+    }
+
+    thumbs.forEach((thumb) => thumb.classList.remove("active"));
+    iniciarAutoplay();
+
+    return true;
+  }
+
   function initGallerySwipe() {
     const galleryWrap = document.querySelector(".gallery-main-wrap");
 
@@ -879,6 +1055,7 @@
 
     fioSelecionado = button.dataset.fioNome || "";
     corSelecionada = button.dataset.corNome || "";
+    corIdSelecionada = button.dataset.corId || "";
 
     const selectedText = document.getElementById("selected-production-text");
 
@@ -886,41 +1063,33 @@
       selectedText.textContent = `Selecionado: ${fioSelecionado} — ${corSelecionada}`;
     }
 
-    const imagemDaCor = button.dataset.imagem;
+    const tamanhoAtual = getTamanhoSelecionado(produto);
 
-    if (imagemDaCor) {
-      const indexDaImagem = imagens.findIndex(
-        (foto) => foto.imagem === imagemDaCor,
-      );
+    // Prioridade:
+    // 1. Foto exata do tamanho + cor;
+    // 2. Foto cadastrada para a cor;
+    // 3. Foto geral do tamanho;
+    // 4. Primeira foto real da galeria.
+    const imagemTamanhoCor = getImagemDoTamanhoPorCor(
+      tamanhoAtual,
+      corIdSelecionada,
+      corSelecionada,
+    );
 
-      if (indexDaImagem >= 0) {
-        selecionarImagem(indexDaImagem);
-      } else if (mainImg) {
-        mainImg.style.opacity = "0";
+    const imagemDaCor = normalizarItemImagem(
+      button.dataset.imagem,
+      `${produto.nome} na cor ${corSelecionada}`,
+    );
 
-        setTimeout(() => {
-          mainImg.src = imagemDaCor;
-          mainImg.alt = `${produto.nome} na cor ${corSelecionada}`;
+    const imagemBaseTamanho = getImagemBaseDoTamanho(tamanhoAtual);
 
-          mainImg.onload = () => {
-            mainImg.style.opacity = "1";
-          };
+    const imagemEscolhida =
+      imagemTamanhoCor || imagemDaCor || imagemBaseTamanho;
 
-          mainImg.onerror = () => {
-            mainImg.src = FALLBACK_SVG;
-            mainImg.style.opacity = "1";
-          };
-        }, 120);
-
-        if (caption) {
-          caption.textContent = `${produto.nome} na cor ${corSelecionada}`;
-        }
-      }
-    } else {
-      if (caption) {
-        caption.textContent = `Imagem ilustrativa. Cor selecionada: ${corSelecionada}`;
-      }
+    if (!selecionarImagemPorUrl(imagemEscolhida)) {
+      selecionarImagem(0);
     }
+
     atualizarWhatsApp();
   }
 
@@ -950,6 +1119,12 @@
       }`;
     }
 
+    const imagemDoTamanho = getImagemRelacionadaAoTamanho(tamanho);
+
+    // Se o tamanho possuir foto própria, leva a galeria até ela.
+    // Sem foto cadastrada, mantém a foto atual para não mostrar algo incorreto.
+    selecionarImagemPorUrl(imagemDoTamanho);
+
     atualizarPreco();
     atualizarDimensoes();
     atualizarWhatsApp();
@@ -961,6 +1136,26 @@
     sizeButtons.forEach((button) => {
       button.addEventListener("click", () => selecionarTamanho(button));
     });
+  }
+
+  function getCorInicialDoGrupo(group) {
+    if (!group) return null;
+
+    const disponiveis = Array.from(
+      group.querySelectorAll(
+        ".production-color-dot:not(.unavailable):not(:disabled)",
+      ),
+    );
+
+    // Primeiro escolhe uma cor que tenha foto própria cadastrada.
+    // Caso nenhuma tenha, usa normalmente a primeira cor disponível.
+    return (
+      disponiveis.find((button) =>
+        String(button.dataset.imagem || "").trim(),
+      ) ||
+      disponiveis[0] ||
+      null
+    );
   }
 
   function initProductionOptions() {
@@ -983,11 +1178,8 @@
               .querySelectorAll(".production-color-dot")
               .forEach((btn) => btn.classList.remove("active"));
 
-            const firstAvailable = group.querySelector(
-              ".production-color-dot:not(.unavailable):not(:disabled)",
-            );
-
-            selecionarCorProducao(firstAvailable);
+            const initialColor = getCorInicialDoGrupo(group);
+            selecionarCorProducao(initialColor);
           }
         });
       });
@@ -1000,11 +1192,9 @@
     });
 
     const firstGroup = document.querySelector(".production-color-group.active");
-    const firstAvailable = firstGroup?.querySelector(
-      ".production-color-dot:not(.unavailable):not(:disabled)",
-    );
+    const initialColor = getCorInicialDoGrupo(firstGroup);
 
-    selecionarCorProducao(firstAvailable);
+    selecionarCorProducao(initialColor);
   }
 
   thumbs.forEach((thumb) => {

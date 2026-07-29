@@ -631,62 +631,61 @@ const produtos = [
     // usa automaticamente a consulta pelo WhatsApp.
     dimensoesSobConsulta: false,
 
-    tamanhos: [
+      tamanhos: [
       {
         id: "P",
         nome: "P",
-        disponivel: false, // use false para mostrar o tamanho riscado com X
-        dimensoes: {
-          largura: "28 cm",
-          altura: "20 cm",
-          profundidade: "10 cm",
-          alca: "55 cm",
-        },
+        disponivel: false,
+
+        imagem:
+          "",
+
+        legendaImagem: "",
+
         preco: {
           promocaoAtiva: false,
-          precoOriginal: "R$ 220,00",
-          pix: "R$ 220,00",
-          parcelado: "R$ 234,30",
+          pix: "R$ 170,00",
+          parcelado: "R$ 180,00",
           parcelas: 2,
-          valorParcela: "R$ 117,15",
+          valorParcela: "R$ 90,00",
         },
       },
+
       {
         id: "M",
         nome: "M",
         disponivel: true,
-        dimensoes: {
-          largura: "32 cm",
-          altura: "24 cm",
-          profundidade: "12 cm",
-          alca: "60 cm",
-        },
+
+        imagem:
+          "/assets/img/bolsaLeticia/bolsa-leticia-2.png",
+
+        legendaImagem: "Bolsa Letícia no tamanho M",
+
         preco: {
           promocaoAtiva: false,
-          precoOriginal: "R$ 190,00",
           pix: "R$ 190,00",
           parcelado: "R$ 210,00",
           parcelas: 2,
           valorParcela: "R$ 105,00",
         },
       },
+
       {
         id: "G",
         nome: "G",
         disponivel: true,
-        dimensoes: {
-          largura: "36 cm",
-          altura: "28 cm",
-          profundidade: "14 cm",
-          alca: "65 cm",
-        },
+
+        imagem:
+          "/assets/img/bolsaLeticia/bolsa-leticia-1.jpeg",
+
+        legendaImagem: "Bolsa Letícia no tamanho G",
+
         preco: {
           promocaoAtiva: false,
-          precoOriginal: "R$ 250,00",
-          pix: "R$ 250,00",
-          parcelado: "R$ 270,00",
+          pix: "R$ 220,00",
+          parcelado: "R$ 234,00",
           parcelas: 2,
-          valorParcela: "R$ 135,00",
+          valorParcela: "R$ 117,00",
         },
       },
     ],
