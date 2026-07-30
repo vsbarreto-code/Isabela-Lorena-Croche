@@ -664,9 +664,9 @@ const produtos = [
         preco: {
           promocaoAtiva: false,
           pix: "R$ 190,00",
-          parcelado: "R$ 210,00",
+          parcelado: "R$ 202,33",
           parcelas: 2,
-          valorParcela: "R$ 105,00",
+          valorParcela: "R$ 101,17",
         },
       },
 
@@ -682,10 +682,10 @@ const produtos = [
 
         preco: {
           promocaoAtiva: false,
-          pix: "R$ 220,00",
-          parcelado: "R$ 234,00",
+          pix: "R$ 250,00",
+          parcelado: "R$ 266,22",
           parcelas: 2,
-          valorParcela: "R$ 117,00",
+          valorParcela: "R$ 133,11",
         },
       },
     ],
