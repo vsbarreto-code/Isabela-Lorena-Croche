@@ -1122,14 +1122,9 @@
 
   .production-color-group {
     display: none;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 0.65rem;
     padding: 0.75rem;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x proximity;
-    scrollbar-width: thin;
-    -webkit-overflow-scrolling: touch;
   }
 
   .production-color-group.active {
@@ -1140,7 +1135,6 @@
     flex: 0 0 44px;
     width: 44px;
     height: 44px;
-    scroll-snap-align: start;
     touch-action: manipulation;
   }
 
@@ -1506,4 +1500,3 @@
     height: 40px;
   }
 }
-
