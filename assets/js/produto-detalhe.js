@@ -212,6 +212,7 @@
   }
 
   window.produtoAtual = produto;
+  document.body.classList.add("produto-detail-active");
 
   document.title = `${produto.nome} | Isabela Lorena Crochê`;
 
@@ -228,6 +229,8 @@
   let fioSelecionado = "";
   let corSelecionada = "";
   let corIdSelecionada = "";
+  let corHexSelecionada = "";
+  let imagemCorSelecionada = "";
 
   const tamanhoInicial =
     typeof getTamanhoMaisBarato === "function"
@@ -622,8 +625,7 @@
         <p class="detail-label">Escolha o tamanho</p>
 
         <p class="production-help">
-          Selecione P, M ou G para atualizar o preço e as informações
-          correspondentes ao tamanho escolhido.
+          O preço e a foto são atualizados conforme o tamanho escolhido.
         </p>
 
         <div class="production-sizes" role="group" aria-label="Tamanhos da bolsa">
@@ -695,8 +697,8 @@
         <p class="detail-label">Escolha o fio e a cor</p>
 
         <p class="production-help">
-          Nem todos os modelos podem ser feitos com todos os fios. Escolha uma
-          opção disponível abaixo e confirme a produção pelo WhatsApp.
+          Escolha a cor da sua bolsa. As fotos mostram peças já produzidas;
+          sua seleção será feita especialmente para você.
         </p>
 
         <div class="production-fios">
@@ -710,6 +712,7 @@
                   type="button"
                   class="production-fio-btn ${index === 0 ? "active" : ""}"
                   data-fio-id="${escapeHTML(fio.id)}"
+                  aria-pressed="${index === 0}"
                 >
                   ${escapeHTML(fio.nome)}
                 </button>
@@ -747,6 +750,7 @@
                           data-fio-nome="${escapeHTML(fio.nome)}"
                           data-cor-id="${escapeHTML(cor.id)}"
                           data-cor-nome="${escapeHTML(cor.nome)}"
+                          data-cor-hex="${escapeHTML(cor.corHex)}"
                           data-imagem="${escapeHTML(getImagemDaCor(produto, fio.id, item.corId, cor.nome))}"
                           title="${escapeHTML(cor.nome)}${
                             disponivel ? "" : " — indisponível"
@@ -754,7 +758,8 @@
                           aria-label="${escapeHTML(cor.nome)}${
                             disponivel ? "" : " indisponível"
                           }"
-                          ${disponivel ? "" : "disabled"}
+                          aria-pressed="false"
+                          ${disponivel ? "" : 'disabled aria-disabled="true"'}
                         >
                           <span></span>
                         </button>
@@ -770,6 +775,27 @@
         <p class="selected-production-text" id="selected-production-text">
           Selecione uma cor disponível.
         </p>
+
+        <div
+          class="produto-color-confirmation"
+          id="produto-color-confirmation"
+          aria-live="polite"
+          hidden
+        >
+          <span
+            class="produto-color-confirmation__swatch"
+            id="produto-color-confirmation-swatch"
+            aria-hidden="true"
+          ></span>
+
+          <div class="produto-color-confirmation__content">
+            <small>Produção personalizada</small>
+            <strong id="produto-color-confirmation-name">
+              Cor escolhida
+            </strong>
+            <p id="produto-color-confirmation-status"></p>
+          </div>
+        </div>
       </section>
     `;
   }
@@ -811,7 +837,11 @@
   root.innerHTML = `
     <div class="produto-detail-grid">
       <div class="produto-gallery">
-        <div class="gallery-main-wrap">
+        <div
+          class="gallery-main-wrap"
+          id="produto-gallery-focus"
+          tabindex="-1"
+        >
           <img
             id="gallery-main-img"
             class="gallery-main-img"
@@ -881,13 +911,50 @@
           ${renderPrice(produto)}
         </div>
 
-        ${renderOpcoesProducao(produto)}
-
         ${renderTamanhos(produto)}
 
-        <div id="produto-dimensions-root">
-          ${renderDimensoes(produto)}
-        </div>
+        ${renderOpcoesProducao(produto)}
+
+        <section
+          class="produto-mobile-choice"
+          id="produto-mobile-choice"
+          aria-label="Resumo da configuração escolhida"
+          aria-live="polite"
+        >
+          <button
+            class="produto-mobile-choice__photo"
+            id="produto-mobile-view-photo"
+            type="button"
+            aria-label="Ver fotos reais do modelo"
+          >
+            <span class="produto-mobile-choice__visual">
+              <img
+                id="produto-mobile-choice-img"
+                src="${escapeHTML(imagens[0].imagem)}"
+                alt=""
+              />
+              <span
+                class="produto-mobile-choice__swatch"
+                id="produto-mobile-choice-swatch"
+                aria-hidden="true"
+              ></span>
+            </span>
+
+            <span id="produto-mobile-choice-action">Ver modelo</span>
+          </button>
+
+          <div class="produto-mobile-choice__content">
+            <span>Sua escolha</span>
+            <strong id="produto-mobile-choice-options">
+              Selecione tamanho e cor
+            </strong>
+            <small
+              class="produto-mobile-choice__note"
+              id="produto-mobile-choice-note"
+            ></small>
+            <em id="produto-mobile-choice-price"></em>
+          </div>
+        </section>
 
         <div class="produto-actions-main">
           <a
@@ -898,13 +965,17 @@
             rel="noopener"
           >
             <i class="fa-brands fa-whatsapp"></i>
-            Encomendar pelo WhatsApp
+            Encomendar esta configuração
           </a>
 
           <a class="btn-details btn-secondary-detail" href="bolsas.html">
             <i class="fa-solid fa-bag-shopping"></i>
             Ver catálogo
           </a>
+        </div>
+
+        <div id="produto-dimensions-root">
+          ${renderDimensoes(produto)}
         </div>
 
         <div class="produto-detail-card">
@@ -936,6 +1007,7 @@
         </div>
       </article>
     </div>
+
   `;
 
   const mainImg = document.getElementById("gallery-main-img");
@@ -945,13 +1017,280 @@
   const prevBtn = document.getElementById("gallery-prev");
   const nextBtn = document.getElementById("gallery-next");
   const waBtn = document.getElementById("produto-wa-btn");
+  const mobileWaBtn = document.getElementById("produto-mobile-wa-btn");
   const priceRoot = document.getElementById("produto-price-root");
   const dimensionsRoot = document.getElementById("produto-dimensions-root");
+
+  const mobileChoiceImg = document.getElementById(
+    "produto-mobile-choice-img",
+  );
+  const mobileChoiceOptions = document.getElementById(
+    "produto-mobile-choice-options",
+  );
+  const mobileChoicePrice = document.getElementById(
+    "produto-mobile-choice-price",
+  );
+  const mobileChoiceNote = document.getElementById(
+    "produto-mobile-choice-note",
+  );
+  const mobileChoiceSwatch = document.getElementById(
+    "produto-mobile-choice-swatch",
+  );
+  const mobileChoiceAction = document.getElementById(
+    "produto-mobile-choice-action",
+  );
+  const mobileViewPhoto = document.getElementById(
+    "produto-mobile-view-photo",
+  );
+
+  const colorConfirmation = document.getElementById(
+    "produto-color-confirmation",
+  );
+  const colorConfirmationSwatch = document.getElementById(
+    "produto-color-confirmation-swatch",
+  );
+  const colorConfirmationName = document.getElementById(
+    "produto-color-confirmation-name",
+  );
+  const colorConfirmationStatus = document.getElementById(
+    "produto-color-confirmation-status",
+  );
+
+  const mobileBuybarImg = document.getElementById(
+    "produto-mobile-buybar-img",
+  );
+  const mobileBuybarOptions = document.getElementById(
+    "produto-mobile-buybar-options",
+  );
+  const mobileBuybarPrice = document.getElementById(
+    "produto-mobile-buybar-price",
+  );
+  const mobileBuybarSwatch = document.getElementById(
+    "produto-mobile-buybar-swatch",
+  );
+  const mobileBuybarPhoto = document.getElementById(
+    "produto-mobile-buybar-photo",
+  );
+
+  function getPrecoAtualSelecionado() {
+    if (typeof getPrecoProduto === "function") {
+      return getPrecoProduto(produto, tamanhoSelecionado || null);
+    }
+
+    return getTamanhoSelecionado(produto)?.preco || produto.preco || null;
+  }
+
+  function getResumoOpcoesSelecionadas() {
+    const tamanho = getTamanhoSelecionado(produto);
+    const partes = [];
+
+    if (tamanho?.nome || tamanhoSelecionado) {
+      partes.push(`Tam. ${tamanho?.nome || tamanhoSelecionado}`);
+    }
+
+    if (corSelecionada) {
+      partes.push(corSelecionada);
+    }
+
+    if (fioSelecionado) {
+      partes.push(fioSelecionado);
+    }
+
+    return partes.length ? partes.join(" • ") : "Escolha tamanho e cor";
+  }
+
+  function getPrecoResumo() {
+    const preco = getPrecoAtualSelecionado();
+
+    return preco?.pix ? `${preco.pix} no Pix` : "";
+  }
+
+  function getEstadoVisualConfiguracao() {
+    const tamanho = getTamanhoSelecionado(produto);
+    const nomeTamanho =
+      tamanho?.nome || tamanho?.id || tamanhoSelecionado || "";
+
+    const imagemExata = getImagemDoTamanhoPorCor(
+      tamanho,
+      corIdSelecionada,
+      corSelecionada,
+    );
+
+    if (imagemExata) {
+      return {
+        tipo: "exata",
+        imagem: imagemExata,
+        usarFotoNoResumo: true,
+        nota: "Foto disponível desta cor e deste tamanho.",
+        status:
+          "Esta foto representa a configuração selecionada.",
+      };
+    }
+
+    const imagemDaCor = normalizarItemImagem(
+      imagemCorSelecionada,
+      `${produto.nome} na cor ${corSelecionada}`,
+    );
+
+    if (imagemDaCor) {
+      return {
+        tipo: "cor",
+        imagem: imagemDaCor,
+        usarFotoNoResumo: true,
+        nota: "Foto real disponível na cor escolhida.",
+        status:
+          nomeTamanho
+            ? `A foto representa a cor ${corSelecionada}; as proporções seguem o tamanho ${nomeTamanho}.`
+            : `Você está vendo uma foto real na cor ${corSelecionada}.`,
+      };
+    }
+
+    const imagemDoTamanho = getImagemBaseDoTamanho(tamanho);
+
+    if (imagemDoTamanho) {
+      return {
+        tipo: "tamanho",
+        imagem: imagemDoTamanho,
+        usarFotoNoResumo: false,
+        nota: "Cor escolhida para produção.",
+        status:
+          `A foto do tamanho ${nomeTamanho} está em outra cor. ` +
+          `Sua bolsa será produzida na cor ${corSelecionada}.`,
+      };
+    }
+
+    return {
+      tipo: "modelo",
+      imagem: null,
+      usarFotoNoResumo: false,
+      nota: "Cor escolhida para produção.",
+      status:
+        `As fotos mostram versões já produzidas deste modelo. ` +
+        `Sua bolsa será produzida na cor ${corSelecionada}.`,
+    };
+  }
+
+  function atualizarConfirmacaoDaCor(estado) {
+    if (
+      !colorConfirmation ||
+      !corSelecionada ||
+      !corHexSelecionada
+    ) {
+      if (colorConfirmation) colorConfirmation.hidden = true;
+      return;
+    }
+
+    colorConfirmation.hidden = false;
+
+    if (colorConfirmationSwatch) {
+      colorConfirmationSwatch.style.setProperty(
+        "--selected-color",
+        corHexSelecionada,
+      );
+    }
+
+    if (colorConfirmationName) {
+      colorConfirmationName.textContent =
+        `Cor escolhida: ${corSelecionada}`;
+    }
+
+    if (colorConfirmationStatus) {
+      colorConfirmationStatus.textContent = estado.status;
+    }
+  }
+
+  function atualizarVisualResumo(elementoImg, elementoSwatch, estado) {
+    if (!elementoImg || !elementoSwatch) return;
+
+    const usarFoto = Boolean(
+      estado.usarFotoNoResumo && estado.imagem?.imagem,
+    );
+
+    elementoImg.hidden = !usarFoto;
+    elementoSwatch.hidden = usarFoto;
+
+    if (usarFoto) {
+      elementoImg.src = estado.imagem.imagem;
+      elementoImg.alt = estado.imagem.legenda || produto.nome;
+    } else {
+      elementoSwatch.style.setProperty(
+        "--selected-color",
+        corHexSelecionada || "#f0ebe1",
+      );
+      elementoSwatch.setAttribute(
+        "aria-label",
+        corSelecionada
+          ? `Cor selecionada: ${corSelecionada}`
+          : "Cor ainda não selecionada",
+      );
+    }
+  }
+
+  function atualizarResumoMobile() {
+    const opcoes = getResumoOpcoesSelecionadas();
+    const preco = getPrecoResumo();
+    const estado = getEstadoVisualConfiguracao();
+
+    if (mobileChoiceOptions) {
+      mobileChoiceOptions.textContent = opcoes;
+    }
+
+    if (mobileChoiceNote) {
+      mobileChoiceNote.textContent = estado.nota;
+    }
+
+    if (mobileChoicePrice) {
+      mobileChoicePrice.textContent = preco;
+    }
+
+    if (mobileChoiceAction) {
+      mobileChoiceAction.textContent =
+        estado.usarFotoNoResumo ? "Ver foto" : "Ver modelo";
+    }
+
+    if (mobileBuybarOptions) {
+      mobileBuybarOptions.textContent = opcoes;
+    }
+
+    if (mobileBuybarPrice) {
+      mobileBuybarPrice.textContent = preco;
+    }
+
+    atualizarVisualResumo(
+      mobileChoiceImg,
+      mobileChoiceSwatch,
+      estado,
+    );
+
+    atualizarVisualResumo(
+      mobileBuybarImg,
+      mobileBuybarSwatch,
+      estado,
+    );
+
+    atualizarConfirmacaoDaCor(estado);
+  }
+
+  function irParaGaleria() {
+    const galleryFocus = document.getElementById("produto-gallery-focus");
+    if (!galleryFocus) return;
+
+    galleryFocus.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    window.setTimeout(() => {
+      galleryFocus.focus({ preventScroll: true });
+    }, 450);
+  }
 
   function atualizarPreco() {
     if (priceRoot) {
       priceRoot.innerHTML = renderPrice(produto);
     }
+
+    atualizarResumoMobile();
   }
 
   function atualizarDimensoes() {
@@ -961,9 +1300,17 @@
   }
 
   function atualizarWhatsApp() {
+    const link = getLinkWhatsApp();
+
     if (waBtn) {
-      waBtn.href = getLinkWhatsApp();
+      waBtn.href = link;
     }
+
+    if (mobileWaBtn) {
+      mobileWaBtn.href = link;
+    }
+
+    atualizarResumoMobile();
   }
 
   function selecionarImagem(index, resetTimer = true) {
@@ -993,6 +1340,7 @@
 
     thumbs.forEach((thumb) => thumb.classList.remove("active"));
     thumbs[imagemAtual]?.classList.add("active");
+    atualizarResumoMobile();
 
     if (resetTimer) iniciarAutoplay();
   }
@@ -1037,6 +1385,7 @@
     }
 
     thumbs.forEach((thumb) => thumb.classList.remove("active"));
+    atualizarResumoMobile();
     iniciarAutoplay();
 
     return true;
@@ -1105,13 +1454,17 @@
 
     currentGroup
       ?.querySelectorAll(".production-color-dot")
-      .forEach((btn) => btn.classList.remove("active"));
-
-    button.classList.add("active");
+      .forEach((btn) => {
+        const ativo = btn === button;
+        btn.classList.toggle("active", ativo);
+        btn.setAttribute("aria-pressed", String(ativo));
+      });
 
     fioSelecionado = button.dataset.fioNome || "";
     corSelecionada = button.dataset.corNome || "";
     corIdSelecionada = button.dataset.corId || "";
+    corHexSelecionada = button.dataset.corHex || "";
+    imagemCorSelecionada = button.dataset.imagem || "";
 
     const selectedText = document.getElementById("selected-production-text");
 
@@ -1121,11 +1474,8 @@
 
     const tamanhoAtual = getTamanhoSelecionado(produto);
 
-    // Prioridade:
-    // 1. Foto exata do tamanho + cor;
-    // 2. Foto cadastrada para a cor;
-    // 3. Foto geral do tamanho;
-    // 4. Primeira foto real da galeria.
+    // Ao escolher uma cor, a galeria só muda quando existe uma foto
+    // que realmente representa essa cor.
     const imagemTamanhoCor = getImagemDoTamanhoPorCor(
       tamanhoAtual,
       corIdSelecionada,
@@ -1133,18 +1483,11 @@
     );
 
     const imagemDaCor = normalizarItemImagem(
-      button.dataset.imagem,
+      imagemCorSelecionada,
       `${produto.nome} na cor ${corSelecionada}`,
     );
 
-    const imagemBaseTamanho = getImagemBaseDoTamanho(tamanhoAtual);
-
-    const imagemEscolhida =
-      imagemTamanhoCor || imagemDaCor || imagemBaseTamanho;
-
-    if (!selecionarImagemPorUrl(imagemEscolhida)) {
-      selecionarImagem(0);
-    }
+    selecionarImagemPorUrl(imagemTamanhoCor || imagemDaCor);
 
     atualizarWhatsApp();
   }
@@ -1175,11 +1518,17 @@
       }`;
     }
 
-    const imagemDoTamanho = getImagemRelacionadaAoTamanho(tamanho);
+    const imagemExata = getImagemDoTamanhoPorCor(
+      tamanho,
+      corIdSelecionada,
+      corSelecionada,
+    );
+    const imagemDoTamanho = getImagemBaseDoTamanho(tamanho);
 
-    // Se o tamanho possuir foto própria, leva a galeria até ela.
-    // Sem foto cadastrada, mantém a foto atual para não mostrar algo incorreto.
-    selecionarImagemPorUrl(imagemDoTamanho);
+    // Ao escolher o tamanho, prioriza uma foto exata da configuração.
+    // Caso não exista, pode mostrar a foto real do tamanho, deixando claro
+    // no cartão de confirmação quando ela estiver em outra cor.
+    selecionarImagemPorUrl(imagemExata || imagemDoTamanho);
 
     atualizarPreco();
     atualizarDimensoes();
@@ -1222,8 +1571,11 @@
       button.addEventListener("click", () => {
         const fioId = button.dataset.fioId;
 
-        fioButtons.forEach((btn) => btn.classList.remove("active"));
-        button.classList.add("active");
+        fioButtons.forEach((btn) => {
+          const ativo = btn === button;
+          btn.classList.toggle("active", ativo);
+          btn.setAttribute("aria-pressed", String(ativo));
+        });
 
         colorGroups.forEach((group) => {
           const isActive = group.dataset.fioId === fioId;
@@ -1259,6 +1611,9 @@
     });
   });
 
+  mobileViewPhoto?.addEventListener("click", irParaGaleria);
+  mobileBuybarPhoto?.addEventListener("click", irParaGaleria);
+
   prevBtn?.addEventListener("click", () => selecionarImagem(imagemAtual - 1));
   nextBtn?.addEventListener("click", () => selecionarImagem(imagemAtual + 1));
 
@@ -1268,5 +1623,6 @@
   atualizarPreco();
   atualizarDimensoes();
   atualizarWhatsApp();
+  atualizarResumoMobile();
   iniciarAutoplay();
 })();
