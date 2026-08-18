@@ -280,80 +280,122 @@
       </section>
 
       <!-- ===== DEPOIMENTOS ===== -->
-      <<section class="section-reviews">
+      <section class="section-reviews" aria-labelledby="reviews-title">
         <div class="inner">
           <div class="header">
             <span class="section-label"> Comunidade </span>
-            <h2 class="section-title">
+            <h2 class="section-title" id="reviews-title">
               O que dizem nossas
               <span class="highlight-word"> clientes de Aracaju </span>
             </h2>
           </div>
-          <div class="reviews-grid">
-            <!-- Card 1 — branco -->
-            <div class="review-card">
-              <i class="fa-solid fa-quote-right quote-icon"> </i>
-              <div class="stars">
-                <i class="fa-solid fa-star"> </i>
-                <i class="fa-solid fa-star"> </i>
-                <i class="fa-solid fa-star"> </i>
-                <i class="fa-solid fa-star"> </i>
-                <i class="fa-solid fa-star"> </i>
-              </div>
-              <p class="review-text">
-                "Amei a minha compra! 
-                A bolsa ficou perfeita, o acabamento é cheio de detalhes. O material é ótimo e veio bem embalada. 
-                recomendo!"
-              </p>
-              <div class="reviewer">
-                <div class="avatar">M</div>
-                <div>
-                  <p class="reviewer-name">Leticia</p>
-                  <p class="reviewer-loc">Inácio Barbosa, Aracaju</p>
-                </div>
-              </div>
-            </div> 
-            <!-- Card 2 — escuro -->
-            <div class="review-card">
-              <i class="fa-solid fa-quote-right quote-icon"> </i>
-              <div class="stars">
-                <i class="fa-solid fa-star"> </i>
-                <i class="fa-solid fa-star"> </i>
-                <i class="fa-solid fa-star"> </i>
-                <i class="fa-solid fa-star"> </i>
-                <i class="fa-solid fa-star"> </i>
-              </div>
-              <p class="review-text">
-                "Durabilidade sem igual, atende minha necessidade pro momento do dia a dia, parabéns!"
-              </p>
-              <div class="reviewer">
-                <div class="avatar">C</div>
-                <div>
-                  <p class="reviewer-name">Lê</p>
-                  <p class="reviewer-loc">Catanhal, Sergipe</p>
-                </div>
+
+          <div
+            class="reviews-carousel"
+            id="reviews-carousel"
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Depoimentos de clientes"
+          >
+            <div class="reviews-viewport">
+              <div class="reviews-grid">
+                <!-- Card 1 — branco -->
+                <article class="review-card" role="group" aria-roledescription="slide" aria-label="Depoimento 1">
+                  <i class="fa-solid fa-quote-right quote-icon" aria-hidden="true"></i>
+                  <div class="stars" aria-label="5 de 5 estrelas">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                  </div>
+                  <p class="review-text">
+                    "Amei a minha compra! A bolsa ficou perfeita, o acabamento é cheio de detalhes. O material é ótimo e veio bem embalada. recomendo!"
+                  </p>
+                  <div class="reviewer">
+                    <div class="avatar" aria-hidden="true">M</div>
+                    <div>
+                      <p class="reviewer-name">Leticia</p>
+                      <p class="reviewer-loc">Inácio Barbosa, Aracaju</p>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- Card 2 — escuro -->
+                <article class="review-card" role="group" aria-roledescription="slide" aria-label="Depoimento 2">
+                  <i class="fa-solid fa-quote-right quote-icon" aria-hidden="true"></i>
+                  <div class="stars" aria-label="5 de 5 estrelas">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                  </div>
+                  <p class="review-text">
+                    "Durabilidade sem igual, atende minha necessidade pro momento do dia a dia, parabéns!"
+                  </p>
+                  <div class="reviewer">
+                    <div class="avatar" aria-hidden="true">C</div>
+                    <div>
+                      <p class="reviewer-name">Lê</p>
+                      <p class="reviewer-loc">Capela, Sergipe</p>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- Card 3 — quente/accent -->
+                <article class="review-card" role="group" aria-roledescription="slide" aria-label="Depoimento 3">
+                  <i class="fa-solid fa-quote-right quote-icon" aria-hidden="true"></i>
+                  <div class="stars" aria-label="5 de 5 estrelas">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                  </div>
+                  <p class="review-text">
+                    "Bolsas lindas, bem espaçosas e tem uma firmeza que n esperava. Eu amei dmsss😍😍😍😍"
+                  </p>
+                  <div class="reviewer">
+                    <div class="avatar" aria-hidden="true">J</div>
+                    <div>
+                      <p class="reviewer-name">Shaiane</p>
+                      <p class="reviewer-loc">Santa Maria, Aracaju</p>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="review-card" role="group" aria-roledescription="slide" aria-label="Depoimento 4">
+                  <i class="fa-solid fa-quote-right quote-icon" aria-hidden="true"></i>
+                  <div class="stars" aria-label="5 de 5 estrelas">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                  </div>
+                  <p class="review-text">
+                    "Oi eu amei a bolsa 😍 Eu amei demais 😍"
+                  </p>
+                  <div class="reviewer">
+                    <div class="avatar" aria-hidden="true">M</div>
+                    <div>
+                      <p class="reviewer-name">Helena</p>
+                      <p class="reviewer-loc">Siriri, Aracaju</p>
+                    </div>
+                  </div>
+                </article>
               </div>
             </div>
-            <!-- Card 3 — quente/accent -->
-            <div class="review-card">
-              <i class="fa-solid fa-quote-right quote-icon"> </i>
-              <div class="stars">
-                <i class="fa-solid fa-star"> </i>
-                <i class="fa-solid fa-star"> </i>
-                <i class="fa-solid fa-star"> </i>
-                <i class="fa-solid fa-star"> </i>
-                <i class="fa-solid fa-star"> </i>
-              </div>
-              <p class="review-text">
-                "Bolsas lindas, bem espaçosas e tem uma firmeza que n esperava.  Eu amei dmsss😍😍😍😍"
-              </p>
-              <div class="reviewer">
-                <div class="avatar">J</div>
-                <div>
-                  <p class="reviewer-name">Shaiane</p>
-                  <p class="reviewer-loc">Santa Maria, Aracaju</p>
-                </div>
-              </div>
+
+            <div class="reviews-controls" aria-label="Controles dos depoimentos">
+              <button class="reviews-btn reviews-prev" type="button" aria-label="Depoimento anterior">
+                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+              </button>
+              <button class="reviews-btn reviews-next" type="button" aria-label="Próximo depoimento">
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+              </button>
             </div>
           </div>
         </div>

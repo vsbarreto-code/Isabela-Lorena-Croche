@@ -689,3 +689,156 @@
     max-width: 28rem;
   }
 }
+
+/* ============================================================
+   CARROSSEL DE DEPOIMENTOS
+   - 3 cards no desktop, 2 no tablet e 1 no celular.
+   - Os controles ficam nas laterais em telas maiores e abaixo
+     dos cards no celular, sem poluir a leitura com indicadores.
+   ============================================================ */
+.reviews-carousel {
+  --reviews-visible: 3;
+  --reviews-gap: 1.25rem;
+  position: relative;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.reviews-viewport {
+  overflow: hidden;
+  width: 100%;
+  border-radius: 1.5rem;
+}
+
+.reviews-grid {
+  display: flex;
+  align-items: stretch;
+  gap: var(--reviews-gap);
+  max-width: none;
+  margin: 0;
+  padding: 0.5rem 0.25rem 0.75rem;
+  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+
+.reviews-grid .review-card {
+  flex: 0 0 calc((100% - (var(--reviews-visible) - 1) * var(--reviews-gap)) / var(--reviews-visible));
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.reviews-grid .reviewer {
+  margin-top: auto;
+}
+
+.reviews-controls {
+  position: absolute;
+  inset: 50% -4.25rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% + 8.5rem);
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.reviews-btn {
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid rgba(197, 168, 128, 0.35);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--color-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(44, 42, 40, 0.1);
+  pointer-events: auto;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reviews-btn:hover {
+  transform: scale(1.05);
+  background: var(--color-dark);
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(44, 42, 40, 0.16);
+}
+
+.reviews-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.reviews-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (max-width: 1160px) {
+  .reviews-controls {
+    position: static;
+    inset: auto;
+    width: 100%;
+    transform: none;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .reviews-carousel {
+    --reviews-visible: 2;
+  }
+}
+
+@media (max-width: 767px) {
+  .reviews-carousel {
+    --reviews-visible: 1;
+    width: 100%;
+  }
+
+  .reviews-grid {
+    gap: 0.9rem;
+    padding: 0.5rem 0.15rem 0.75rem;
+  }
+
+  .reviews-grid .review-card {
+    flex-basis: 100%;
+  }
+
+  .reviews-viewport {
+    border-radius: 1.5rem;
+  }
+
+  .reviews-controls {
+    margin-top: 1rem;
+    gap: 0.85rem;
+  }
+
+  .reviews-btn {
+    width: 2.85rem;
+    height: 2.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reviews-grid {
+    transition: none;
+  }
+
+  .reviews-btn {
+    transition: none;
+  }
+}
+
+/* Novos depoimentos entram automaticamente com o mesmo visual base. */
+.reviews-grid .review-card:nth-child(n + 4) {
+  background: #fff;
+  border: 1px solid rgba(197, 168, 128, 0.15);
+}
