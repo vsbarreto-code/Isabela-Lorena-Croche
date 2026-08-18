@@ -172,16 +172,22 @@
   }
 
   function getImagemDaCor(produto, fioId, corId, corNome) {
-    // 1. Primeiro tenta pegar imagem diretamente em opcoesProducao
+    // 1. Primeiro tenta pegar imagem diretamente na opção de produção.
+    // Isso permite que um produto tenha cores específicas sem precisar
+    // cadastrar essas cores no catálogo global.
     const opcao = produto.opcoesProducao?.find((item) => item.fioId === fioId);
-
-    const corOpcao = opcao?.cores?.find((item) => item.corId === corId);
+    const corOpcao = opcao?.cores?.find((item) => {
+      const mesmoId = String(item?.corId || "") === String(corId || "");
+      const mesmoNome =
+        normalizarTexto(item?.corNome) === normalizarTexto(corNome);
+      return mesmoId || mesmoNome;
+    });
 
     if (corOpcao?.imagem) {
       return corOpcao.imagem;
     }
 
-    // 2. Depois tenta pegar pela lista de variantes
+    // 2. Depois tenta pegar pela lista de variantes.
     const variante = produto.variantes?.find((item) => {
       const mesmoFio = !item.fioId || item.fioId === fioId;
       const mesmaCorId = item.corId && item.corId === corId;
@@ -231,6 +237,7 @@
   let corIdSelecionada = "";
   let corHexSelecionada = "";
   let imagemCorSelecionada = "";
+  let configuracoesSelecionadas = {};
 
   const tamanhoInicial =
     typeof getTamanhoMaisBarato === "function"
@@ -243,12 +250,20 @@
 
   function renderPrice(produto) {
     if (typeof generatePriceHTML === "function") {
-      return generatePriceHTML(produto, tamanhoSelecionado || null);
+      return generatePriceHTML(
+        produto,
+        tamanhoSelecionado || null,
+        configuracoesSelecionadas,
+      );
     }
 
     const precoAtual =
       typeof getPrecoProduto === "function"
-        ? getPrecoProduto(produto, tamanhoSelecionado || null)
+        ? getPrecoProduto(
+            produto,
+            tamanhoSelecionado || null,
+            configuracoesSelecionadas,
+          )
         : produto.preco;
 
     if (!precoAtual) return "";
@@ -634,7 +649,10 @@
               const idTamanho = String(tamanho.id || tamanho.nome || "");
               const nomeTamanho = tamanho.nome || tamanho.id || "";
               const disponivel =
-                tamanho.disponivel !== false && Boolean(tamanho.preco);
+                tamanho.disponivel !== false &&
+                (Boolean(tamanho.preco) ||
+                  (typeof getConfiguracoesValidas === "function" &&
+                    getConfiguracoesValidas(produto, idTamanho).length > 0));
               const ativo =
                 disponivel && idTamanho === String(tamanhoSelecionado);
 
@@ -678,6 +696,53 @@
     `;
   }
 
+  function renderOpcoesConfiguracao(produto) {
+    const opcoes = Array.isArray(produto.opcoesConfiguracao)
+      ? produto.opcoesConfiguracao
+      : [];
+
+    if (!opcoes.length) return "";
+
+    return `
+      <section class="produto-configuration-section">
+        ${opcoes
+          .map((opcao) => {
+            const primeiraOpcao = opcao.opcoes?.[0];
+            const selecionada = configuracoesSelecionadas[opcao.id] || primeiraOpcao?.id || "";
+
+            return `
+              <div class="configuration-group" data-config-group="${escapeHTML(opcao.id)}">
+                <p class="detail-label">${escapeHTML(opcao.nome || "Opção")}</p>
+                ${opcao.descricao ? `<p class="production-help">${escapeHTML(opcao.descricao)}</p>` : ""}
+                <div class="configuration-options" role="group" aria-label="${escapeHTML(opcao.nome || "Opção")}">
+                  ${(opcao.opcoes || [])
+                    .map((item, index) => {
+                      const ativo = String(selecionada) === String(item.id);
+                      return `
+                        <button
+                          type="button"
+                          class="configuration-option-btn ${ativo ? "active" : ""}"
+                          data-config-id="${escapeHTML(opcao.id)}"
+                          data-config-value="${escapeHTML(item.id)}"
+                          aria-pressed="${ativo}"
+                        >
+                          ${escapeHTML(item.nome)}
+                        </button>
+                      `;
+                    })
+                    .join("")}
+                </div>
+                <p class="selected-configuration-text" data-config-selected="${escapeHTML(opcao.id)}">
+                  Selecionado: ${escapeHTML((opcao.opcoes || []).find((item) => String(item.id) === String(selecionada))?.nome || "Selecione uma opção")}
+                </p>
+              </div>
+            `;
+          })
+          .join("")}
+      </section>
+    `;
+  }
+
   function renderOpcoesProducao(produto) {
     if (!produto.opcoesProducao || produto.opcoesProducao.length === 0) {
       return `
@@ -694,11 +759,17 @@
 
     return `
       <section class="produto-production-section">
-        <p class="detail-label">Escolha o fio e a cor</p>
+        <p class="detail-label">
+          ${escapeHTML(
+            produto.variacaoCor?.titulo || "Escolha o fio e a cor",
+          )}
+        </p>
 
         <p class="production-help">
-          Escolha a cor da sua bolsa. As fotos mostram peças já produzidas;
-          sua seleção será feita especialmente para você.
+          ${escapeHTML(
+            produto.variacaoCor?.descricao ||
+              "Escolha a cor da sua bolsa. As fotos mostram peças já produzidas; sua seleção será feita especialmente para você.",
+          )}
         </p>
 
         <div class="production-fios">
@@ -734,10 +805,22 @@
                 >
                   ${opcao.cores
                     .map((item) => {
-                      const cor = getCorById(fio.id, item.corId);
-                      if (!cor) return "";
+                      const corGlobal = getCorById(fio.id, item.corId);
+                      const cor = {
+                        id: item.corId || corGlobal?.id || "",
+                        nome: item.corNome || corGlobal?.nome || "",
+                        corHex: item.corHex || corGlobal?.corHex || "#C8C8C8",
+                      };
+
+                      if (!cor.nome) return "";
 
                       const disponivel = item.disponivel !== false;
+                      const imagem = item.imagem || getImagemDaCor(
+                        produto,
+                        fio.id,
+                        item.corId,
+                        cor.nome,
+                      );
 
                       return `
                         <button
@@ -751,7 +834,7 @@
                           data-cor-id="${escapeHTML(cor.id)}"
                           data-cor-nome="${escapeHTML(cor.nome)}"
                           data-cor-hex="${escapeHTML(cor.corHex)}"
-                          data-imagem="${escapeHTML(getImagemDaCor(produto, fio.id, item.corId, cor.nome))}"
+                          data-imagem="${escapeHTML(imagem)}"
                           title="${escapeHTML(cor.nome)}${
                             disponivel ? "" : " — indisponível"
                           }"
@@ -773,7 +856,7 @@
         </div>
 
         <p class="selected-production-text" id="selected-production-text">
-          Selecione uma cor disponível.
+          Selecione uma opção disponível.
         </p>
 
         <div
@@ -804,7 +887,10 @@
     let mensagem = `Olá! Tenho interesse na ${produto.nome}.`;
 
     if (fioSelecionado && corSelecionada) {
-      mensagem += ` Gostaria de encomendar no ${fioSelecionado}, cor ${corSelecionada}.`;
+      const labelCor = produto.variacaoCor?.titulo
+        ? produto.variacaoCor.titulo.toLowerCase()
+        : "cor";
+      mensagem += ` Gostaria de encomendar no ${fioSelecionado}, ${labelCor}: ${corSelecionada}.`;
     } else {
       mensagem += ` Gostaria de saber disponibilidade, prazo de produção e opções de cores.`;
     }
@@ -821,13 +907,25 @@
 
       const precoAtual =
         typeof getPrecoProduto === "function"
-          ? getPrecoProduto(produto, tamanhoSelecionado)
+          ? getPrecoProduto(
+              produto,
+              tamanhoSelecionado,
+              configuracoesSelecionadas,
+            )
           : tamanho?.preco;
 
       if (precoAtual?.pix) {
         mensagem += ` Valor no Pix: ${precoAtual.pix}.`;
       }
     }
+
+    Object.entries(configuracoesSelecionadas).forEach(([opcaoId, valorId]) => {
+      const opcao = produto.opcoesConfiguracao?.find((item) => item.id === opcaoId);
+      const valor = opcao?.opcoes?.find((item) => String(item.id) === String(valorId));
+      if (opcao?.nome && valor?.nome) {
+        mensagem += ` ${opcao.nome}: ${valor.nome}.`;
+      }
+    });
 
     return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
       mensagem,
@@ -912,6 +1010,8 @@
         </div>
 
         ${renderTamanhos(produto)}
+
+        ${renderOpcoesConfiguracao(produto)}
 
         ${renderOpcoesProducao(produto)}
 
@@ -1074,7 +1174,11 @@
 
   function getPrecoAtualSelecionado() {
     if (typeof getPrecoProduto === "function") {
-      return getPrecoProduto(produto, tamanhoSelecionado || null);
+      return getPrecoProduto(
+        produto,
+        tamanhoSelecionado || null,
+        configuracoesSelecionadas,
+      );
     }
 
     return getTamanhoSelecionado(produto)?.preco || produto.preco || null;
@@ -1096,7 +1200,13 @@
       partes.push(fioSelecionado);
     }
 
-    return partes.length ? partes.join(" • ") : "Escolha tamanho e cor";
+    Object.entries(configuracoesSelecionadas).forEach(([opcaoId, valorId]) => {
+      const opcao = produto.opcoesConfiguracao?.find((item) => item.id === opcaoId);
+      const valor = opcao?.opcoes?.find((item) => String(item.id) === String(valorId));
+      if (valor?.nome) partes.push(valor.nome);
+    });
+
+    return partes.length ? partes.join(" • ") : "Escolha as opções";
   }
 
   function getPrecoResumo() {
@@ -1535,6 +1645,45 @@
     atualizarWhatsApp();
   }
 
+  function selecionarOpcaoConfiguracao(button) {
+    if (!button || button.disabled) return;
+
+    const opcaoId = button.dataset.configId || "";
+    const valorId = button.dataset.configValue || "";
+    if (!opcaoId || !valorId) return;
+
+    configuracoesSelecionadas[opcaoId] = valorId;
+
+    const group = button.closest(".configuration-group");
+    group?.querySelectorAll(".configuration-option-btn").forEach((item) => {
+      const ativo = item === button;
+      item.classList.toggle("active", ativo);
+      item.setAttribute("aria-pressed", String(ativo));
+    });
+
+    const opcao = produto.opcoesConfiguracao?.find((item) => item.id === opcaoId);
+    const valor = opcao?.opcoes?.find((item) => String(item.id) === String(valorId));
+    const selectedText = group?.querySelector(`[data-config-selected="${CSS.escape(opcaoId)}"]`);
+    if (selectedText) {
+      selectedText.textContent = `Selecionado: ${valor?.nome || valorId}`;
+    }
+
+    atualizarPreco();
+    atualizarWhatsApp();
+  }
+
+  function initConfigurationOptions() {
+    document.querySelectorAll(".configuration-option-btn").forEach((button) => {
+      const opcaoId = button.dataset.configId || "";
+      const valorId = button.dataset.configValue || "";
+      if (opcaoId && valorId && !configuracoesSelecionadas[opcaoId]) {
+        configuracoesSelecionadas[opcaoId] = valorId;
+      }
+
+      button.addEventListener("click", () => selecionarOpcaoConfiguracao(button));
+    });
+  }
+
   function initSizeOptions() {
     const sizeButtons = document.querySelectorAll(".production-size-btn");
 
@@ -1618,6 +1767,7 @@
   nextBtn?.addEventListener("click", () => selecionarImagem(imagemAtual + 1));
 
   initGallerySwipe();
+  initConfigurationOptions();
   initProductionOptions();
   initSizeOptions();
   atualizarPreco();

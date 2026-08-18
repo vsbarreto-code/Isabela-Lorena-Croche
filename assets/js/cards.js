@@ -5,9 +5,12 @@
 function getTamanhosDisponiveis(produto) {
   if (!Array.isArray(produto?.tamanhos)) return [];
 
-  return produto.tamanhos.filter(
-    (tamanho) => tamanho && tamanho.disponivel !== false && tamanho.preco,
-  );
+  return produto.tamanhos.filter((tamanho) => {
+    if (!tamanho || tamanho.disponivel === false) return false;
+    if (tamanho.preco) return true;
+
+    return getConfiguracoesValidas(produto, tamanho.id).length > 0;
+  });
 }
 
 function produtoTemTamanhos(produto) {
@@ -45,8 +48,43 @@ function getTamanhoMaisBarato(produto) {
   });
 }
 
-function getPrecoProduto(produto, tamanhoId = null) {
+function getOpcoesConfiguracaoDisponiveis(produto) {
+  return Array.isArray(produto?.opcoesConfiguracao)
+    ? produto.opcoesConfiguracao.filter((opcao) => opcao && opcao.id && Array.isArray(opcao.opcoes))
+    : [];
+}
+
+function getConfiguracoesValidas(produto, tamanhoId = null) {
+  if (!Array.isArray(produto?.configuracoes)) return [];
+
+  return produto.configuracoes.filter((config) => {
+    if (!config?.preco) return false;
+    if (tamanhoId && String(config.tamanhoId) !== String(tamanhoId)) return false;
+    return true;
+  });
+}
+
+function getPrecoProduto(produto, tamanhoId = null, opcoesSelecionadas = {}) {
   if (!produto) return null;
+
+  const configuracoes = getConfiguracoesValidas(produto, tamanhoId);
+
+  if (configuracoes.length) {
+    const selecionadas = opcoesSelecionadas || {};
+    const configuracaoExata = configuracoes.find((config) =>
+      Object.entries(selecionadas).every(
+        ([opcaoId, valorId]) => String(config[`${opcaoId}Id`] || "") === String(valorId),
+      ),
+    );
+
+    if (configuracaoExata) return configuracaoExata.preco;
+
+    return configuracoes.reduce((menor, atual) => {
+      const precoMenor = moedaParaNumero(menor?.preco?.pix);
+      const precoAtual = moedaParaNumero(atual?.preco?.pix);
+      return precoAtual < precoMenor ? atual : menor;
+    }, configuracoes[0])?.preco || produto.preco || null;
+  }
 
   if (produtoTemTamanhos(produto)) {
     const tamanho = tamanhoId
@@ -59,8 +97,8 @@ function getPrecoProduto(produto, tamanhoId = null) {
   return produto.preco || null;
 }
 
-function getPrecoTexto(produto, tamanhoId = null) {
-  const preco = getPrecoProduto(produto, tamanhoId);
+function getPrecoTexto(produto, tamanhoId = null, opcoesSelecionadas = {}) {
+  const preco = getPrecoProduto(produto, tamanhoId, opcoesSelecionadas);
   if (!preco) return "";
 
   const partes = [];
@@ -150,7 +188,7 @@ function changeProductVariant(
   }
 }
 
-function generatePriceHTML(produto, tamanhoId = null) {
+function generatePriceHTML(produto, tamanhoId = null, opcoesSelecionadas = {}) {
   const temTamanhos = produtoTemTamanhos(produto);
   const tamanho = temTamanhos
     ? tamanhoId
@@ -158,7 +196,8 @@ function generatePriceHTML(produto, tamanhoId = null) {
       : getTamanhoMaisBarato(produto)
     : null;
 
-  const preco = tamanho?.preco || produto.preco;
+  const configuracoes = getConfiguracoesValidas(produto, tamanhoId);
+  const preco = getPrecoProduto(produto, tamanhoId, opcoesSelecionadas);
   if (!preco) return "";
 
   const {
@@ -173,7 +212,9 @@ function generatePriceHTML(produto, tamanhoId = null) {
   const temPromocao = promocaoAtiva === true && Boolean(precoOriginal);
   const temPix = Boolean(pix);
   const temCartao = Boolean(parcelas && valorParcela);
-  const mostrarApartir = getTamanhosDisponiveis(produto).length > 1 && !tamanhoId;
+  const mostrarApartir =
+    (getTamanhosDisponiveis(produto).length > 1 && !tamanhoId) ||
+    (configuracoes.length > 1 && Object.keys(opcoesSelecionadas || {}).length === 0);
   const nomeTamanho = tamanho?.nome || tamanho?.id || "";
 
   const badgeNormal = mostrarApartir
@@ -319,3 +360,5 @@ window.produtoTemTamanhos = produtoTemTamanhos;
 window.getTamanhoPorId = getTamanhoPorId;
 window.getTamanhoMaisBarato = getTamanhoMaisBarato;
 window.getPrecoProduto = getPrecoProduto;
+window.getOpcoesConfiguracaoDisponiveis = getOpcoesConfiguracaoDisponiveis;
+window.getConfiguracoesValidas = getConfiguracoesValidas;

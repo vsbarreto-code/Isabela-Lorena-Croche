@@ -40,6 +40,7 @@ const fiosDisponiveis = [
         borda: "#9B8D7E",
       },
       { id: "pink", nome: "Pink", corHex: "#EF2F5A" },
+      { id: "rosa-algodao", nome: "Rosa Algodão", corHex: "#E7A5B7" },
       { id: "ferrugem", nome: "Ferrugem", corHex: "#D8733A" },
       { id: "preto", nome: "Preto", corHex: "#1D1C21" },
       { id: "lilas", nome: "Lilás", corHex: "#D8B9E6" },
@@ -530,77 +531,6 @@ const produtos = [
       },
     ],
   },
-  // {
-  //   id: 6,
-  //   nome: "Bolsa Aurora",
-  //   imagemCapa: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
-  //   descricao:
-  //     "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado. Um modelo elegante para usar do dia a dia aos momentos especiais.",
-  //   descricaoDetalhada:
-  //     "Mais do que uma bolsa, a Bolsa Aurora é um acessório que transforma qualquer produção. Seu design minimalista, combinado à alça de mão geométrica em metal e à corrente delicada, resulta em uma peça sofisticada, moderna e versátil, perfeita para acompanhar você dos momentos especiais ao dia a dia com elegância.",
-  //   destaque: false,
-  //   categoria: "Bolsas",
-  //   badge: "Novo",
-  //   preco: {
-  //     promocaoAtiva: true,
-  //     precoOriginal: "R$ 145,00",
-  //     pix: "R$ 135,00",
-  //     parcelado: "R$ 143,76",
-  //     parcelas: 2,
-  //     valorParcela: "R$ 71,88",
-  //   },
-  //   detalhes: {
-  //     subtitulo: "Clássica, compacta e sofisticada.",
-  //     medidas: "Medidas aproximadas sob consulta no WhatsApp",
-  //     material: "Fio de malha",
-  //     prazo: "Produção sob encomenda, conforme disponibilidade",
-  //     diferenciais: [
-  //       "Produzida artesanalmente em crochê com fio de malha extra premium",
-  //       "Possui duas alças, permitindo versatilidade e sofisticação no uso (Podendo ser alteradas para cor prata)",
-  //       "Corrente que traz um toque sofisticado",
-  //       "Tamanho ideal para carregar itens essenciais",
-  //       "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",
-  //     ],
-  //   },
-  //   galeria: [
-  //     {
-  //       imagem: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
-  //       legenda: "Vista principal na cor Lilas",
-  //     },
-  //   ],
-  //   variantes: [
-  //     {
-  //       fioId: "fio-malha",
-  //       corId: "lilas",
-  //       corHex: "#A98BDA",
-  //       cornome: "Lilás",
-  //       imagem: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
-  //     },
-  //   ],
-  //   opcoesProducao: [
-  //     {
-  //       fioId: "fio-malha",
-  //       cores: [
-  //         { corId: "branco", disponivel: true },
-  //         { corId: "pink", disponivel: true },
-  //         { corId: "ferrugem", disponivel: true },
-  //         { corId: "preto", disponivel: true },
-  //         { corId: "lilas", disponivel: true },
-  //         { corId: "amarelo-bebe", disponivel: true },
-  //         { corId: "mango", disponivel: true },
-  //         { corId: "marrom", disponivel: true },
-  //         { corId: "esmeralda", disponivel: true },
-  //         { corId: "marsala", disponivel: true },
-  //         { corId: "verde-hortela", disponivel: true },
-  //         { corId: "babaloo", disponivel: true },
-  //         {
-  //           corId: "verde-musgo",
-  //           disponivel: true,
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // },
   {
     id: 6,
     nome: "Bolsa Letícia",
@@ -725,6 +655,271 @@ const produtos = [
         cores: [
           { corId: "branco", disponivel: true },
           { corId: "pink", disponivel: true },
+          { corId: "ferrugem", disponivel: true },
+          { corId: "preto", disponivel: true },
+          { corId: "lilas", disponivel: true },
+          { corId: "amarelo-bebe", disponivel: true },
+          { corId: "mango", disponivel: true },
+          { corId: "marrom", disponivel: true },
+          { corId: "esmeralda", disponivel: true },
+          { corId: "marsala", disponivel: true },
+          { corId: "verde-hortela", disponivel: true },
+          { corId: "babaloo", disponivel: true },
+          {
+            corId: "verde-musgo",
+            disponivel: true,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 7,
+    nome: "Bolsa Rita",
+    imagemCapa: "./assets/img/bolsaRita/bolsa-rita-1.jpeg",
+    descricao:
+      "Bolsa infantil artesanal em fio de malha, em formato de raposa, delicada, divertida e cheia de personalidade.",
+    descricaoDetalhada:
+      "Encante as pequenas com esta linda bolsa infantil em formato de raposa. Combinando detalhes em rosa e preto, a Bolsa Rita cria um visual delicado, divertido e cheio de personalidade. O destaque fica por conta das orelhinhas e do rostinho da raposa, que deixam a peça ainda mais charmosa. Uma peça especial para passeios, festas, aniversários e momentos em que as pequenas querem levar seus acessórios favoritos com muito estilo.",
+    destaque: false,
+    categoria: "Bolsas",
+    badge: "Kids",
+    preco: {
+      promocaoAtiva: false,
+      precoOriginal: "R$ 65,00",
+      pix: "R$ 65,00",
+      parcelado: "R$ 69,22",
+      parcelas: 2,
+      valorParcela: "R$ 34,61",
+    },
+    // A variação de cor da Rita corresponde somente à parte superior da bolsa.
+    // Não significa que toda a peça mudará de cor.
+    variacaoCor: {
+      titulo: "Cor da parte superior",
+      descricao:
+        "A cor escolhida corresponde à parte superior da bolsa. A imagem de cada opção pode ser adicionada posteriormente.",
+    },
+    detalhes: {
+      subtitulo: "Delicada, divertida e feita para as pequenas.",
+      medidas: "Medidas aproximadas sob consulta no WhatsApp",
+      material: "Fio de malha",
+      prazo: "Produção sob encomenda, conforme disponibilidade",
+      diferenciais: [
+        "Formato de raposa com orelhinhas e rostinho delicado",
+        "Peça artesanal feita em fio de malha",
+        "Ideal para passeios, festas e aniversários",
+        "A cor selecionada corresponde à parte superior da bolsa",
+      ],
+    },
+     galeria: [
+      {
+        imagem: "./assets/img/bolsaRita/bolsa-rita-1.jpeg",
+        legenda: "Vista principal na cor Rosa Algodão",
+      },
+    ],
+    variantes: [
+      {
+        fioId: "fio-malha",
+        corId: "rosa-algodao",
+        corHex: "#E7A5B7",
+        corNome: "Rosa Algodão",
+        imagem: "./assets/img/bolsaRita/bolsa-rita-1.jpeg",
+      },
+    ],
+    opcoesProducao: [
+      {
+        fioId: "fio-malha",
+        // A Rita usa o Fio de Malha e a cor escolhida altera somente a parte
+        // superior da bolsa. Por isso, todas as cores cadastradas para o
+        // Fio de Malha ficam disponíveis aqui. As imagens podem ser
+        // adicionadas individualmente depois.
+        cores: [
+          { corId: "branco", disponivel: true, imagem: "" },
+          { corId: "pink", disponivel: true, imagem: "" },
+          { corId: "rosa-algodao", disponivel: true, imagem: "./assets/img/bolsaRita/bolsa-rita-1.jpeg" },
+          { corId: "ferrugem", disponivel: true, imagem: "" },
+          { corId: "preto", disponivel: true, imagem: "" },
+          { corId: "lilas", disponivel: true, imagem: "" },
+          { corId: "amarelo-bebe", disponivel: true, imagem: "" },
+          { corId: "mango", disponivel: true, imagem: "" },
+          { corId: "marrom", disponivel: true, imagem: "" },
+          { corId: "esmeralda", disponivel: true, imagem: "" },
+          { corId: "marsala", disponivel: true, imagem: "" },
+          { corId: "verde-hortela", disponivel: true, imagem: "" },
+          { corId: "babaloo", disponivel: true, imagem: "" },
+          { corId: "verde-musgo", disponivel: true, imagem: "" },
+        ],
+      },
+    ],
+  },
+  {
+    id: 8,
+    nome: "Bolsa Aurora",
+    imagemCapa: "./assets/img/bolsaAurora/bolsa-aurora-2.jpeg",
+    descricao:
+      "Bolsa infantil artesanal em fio de malha, delicada, divertida e cheia de charme, disponível nos tamanhos P e M.",
+    descricaoDetalhada:
+      "Delicada, divertida e cheia de charme! A Bolsa Aurora possui um acabamento estruturado em um lindo formato compacto, perfeito para deixar os looks das pequenas ainda mais encantadores.",
+    destaque: false,
+    categoria: "Bolsas",
+    badge: "Kids",
+    preco: {
+      promocaoAtiva: false,
+      precoOriginal: "R$ 45,00",
+      pix: "R$ 45,00",
+      parcelado: "R$ 47,92",
+      parcelas: 2,
+      valorParcela: "R$ 23,96",
+    },
+    // A Aurora trabalha com tamanho, mas não exibe uma área de medidas
+    // neste momento. Se as medidas forem cadastradas futuramente, basta
+    // alterar exibirDimensoes para true.
+    exibirDimensoes: false,
+    dimensoesSobConsulta: false,
+
+    tamanhos: [
+      {
+        id: "P",
+        nome: "P",
+        disponivel: true,
+
+        // Imagem do tamanho será adicionada posteriormente.
+        imagem: "",
+        legendaImagem: "Bolsa Aurora no tamanho P",
+
+        // Preço inicial do tamanho. As configurações abaixo
+        // substituem este valor quando o cliente escolhe a personalização.
+        preco: {
+          promocaoAtiva: false,
+          pix: "R$ 45,00",
+          parcelado: "R$ 47,92",
+          parcelas: 2,
+          valorParcela: "R$ 23,96",
+        },
+      },
+
+      {
+        id: "M",
+        nome: "M",
+        disponivel: true,
+
+        // Imagem do tamanho será adicionada posteriormente.
+        imagem: "",
+        legendaImagem: "Bolsa Aurora no tamanho M",
+
+        // Preço inicial do tamanho. As configurações abaixo
+        // substituem este valor quando o cliente escolhe a personalização.
+        preco: {
+          promocaoAtiva: false,
+          pix: "R$ 50,00",
+          parcelado: "R$ 53,25",
+          parcelas: 2,
+          valorParcela: "R$ 26,63",
+        },
+      },
+    ],
+    opcoesConfiguracao: [
+      {
+        id: "personalizacao",
+        nome: "Escolha a personalização",
+        descricao: "Escolha a opção de pingentes da sua bolsa.",
+        obrigatorio: true,
+        opcoes: [
+          { id: "3-pingentes", nome: "Com 3 pingentes" },
+          { id: "2-pingentes-nome", nome: "Com até 2 pingentes e nome" },
+        ],
+      },
+    ],
+    configuracoes: [
+      {
+        tamanhoId: "P",
+        personalizacaoId: "3-pingentes",
+        preco: {
+          promocaoAtiva: false,
+          pix: "R$ 45,00",
+          parcelado: "R$ 47,92",
+          parcelas: 2,
+          valorParcela: "R$ 23,96",
+        },
+      },
+      {
+        tamanhoId: "P",
+        personalizacaoId: "2-pingentes-nome",
+        preco: {
+          promocaoAtiva: false,
+          pix: "R$ 55,00",
+          parcelado: "R$ 58,57",
+          parcelas: 2,
+          valorParcela: "R$ 29,29",
+        },
+      },
+      {
+        tamanhoId: "M",
+        personalizacaoId: "3-pingentes",
+        preco: {
+          promocaoAtiva: false,
+          pix: "R$ 50,00",
+          parcelado: "R$ 53,25",
+          parcelas: 2,
+          valorParcela: "R$ 26,63",
+        },
+      },
+      {
+        tamanhoId: "M",
+        personalizacaoId: "2-pingentes-nome",
+        preco: {
+          promocaoAtiva: false,
+          pix: "R$ 60,00",
+          parcelado: "R$ 63,89",
+          parcelas: 2,
+          valorParcela: "R$ 31,95",
+        },
+      },
+    ],
+    detalhes: {
+      subtitulo: "Delicada, divertida e cheia de charme.",
+      medidas: "Medidas aproximadas sob consulta no WhatsApp",
+      material: "Fio de malha",
+      prazo: "Produção sob encomenda, conforme disponibilidade",
+      diferenciais: [
+        "Acabamento estruturado em formato compacto",
+        "Disponível nos tamanhos P e M",
+        "Opção com 3 pingentes ou com até 2 pingentes e nome",
+      ],
+    },
+     galeria: [
+      {
+        imagem: "./assets/img/bolsaAurora/bolsa-aurora-2.jpeg",
+        legenda: "Vista principal na cor Rosa Algodão",
+      },
+       {
+        imagem: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
+        legenda: "Vista principal na cor Lilás",
+      },
+    ],
+    variantes: [
+      {
+        fioId: "fio-malha",
+        corId: "rosa-algodao",
+        corHex: "#E7A5B7",
+        corNome: "Rosa Algodão",
+        imagem: "./assets/img/bolsaAurora/bolsa-aurora-2.jpeg",
+      },
+      {
+        fioId: "fio-malha",
+        corId: "lilas",
+        corHex: "#D8B9E6",
+        corNome: "Lilás",
+        imagem: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
+      },
+    ],
+    opcoesProducao: [
+       {
+        fioId: "fio-malha",
+        cores: [
+          { corId: "branco", disponivel: true },
+          { corId: "pink", disponivel: true },
+          { corId: "rosa-algodao", disponivel: true },
           { corId: "ferrugem", disponivel: true },
           { corId: "preto", disponivel: true },
           { corId: "lilas", disponivel: true },
