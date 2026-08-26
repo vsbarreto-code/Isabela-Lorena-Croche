@@ -765,11 +765,11 @@ const produtos = [
     badge: "Kids",
     preco: {
       promocaoAtiva: false,
-      precoOriginal: "R$ 45,00",
-      pix: "R$ 45,00",
-      parcelado: "R$ 47,92",
+      precoOriginal: "R$ 50,00",
+      pix: "R$ 50,00",
+      parcelado: "R$ 53,25",
       parcelas: 2,
-      valorParcela: "R$ 23,96",
+      valorParcela: "R$ 26,63",
     },
     // A Aurora trabalha com tamanho, mas não exibe uma área de medidas
     // neste momento. Se as medidas forem cadastradas futuramente, basta
@@ -791,10 +791,10 @@ const produtos = [
         // substituem este valor quando o cliente escolhe a personalização.
         preco: {
           promocaoAtiva: false,
-          pix: "R$ 45,00",
-          parcelado: "R$ 47,92",
+          pix: "R$ 50,00",
+          parcelado: "R$ 53,25",
           parcelas: 2,
-          valorParcela: "R$ 23,96",
+          valorParcela: "R$ 26,63",
         },
       },
 
@@ -836,10 +836,10 @@ const produtos = [
         personalizacaoId: "3-pingentes",
         preco: {
           promocaoAtiva: false,
-          pix: "R$ 45,00",
-          parcelado: "R$ 47,92",
+          pix: "R$ 50,00",
+          parcelado: "R$ 53,25",
           parcelas: 2,
-          valorParcela: "R$ 23,96",
+          valorParcela: "R$ 26,63",
         },
       },
       {
@@ -858,10 +858,10 @@ const produtos = [
         personalizacaoId: "3-pingentes",
         preco: {
           promocaoAtiva: false,
-          pix: "R$ 50,00",
-          parcelado: "R$ 53,25",
+          pix: "R$ 60,00",
+          parcelado: "R$ 63,89",
           parcelas: 2,
-          valorParcela: "R$ 26,63",
+          valorParcela: "R$ 31,95",
         },
       },
       {
@@ -869,10 +869,10 @@ const produtos = [
         personalizacaoId: "2-pingentes-nome",
         preco: {
           promocaoAtiva: false,
-          pix: "R$ 60,00",
-          parcelado: "R$ 63,89",
+          pix: "R$ 65,00",
+          parcelado: "R$ 69,22",
           parcelas: 2,
-          valorParcela: "R$ 31,95",
+          valorParcela: "R$ 34,61",
         },
       },
     ],
