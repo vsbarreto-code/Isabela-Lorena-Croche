@@ -154,16 +154,33 @@ const menuBtn = document.getElementById("menu-btn");
 const mobileMenu = document.getElementById("mobile-menu");
 
 if (menuBtn && mobileMenu) {
+  const closeMenu = () => {
+    mobileMenu.classList.add("hidden");
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.setAttribute("aria-label", "Abrir menu");
+  };
+
   menuBtn.addEventListener("click", () => {
     const isHidden = mobileMenu.classList.toggle("hidden");
     menuBtn.setAttribute("aria-expanded", String(!isHidden));
+    menuBtn.setAttribute("aria-label", isHidden ? "Abrir menu" : "Fechar menu");
+
+    if (!isHidden) {
+      mobileMenu.querySelector("a")?.focus();
+    }
   });
 
   mobileMenu.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-      mobileMenu.classList.add("hidden");
-      menuBtn.setAttribute("aria-expanded", "false");
+      closeMenu();
     });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !mobileMenu.classList.contains("hidden")) {
+      closeMenu();
+      menuBtn.focus();
+    }
   });
 }
 

@@ -224,6 +224,30 @@
 
   const imagens = normalizarImagens(produto);
   const detalhes = produto.detalhes || {};
+
+  const metaDescription = document.querySelector('meta[name="description"]');
+  if (metaDescription) {
+    metaDescription.content = `${produto.nome}: ${produto.descricao || "bolsa artesanal em crochê"}. Escolha sua configuração e encomende pelo WhatsApp.`;
+  }
+
+  const productSchema = document.createElement("script");
+  productSchema.type = "application/ld+json";
+  productSchema.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: produto.nome,
+    description: produto.descricaoDetalhada || produto.descricao,
+    image: normalizarImagens(produto).map((foto) => foto.imagem),
+    brand: { "@type": "Brand", name: "Isabela Lorena Crochê" },
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "BRL",
+      price: String(produto.preco?.pix || "").replace(/[^\d,]/g, "").replace(",", "."),
+      availability: "https://schema.org/PreOrder",
+      url: window.location.href,
+    },
+  });
+  document.head.appendChild(productSchema);
   const diferenciais = detalhes.diferenciais || [
     "Peça artesanal feita com cuidado",
     "Produção sob encomenda pelo WhatsApp",
@@ -1009,6 +1033,13 @@
           ${renderPrice(produto)}
         </div>
 
+        <aside class="produto-purchase-summary" aria-label="Informações para encomenda">
+          <div><span>Produção</span><strong>${escapeHTML(detalhes.prazo || "Sob consulta")}</strong></div>
+          <div><span>Entrega</span><strong>Aracaju, SE: entrega ou retirada</strong></div>
+          <div><span>Pagamento</span><strong>Pix ou cartão em até 2x</strong></div>
+          <div><span>Disponibilidade</span><strong>Cor confirmada no atendimento</strong></div>
+        </aside>
+
         ${renderTamanhos(produto)}
 
         ${renderOpcoesConfiguracao(produto)}
@@ -1550,11 +1581,8 @@
 
   function iniciarAutoplay() {
     if (autoplay) clearInterval(autoplay);
-    if (imagens.length <= 1) return;
-
-    autoplay = setInterval(() => {
-      selecionarImagem(imagemAtual + 1, false);
-    }, 4500);
+    // Fotos de produto não avançam sozinhas: a cliente precisa de tempo
+    // para comparar acabamento, cor e tamanho sem interrupções.
   }
 
   function selecionarCorProducao(button) {

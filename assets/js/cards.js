@@ -337,11 +337,15 @@ function generateCardHTML(produto, prefix) {
 
         ${generatePriceHTML(produto)}
 
+        <p class="product-order-note">
+          Feita sob encomenda • prazo confirmado no WhatsApp
+        </p>
+
 
         <div class="product-actions">
           <a href="${detalhesLink}" class="btn-details">
             <i class="fa-regular fa-images"></i>
-            Ver mais detalhes
+            Ver modelo e encomendar
           </a>
         </div>
       </div>

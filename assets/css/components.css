@@ -80,7 +80,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   margin-bottom: 0.75rem;
 }
 
@@ -449,6 +449,22 @@
   font-size: 1.65rem;
   box-shadow: 0 10px 28px -5px rgba(37, 211, 102, 0.5);
   transition: all 0.3s ease;
+}
+
+.product-card .product-order-note {
+  flex-grow: 0;
+  margin: -0.35rem 0 1rem;
+  color: rgba(44, 42, 40, 0.64);
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+/* A barra fixa já é o CTA principal na página de produto mobile. */
+@media (max-width: 767px) {
+  .produto-page ~ .whatsapp-float {
+    display: none;
+  }
 }
 
 .whatsapp-float:hover {

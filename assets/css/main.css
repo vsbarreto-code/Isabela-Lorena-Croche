@@ -12,12 +12,13 @@
 :root {
   /* ---- Paleta de cores ---- */
   --color-light: #faf9f6; /* fundo geral das páginas        */
-  --color-primary: #c5a880; /* dourado — cor de destaque       */
+  --color-primary: #80613a; /* dourado acessível para textos   */
+  --color-primary-text: #80613a;
   --color-primary-light: #d6bf9e; /* versão clara do dourado         */
   --color-dark: #2c2a28; /* texto e títulos principais      */
   --color-accent: #f0ebe1; /* fundo de cards e skeletons      */
-  --color-whatsapp: #25d366; /* verde WhatsApp oficial          */
-  --color-whatsapp-dark: #1eae53; /* hover do botão WhatsApp         */
+  --color-whatsapp: #087f3e; /* contraste AA com texto branco   */
+  --color-whatsapp-dark: #056a33; /* hover do botão WhatsApp        */
 
   /* ---- Bordas arredondadas ---- */
   --radius-card: 1.5rem;
@@ -121,7 +122,7 @@ button {
 */
 .highlight-word {
   font-style: italic;
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   font-weight: 500;
 }
 

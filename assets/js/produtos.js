@@ -943,8 +943,8 @@ const produtos = [
 // Fallbacks por categoria
 const fallbacks = {
   Bolsas: [
-    "./assets/img/bolsa-amarela.jpeg",
-    "./assets/img/bolsa-vermelha.jpeg",
+    "./assets/img/bolsaRyzia/bolsa-ryzia-4.png",
+    "./assets/img/bolsaEliza/bolsa-eliza-4.jpeg",
   ],
 };
 

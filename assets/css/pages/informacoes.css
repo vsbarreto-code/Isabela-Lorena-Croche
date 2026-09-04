@@ -1,0 +1,64 @@
+.info-page {
+  padding: clamp(2rem, 6vw, 4.5rem) 0;
+}
+
+.info-hero {
+  max-width: 760px;
+  margin: 0 auto clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+}
+
+.info-hero .section-subtitle {
+  margin: 1rem auto 0;
+}
+
+.info-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.info-card {
+  padding: clamp(1.15rem, 4vw, 1.75rem);
+  border: 1px solid rgba(197, 168, 128, 0.2);
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.info-card h2 {
+  margin-bottom: 0.6rem;
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.info-card p,
+.info-card li {
+  color: rgba(44, 42, 40, 0.72);
+  line-height: 1.7;
+}
+
+.info-card ul,
+.info-card ol {
+  display: grid;
+  gap: 0.55rem;
+  padding-left: 1.2rem;
+}
+
+.info-step-number {
+  display: grid;
+  width: 2.2rem;
+  height: 2.2rem;
+  margin-bottom: 0.9rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-primary-text);
+  color: #fff;
+  font-weight: 800;
+}
+
+@media (min-width: 768px) {
+  .info-grid--three {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

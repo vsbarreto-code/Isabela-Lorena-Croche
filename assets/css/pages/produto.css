@@ -300,7 +300,7 @@
 }
 
 .production-fio-btn {
-  min-height: 38px;
+  min-height: 44px;
   padding: 0.55rem 0.9rem;
   border-radius: 999px;
   border: 1px solid rgba(197, 168, 128, 0.3);
@@ -342,8 +342,8 @@
 
 .production-color-dot {
   position: relative;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
   padding: 0;
   border-radius: 999px;
   border: 2px solid #fff;
@@ -365,6 +365,18 @@
   box-shadow:
     0 0 0 3px rgba(197, 168, 128, 0.38),
     0 8px 18px rgba(0, 0, 0, 0.14);
+}
+
+.production-color-dot.active::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
 }
 
 .production-color-dot.unavailable,
@@ -496,6 +508,36 @@
   grid-template-columns: 1fr;
   gap: 0.85rem;
   margin-top: 1rem;
+}
+
+.produto-purchase-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin: 1.15rem 0;
+  padding: 1rem;
+  border: 1px solid rgba(197, 168, 128, 0.25);
+  border-radius: 1.1rem;
+  background: rgba(250, 249, 246, 0.8);
+}
+
+.produto-purchase-summary div {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.produto-purchase-summary span {
+  color: rgba(44, 42, 40, 0.54);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.produto-purchase-summary strong {
+  color: rgba(44, 42, 40, 0.82);
+  font-size: 0.78rem;
+  line-height: 1.4;
 }
 
 .produto-meta-grid div {
@@ -651,6 +693,9 @@
    ============================================================ */
 
 @media (max-width: 767px) {
+  .produto-purchase-summary {
+    order: 4;
+  }
   .produto-hero-mini {
     padding-top: 0.75rem;
   }
@@ -1527,7 +1572,7 @@
 }
 
 .configuration-option-btn {
-  min-height: 42px;
+  min-height: 44px;
   padding: 0.65rem 0.9rem;
   border: 1px solid rgba(197, 168, 128, 0.35);
   border-radius: 0.8rem;
