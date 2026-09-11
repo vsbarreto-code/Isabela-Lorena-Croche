@@ -39,6 +39,7 @@ const fiosDisponiveis = [
         corHex: "#F8F8F4",
         borda: "#9B8D7E",
       },
+      { id: "porcelana", nome: "Porcelana", corHex: "#F1EEE4", borda: "#9B8D7E" },
       { id: "pink", nome: "Pink", corHex: "#EF2F5A" },
       { id: "rosa-algodao", nome: "Rosa Algodão", corHex: "#E7A5B7" },
       { id: "ferrugem", nome: "Ferrugem", corHex: "#D8733A" },
@@ -74,131 +75,62 @@ const produtos = [
   {
     id: 1,
     nome: "Bolsa Raíssa",
-    imagemCapa: "./assets/img/bolsaRaissa/bolsa-raissa-capa.jpeg",
+    imagemCapa: "./assets/img/bolsaRaissa/bolsa-raissa-porcelana.png",
     descricao:
-      "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado.",
+      "Bolsa artesanal em fio de malha na cor Porcelana, com alça estruturada, corrente dourada e delicados pingentes.",
     descricaoDetalhada:
-      "A Bolsa Raíssa foi criada para quem gosta de unir delicadeza, presença e praticidade em uma única peça.",
+      "A nova Bolsa Raíssa une leveza, textura artesanal e detalhes dourados que deixam qualquer produção mais especial. O fio de malha na cor Porcelana cria um visual elegante e fácil de combinar, enquanto a alça estruturada e a corrente permitem diferentes formas de uso.",
     destaque: true,
     categoria: "Bolsas",
     badge: "Destaque",
     preco: {
       promocaoAtiva: false,
-      precoOriginal: "R$ 150,00",
-      pix: "R$ 150,00",
-      parcelado: "R$ 159,73",
+      precoOriginal: "R$ 170,00",
+      pix: "R$ 170,00",
+      parcelado: "R$ 181,04",
       parcelas: 2,
-      valorParcela: "R$ 79,86",
+      valorParcela: "R$ 90,52",
     },
     detalhes: {
       subtitulo:
-        "Uma bolsa artesanal marcante, delicada no visual e cheia de charme nos detalhes.",
+        "Leve, elegante e cheia de detalhes que fazem a diferença.",
       medidas: "Medidas aproximadas sob consulta no WhatsApp",
       material: "Fio de Malha",
       prazo: "Produção sob encomenda, conforme disponibilidade",
       diferenciais: [
-        "Produzida artesanalmente em crochê com fio de malha extra premium",
-        "Possui duas alças, permitindo versatilidade no uso",
-        "Você pode escolher entre dois designs (corrente frontal ou lateral)",
-        "Tamanho ideal para carregar itens essenciais",
+        "Produzida artesanalmente em fio de malha extra premium",
+        "Alça estruturada revestida em crochê e corrente dourada",
+        "Pingentes dourados que valorizam o acabamento",
+        "Cor Porcelana: delicada, elegante e fácil de combinar",
       ],
     },
     galeria: [
       {
-        imagem: "./assets/img/bolsaRaissa/bolsa-raissa-2.jpeg",
-        legenda: "Bolsa Raíssa na cor Amarelo Bebê",
-      },
-      {
-        imagem: "./assets/img/bolsaRaissa/bolsa-raissa-3.jpeg",
-        legenda: "Bolsa Raíssa na cor Pink",
-      },
-      {
-        imagem: "./assets/img/bolsaRaissa/bolsa-raissa-1.jpeg",
-        legenda: "Bolsa Raíssa na cor Verde Musgo",
+        imagem: "./assets/img/bolsaRaissa/bolsa-raissa-porcelana.png",
+        legenda: "Bolsa Raíssa na cor Porcelana",
       },
     ],
 
     variantes: [
       {
         fioId: "fio-malha",
-        corId: "amarelo-bebe",
-        corHex: "#FFF6D1",
-        corNome: "Amarelo Bebê",
-        imagem: "./assets/img/bolsaRaissa/bolsa-raissa-2.jpeg",
-      },
-      {
-        fioId: "fio-malha",
-        corId: "pink",
-        corHex: "#EF2F5A",
-        cornome: "Pink",
-        imagem: "./assets/img/bolsaRaissa/bolsa-raissa-3.jpeg",
-      },
-      {
-        fioId: "fio-malha",
-        corId: "verde-musgo",
-        corHex: "#43451E",
-        cornome: "Verde Musgo",
-        imagem: "./assets/img/bolsaRaissa/bolsa-raissa-1.jpeg",
+        corId: "porcelana",
+        corHex: "#F1EEE4",
+        corNome: "Porcelana",
+        imagem: "./assets/img/bolsaRaissa/bolsa-raissa-porcelana.png",
       },
     ],
 
     opcoesProducao: [
       {
         fioId: "fio-malha",
-        cores: [
-          {
-            corId: "branco",
-            disponivel: true,
-          },
-          {
-            corId: "pink",
-            disponivel: true,
-          },
-          {
-            corId: "ferrugem",
-            disponivel: true,
-          },
-          {
-            corId: "preto",
-            disponivel: true,
-          },
-          {
-            corId: "lilas",
-            disponivel: true,
-          },
-          {
-            corId: "amarelo-bebe",
-            disponivel: true,
-          },
-          {
-            corId: "mango",
-            disponivel: true,
-          },
-          {
-            corId: "marrom",
-            disponivel: true,
-          },
-          {
-            corId: "esmeralda",
-            disponivel: true,
-          },
-          {
-            corId: "marsala",
-            disponivel: true,
-          },
-          {
-            corId: "verde-hortela",
-            disponivel: true,
-          },
-          {
-            corId: "babaloo",
-            disponivel: true,
-          },
-          {
-            corId: "verde-musgo",
-            disponivel: true,
-          },
-        ],
+        cores: coresFioMalha.map((cor) => ({
+          corId: cor.id,
+          disponivel: true,
+          imagem: cor.id === "porcelana"
+            ? "./assets/img/bolsaRaissa/bolsa-raissa-porcelana.png"
+            : "",
+        })),
       },
     ],
   },
@@ -1016,6 +948,7 @@ const produtos = [
           { corId: "lilas", disponivel: true, imagem: "" },
           { corId: "amarelo-bebe", disponivel: true, imagem: "" },
           { corId: "amarelo-canario", disponivel: true, imagem: "" },
+          { corId: "porcelana", disponivel: true, imagem: "" },
           { corId: "mango", disponivel: true, imagem: "" },
           { corId: "marrom", disponivel: true, imagem: "" },
           { corId: "esmeralda", disponivel: true, imagem: "" },
@@ -1320,6 +1253,52 @@ const produtos = [
         })),
       },
     ],
+  },
+  {
+    id: 15,
+    nome: "Bolsa Kitty",
+    imagemCapa: "./assets/img/bolsaKitty/bolsa-kitty.jpeg",
+    descricao:
+      "Bolsa infantil artesanal em fio de malha, delicada e personalizada com duas cores escolhidas por você.",
+    descricaoDetalhada:
+      "A Bolsa Kitty foi criada para encantar com um visual divertido, delicado e cheio de personalidade. Escolha duas cores de fio de malha para criar uma combinação única e transformar a peça em um presente especial para acompanhar os momentos mais felizes.",
+    destaque: false,
+    categoria: "Bolsas",
+    badge: "Kids",
+    preco: {
+      promocaoAtiva: false,
+      precoOriginal: "R$ 55,00",
+      pix: "R$ 55,00",
+      parcelado: "R$ 58,57",
+      parcelas: 2,
+      valorParcela: "R$ 29,29",
+    },
+    detalhes: {
+      subtitulo: "Duas cores, muito encanto e uma peça feita especialmente para presentear.",
+      medidas: "Medidas aproximadas sob consulta no WhatsApp",
+      material: "Fio de malha",
+      prazo: "Produção sob encomenda, conforme disponibilidade",
+      diferenciais: [
+        "Produzida artesanalmente em fio de malha",
+        "Personalizada com exatamente duas cores escolhidas por você",
+        "Uma peça divertida e especial para as pequenas",
+      ],
+    },
+    galeria: [
+      {
+        imagem: "./assets/img/bolsaKitty/bolsa-kitty.jpeg",
+        legenda: "Bolsa Kitty em fio de malha",
+      },
+    ],
+    variantes: [],
+    opcoesProducao: [],
+    selecaoCores: {
+      fioId: "fio-malha",
+      titulo: "Escolha as duas cores da Bolsa Kitty",
+      descricao: "Selecione exatamente 2 cores de fio de malha para personalizar a sua Bolsa Kitty.",
+      minimo: 2,
+      maximo: 2,
+    },
   },
 ];
 

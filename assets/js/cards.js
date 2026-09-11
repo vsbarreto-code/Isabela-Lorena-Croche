@@ -113,10 +113,12 @@ function getPrecoTexto(produto, tamanhoId = null, opcoesSelecionadas = {}) {
 function getWhatsappLink(produto, cor = null) {
   const nome = typeof produto === "string" ? produto : produto.nome;
 
-  let mensagem = `Olá! Estava navegando no site do Atelier e me interessei pela bolsa: *${nome}*.`;
+  let mensagem = `Olá! Vi a *${nome}* no site e gostaria de receber atendimento para encomendar.`;
 
   if (cor) {
-    mensagem = `Olá! Estava navegando no site do Atelier e me interessei pela bolsa: *${nome}* na cor *${cor}*.`;
+    mensagem = `Olá! Vi a *${nome}* no site e gostaria de encomendar na cor *${cor}*. Pode confirmar disponibilidade, prazo e entrega?`;
+  } else {
+    mensagem += " Pode me orientar sobre cores, prazo e entrega?";
   }
 
   return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensagem)}`;

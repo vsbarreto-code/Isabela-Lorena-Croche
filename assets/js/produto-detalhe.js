@@ -493,20 +493,20 @@
   }
 
   function getLinkWhatsAppDimensoes() {
-    let mensagem = `Olá! Tenho interesse na ${produto.nome}.`;
+    let mensagem = `Olá! Gostaria de confirmar as medidas antes de encomendar a *${produto.nome}*.`;
 
     if (tamanhoSelecionado) {
       const tamanho = getTamanhoSelecionado(produto);
-      mensagem += ` Gostaria de confirmar as medidas do tamanho ${
-        tamanho?.nome || tamanhoSelecionado
-      }.`;
+      mensagem += `\n\nTamanho escolhido: *${tamanho?.nome || tamanhoSelecionado}*.`;
     } else {
       mensagem += " Gostaria de confirmar as medidas desse modelo.";
     }
 
     if (fioSelecionado && corSelecionada) {
-      mensagem += ` Minha preferência é ${fioSelecionado}, cor ${corSelecionada}.`;
+      mensagem += `\nPreferência de cor: *${corSelecionada}* em *${fioSelecionado}*.`;
     }
+
+    mensagem += "\n\nPode me informar as medidas e confirmar a disponibilidade?";
 
     return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
       mensagem,
@@ -911,19 +911,28 @@
   }
 
   function getLinkWhatsApp() {
-    let mensagem = `Olá! Tenho interesse na ${produto.nome}.`;
+    const resumo = [];
+    const pendencias = ["prazo de produção", "entrega ou retirada", "forma de pagamento"];
+    const precoAtual = getPrecoAtualSelecionado();
 
-    if (produto.selecaoCores && coresSelecionadas.length) {
-      mensagem += ` Cores escolhidas: ${getNomesCoresSelecionadas().join(", ")}.`;
-    }
+    resumo.push(`Olá! Quero encomendar a *${produto.nome}*.`);
+    resumo.push("", "*Resumo do pedido*");
 
-    if (fioSelecionado && corSelecionada) {
-      const labelCor = produto.variacaoCor?.titulo
-        ? produto.variacaoCor.titulo.toLowerCase()
-        : "cor";
-      mensagem += ` Gostaria de encomendar no ${fioSelecionado}, ${labelCor}: ${corSelecionada}.`;
+    if (produto.selecaoCores) {
+      const nomesCores = getNomesCoresSelecionadas();
+      if (nomesCores.length) {
+        resumo.push(`• Cores escolhidas (${nomesCores.length}): *${nomesCores.join(", ")}*`);
+      } else {
+        pendencias.unshift("seleção de cores");
+      }
+      resumo.push(`• Material: *${produto.detalhes?.material || "Fio de malha"}*`);
+    } else if (fioSelecionado && corSelecionada) {
+      const labelCor = produto.variacaoCor?.titulo || "Cor";
+      resumo.push(`• ${labelCor}: *${corSelecionada}*`);
+      resumo.push(`• Material: *${fioSelecionado}*`);
     } else {
-      mensagem += ` Gostaria de saber disponibilidade, prazo de produção e opções de cores.`;
+      resumo.push(`• Material: *${produto.detalhes?.material || "A confirmar"}*`);
+      pendencias.unshift("cor e/ou fio desejados");
     }
 
     if (tamanhoSelecionado) {
@@ -934,32 +943,30 @@
               (item) => String(item.id) === String(tamanhoSelecionado),
             );
 
-      mensagem += ` Tamanho: ${tamanho?.nome || tamanhoSelecionado}.`;
-
-      const precoAtual =
-        typeof getPrecoProduto === "function"
-          ? getPrecoProduto(
-              produto,
-              tamanhoSelecionado,
-              configuracoesSelecionadas,
-            )
-          : tamanho?.preco;
-
-      if (precoAtual?.pix) {
-        mensagem += ` Valor no Pix: ${precoAtual.pix}.`;
-      }
+      resumo.push(`• Tamanho: *${tamanho?.nome || tamanhoSelecionado}*`);
     }
 
     Object.entries(configuracoesSelecionadas).forEach(([opcaoId, valorId]) => {
       const opcao = produto.opcoesConfiguracao?.find((item) => item.id === opcaoId);
       const valor = opcao?.opcoes?.find((item) => String(item.id) === String(valorId));
       if (opcao?.nome && valor?.nome) {
-        mensagem += ` ${opcao.nome}: ${valor.nome}.`;
+        resumo.push(`• ${opcao.nome}: *${valor.nome}*`);
       }
     });
 
+    if (precoAtual?.pix) {
+      resumo.push(`• Valor no Pix: *${precoAtual.pix}*`);
+    }
+    if (precoAtual?.parcelas && precoAtual?.valorParcela) {
+      resumo.push(`• Cartão: *${precoAtual.parcelas}x de ${precoAtual.valorParcela}*`);
+    }
+
+    resumo.push("", "*Para concluir o pedido, preciso confirmar*");
+    pendencias.forEach((item) => resumo.push(`• ${item}`));
+    resumo.push("", "Obrigada! 😊");
+
     return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-      mensagem,
+      resumo.join("\n"),
     )}`;
   }
 
@@ -1042,7 +1049,7 @@
 
         <aside class="produto-purchase-summary" aria-label="Informações para encomenda">
           <div><span>Produção</span><strong>${escapeHTML(detalhes.prazo || "Sob consulta")}</strong></div>
-          <div><span>Entrega</span><strong>Aracaju, SE: entrega ou retirada</strong></div>
+          <div><span>Entrega</span><strong>Aracaju e cidades próximas, conforme disponibilidade</strong></div>
           <div><span>Pagamento</span><strong>Pix ou cartão em até 2x</strong></div>
           <div><span>Disponibilidade</span><strong>Cor confirmada no atendimento</strong></div>
         </aside>
@@ -1142,7 +1149,7 @@
 
           <div>
             <span>Entrega</span>
-            <strong>Entregas e retiradas locais em Aracaju, SE.</strong>
+            <strong>Entrega e retirada em Aracaju e cidades próximas, conforme disponibilidade.</strong>
           </div>
         </div>
       </article>

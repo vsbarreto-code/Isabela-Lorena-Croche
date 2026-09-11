@@ -11,7 +11,7 @@ function normalizarTexto(texto) {
 }
 
 function criarLinkWhatsApp(grupoNome, corNome) {
-  const mensagem = `Olá! Gostaria de encomendar uma bolsa na cor ${corNome}, do ${grupoNome}. Pode me passar mais detalhes?`;
+  const mensagem = `Olá! Vi a cor *${corNome}* (${grupoNome}) no site e gostaria de usá-la em uma bolsa. Pode confirmar a disponibilidade do fio, os modelos compatíveis e o prazo de produção?`;
   return `https://wa.me/${WHATSAPP_LOJA}?text=${encodeURIComponent(mensagem)}`;
 }
 

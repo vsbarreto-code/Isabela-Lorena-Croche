@@ -38,6 +38,7 @@ const gruposDeCores = [
       "O prazo de entrega da bolsa pode variar a depender da disponibilidade da cor.",
     cores: [
       { nome: "Branco", hex: "#F8F8F4", borda: "#9B8D7E" },
+      { nome: "Porcelana", hex: "#F1EEE4", borda: "#9B8D7E" },
       { nome: "Pink", hex: "#EF2F5A" },
       { nome: "Ferrugem", hex: "#D8733A" },
       { nome: "Preto", hex: "#1D1C21" },
