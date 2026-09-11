@@ -731,9 +731,15 @@ const produtos = [
         nome: "P",
         disponivel: true,
 
-        // Imagem do tamanho será adicionada posteriormente.
-        imagem: "",
-        legendaImagem: "Bolsa Aurora no tamanho P",
+        imagem: "./assets/img/bolsaAurora/bolsa-aurora-p-porcelana.png",
+        legendaImagem: "Bolsa Aurora tamanho P na cor Porcelana",
+        imagensPorCor: [
+          {
+            corId: "porcelana",
+            imagem: "./assets/img/bolsaAurora/bolsa-aurora-p-porcelana.png",
+            legenda: "Bolsa Aurora tamanho P na cor Porcelana",
+          },
+        ],
 
         // Preço inicial do tamanho. As configurações abaixo
         // substituem este valor quando o cliente escolhe a personalização.
@@ -751,9 +757,15 @@ const produtos = [
         nome: "M",
         disponivel: true,
 
-        // Imagem do tamanho será adicionada posteriormente.
-        imagem: "",
-        legendaImagem: "Bolsa Aurora no tamanho M",
+        imagem: "./assets/img/bolsaAurora/bolsa-aurora-m-lilas.png",
+        legendaImagem: "Bolsa Aurora tamanho M na cor Lilás",
+        imagensPorCor: [
+          {
+            corId: "lilas",
+            imagem: "./assets/img/bolsaAurora/bolsa-aurora-m-lilas.png",
+            legenda: "Bolsa Aurora tamanho M na cor Lilás",
+          },
+        ],
 
         // Preço inicial do tamanho. As configurações abaixo
         // substituem este valor quando o cliente escolhe a personalização.
@@ -835,14 +847,22 @@ const produtos = [
         "Opção com 3 pingentes ou com até 2 pingentes e nome",
       ],
     },
-     galeria: [
+    galeria: [
       {
         imagem: "./assets/img/bolsaAurora/bolsa-aurora-2.jpeg",
         legenda: "Vista principal na cor Rosa Algodão",
       },
-       {
+      {
         imagem: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
         legenda: "Vista principal na cor Lilás",
+      },
+      {
+        imagem: "./assets/img/bolsaAurora/bolsa-aurora-p-porcelana.png",
+        legenda: "Tamanho P na cor Porcelana",
+      },
+      {
+        imagem: "./assets/img/bolsaAurora/bolsa-aurora-m-lilas.png",
+        legenda: "Tamanho M na cor Lilás",
       },
     ],
     variantes: [
@@ -860,17 +880,32 @@ const produtos = [
         corNome: "Lilás",
         imagem: "./assets/img/bolsaAurora/bolsa-aurora-1.jpeg",
       },
+      {
+        fioId: "fio-malha",
+        corId: "porcelana",
+        corHex: "#F1EEE4",
+        corNome: "Porcelana",
+        imagem: "./assets/img/bolsaAurora/bolsa-aurora-p-porcelana.png",
+      },
     ],
     opcoesProducao: [
        {
         fioId: "fio-malha",
         cores: [
-          { corId: "branco", disponivel: true },
+          {
+            corId: "porcelana",
+            disponivel: true,
+            imagem: "./assets/img/bolsaAurora/bolsa-aurora-p-porcelana.png",
+          },
           { corId: "pink", disponivel: true },
           { corId: "rosa-algodao", disponivel: true },
           { corId: "ferrugem", disponivel: true },
           { corId: "preto", disponivel: true },
-          { corId: "lilas", disponivel: true },
+          {
+            corId: "lilas",
+            disponivel: true,
+            imagem: "./assets/img/bolsaAurora/bolsa-aurora-m-lilas.png",
+          },
           { corId: "amarelo-bebe", disponivel: true },
           { corId: "mango", disponivel: true },
           { corId: "marrom", disponivel: true },
