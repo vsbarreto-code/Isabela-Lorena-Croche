@@ -379,6 +379,81 @@
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
 }
 
+.multi-color-selector .production-color-dot {
+  cursor: pointer;
+}
+
+.selected-production-text.selection-invalid,
+.multi-color-feedback.selection-invalid .selected-production-text {
+  color: #9b2c2c;
+  font-weight: 700;
+}
+
+.selected-production-text.selection-valid,
+.multi-color-feedback.selection-valid .selected-production-text {
+  color: #087f3e;
+  font-weight: 700;
+}
+
+.multi-color-feedback {
+  margin-top: 0.8rem;
+  padding: 0.85rem;
+  border: 1px solid rgba(197, 168, 128, 0.24);
+  border-radius: 0.95rem;
+  background: rgba(250, 249, 246, 0.78);
+}
+
+.multi-color-feedback .selected-production-text {
+  margin-top: 0;
+}
+
+.multi-color-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.65rem;
+}
+
+.multi-color-chip {
+  min-height: 36px;
+  padding: 0.38rem 0.6rem;
+  border: 1px solid rgba(197, 168, 128, 0.35);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #fff;
+  color: rgba(44, 42, 40, 0.82);
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.multi-color-chip:hover {
+  border-color: #9b2c2c;
+  color: #9b2c2c;
+}
+
+.multi-color-chip span {
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 1px solid rgba(44, 42, 40, 0.22);
+  border-radius: 50%;
+  background: var(--chip-color);
+}
+
+.multi-color-chip b {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.btn-whatsapp.is-disabled,
+.produto-mobile-buybar__cta.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+  pointer-events: auto;
+}
+
 .production-color-dot.unavailable,
 .production-color-dot:disabled {
   opacity: 1 !important;
@@ -1532,6 +1607,10 @@
 @media (max-width: 767px) {
   .selected-production-text {
     display: none;
+  }
+
+  .multi-color-selector .selected-production-text {
+    display: block;
   }
 
   .produto-color-confirmation {

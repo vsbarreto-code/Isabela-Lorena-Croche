@@ -262,6 +262,7 @@
   let corHexSelecionada = "";
   let imagemCorSelecionada = "";
   let configuracoesSelecionadas = {};
+  let coresSelecionadas = [];
 
   const tamanhoInicial =
     typeof getTamanhoMaisBarato === "function"
@@ -768,6 +769,8 @@
   }
 
   function renderOpcoesProducao(produto) {
+    if (produto.selecaoCores) return "";
+
     if (!produto.opcoesProducao || produto.opcoesProducao.length === 0) {
       return `
         <section class="produto-production-section">
@@ -910,6 +913,10 @@
   function getLinkWhatsApp() {
     let mensagem = `Olá! Tenho interesse na ${produto.nome}.`;
 
+    if (produto.selecaoCores && coresSelecionadas.length) {
+      mensagem += ` Cores escolhidas: ${getNomesCoresSelecionadas().join(", ")}.`;
+    }
+
     if (fioSelecionado && corSelecionada) {
       const labelCor = produto.variacaoCor?.titulo
         ? produto.variacaoCor.titulo.toLowerCase()
@@ -1045,6 +1052,8 @@
         ${renderOpcoesConfiguracao(produto)}
 
         ${renderOpcoesProducao(produto)}
+
+        ${renderSelecaoMultiplaCores()}
 
         <section
           class="produto-mobile-choice"
@@ -1229,6 +1238,10 @@
 
     if (fioSelecionado) {
       partes.push(fioSelecionado);
+    }
+
+    if (produto.selecaoCores && coresSelecionadas.length) {
+      partes.push(`${coresSelecionadas.length} cores escolhidas`);
     }
 
     Object.entries(configuracoesSelecionadas).forEach(([opcaoId, valorId]) => {
@@ -1442,13 +1455,24 @@
 
   function atualizarWhatsApp() {
     const link = getLinkWhatsApp();
+    const valido = selecaoCoresValida();
+    const regra = getRegraSelecaoCores();
+    const aviso = regra && !valido
+      ? `Escolha ${regra.minimo === regra.maximo ? `exatamente ${regra.minimo}` : `de ${regra.minimo} a ${regra.maximo}`} ${regra.minimo === 1 ? "cor" : "cores"} para encomendar.`
+      : "";
 
     if (waBtn) {
       waBtn.href = link;
+      waBtn.classList.toggle("is-disabled", !valido);
+      waBtn.setAttribute("aria-disabled", String(!valido));
+      waBtn.title = aviso;
     }
 
     if (mobileWaBtn) {
       mobileWaBtn.href = link;
+      mobileWaBtn.classList.toggle("is-disabled", !valido);
+      mobileWaBtn.setAttribute("aria-disabled", String(!valido));
+      mobileWaBtn.title = aviso;
     }
 
     atualizarResumoMobile();
@@ -1585,6 +1609,71 @@
     // para comparar acabamento, cor e tamanho sem interrupções.
   }
 
+  function getRegraSelecaoCores() {
+    const regra = produto.selecaoCores;
+    if (!regra) return null;
+
+    const configuracao = regra.porConfiguracao
+      ? Object.entries(regra.porConfiguracao).find(([id]) => configuracoesSelecionadas[id]) || Object.entries(regra.porConfiguracao)[0]
+      : null;
+
+    if (configuracao) {
+      const [id, valores] = configuracao;
+      const opcao = produto.opcoesConfiguracao?.find((item) => item.id === id);
+      const valorInicial = opcao?.opcoes?.[0]?.id;
+      return valores[configuracoesSelecionadas[id] || valorInicial] || null;
+    }
+
+    return { minimo: regra.minimo, maximo: regra.maximo };
+  }
+
+  function getNomesCoresSelecionadas() {
+    const fio = getFioById(produto.selecaoCores?.fioId);
+    return coresSelecionadas
+      .map((id) => fio?.cores.find((cor) => cor.id === id)?.nome)
+      .filter(Boolean);
+  }
+
+  function selecaoCoresValida() {
+    const regra = getRegraSelecaoCores();
+    if (!regra) return true;
+    return coresSelecionadas.length >= regra.minimo && coresSelecionadas.length <= regra.maximo;
+  }
+
+  function renderSelecaoMultiplaCores() {
+    const regra = produto.selecaoCores;
+    if (!regra) return "";
+
+    const fio = getFioById(regra.fioId);
+    if (!fio) return "";
+
+    const limite = getRegraSelecaoCores();
+    const instrucoes = limite
+      ? limite.minimo === limite.maximo
+        ? `Escolha exatamente ${limite.minimo} ${limite.minimo === 1 ? "cor" : "cores"}.`
+        : `Escolha de ${limite.minimo} a ${limite.maximo} cores.`
+      : "Escolha suas cores.";
+
+    return `
+      <section class="produto-production-section multi-color-selector" aria-labelledby="multi-color-title">
+        <p class="detail-label" id="multi-color-title">${escapeHTML(regra.titulo || "Escolha as cores")}</p>
+        <p class="production-help">${escapeHTML(regra.descricao || instrucoes)} Toque novamente em uma cor marcada para removê-la.</p>
+        <div class="production-color-group active" data-multi-color-group>
+          ${fio.cores.map((cor) => `
+            <button type="button" class="production-color-dot multi-color-dot"
+              style="--color: ${escapeHTML(cor.corHex)}"
+              data-cor-id="${escapeHTML(cor.id)}"
+              data-cor-nome="${escapeHTML(cor.nome)}"
+              aria-label="${escapeHTML(cor.nome)}"
+              aria-pressed="false"><span></span></button>`).join("")}
+        </div>
+        <div class="multi-color-feedback" aria-live="polite" tabindex="-1" id="selected-multi-color-text">
+          <p class="selected-production-text"></p>
+          <div class="multi-color-chips" aria-label="Cores selecionadas"></div>
+        </div>
+      </section>`;
+  }
+
   function selecionarCorProducao(button) {
     if (!button || button.disabled) return;
 
@@ -1696,6 +1785,15 @@
       selectedText.textContent = `Selecionado: ${valor?.nome || valorId}`;
     }
 
+    if (produto.selecaoCores?.porConfiguracao?.[opcaoId]) {
+      coresSelecionadas = [];
+      document.querySelectorAll(".multi-color-dot").forEach((item) => {
+        item.classList.remove("active");
+        item.setAttribute("aria-pressed", "false");
+      });
+      atualizarSelecaoMultiplaCores();
+    }
+
     atualizarPreco();
     atualizarWhatsApp();
   }
@@ -1782,6 +1880,92 @@
     selecionarCorProducao(initialColor);
   }
 
+  function atualizarSelecaoMultiplaCores() {
+    const texto = document.getElementById("selected-multi-color-text");
+    const regra = getRegraSelecaoCores();
+    if (!texto || !regra) return;
+
+    const quantidade = coresSelecionadas.length;
+    const nomes = getNomesCoresSelecionadas();
+    const dentroDaRegra = selecaoCoresValida();
+    const requisito = regra.minimo === regra.maximo
+      ? `Escolha exatamente ${regra.minimo} ${regra.minimo === 1 ? "cor" : "cores"}`
+      : `Escolha de ${regra.minimo} a ${regra.maximo} cores`;
+
+    const mensagem = dentroDaRegra
+      ? `${quantidade} ${quantidade === 1 ? "cor selecionada" : "cores selecionadas"}: ${nomes.join(", ")}. Pronto para encomendar.`
+      : `${quantidade} ${quantidade === 1 ? "cor selecionada" : "cores selecionadas"}. ${requisito} para encomendar.`;
+    const mensagemEl = texto.querySelector(".selected-production-text");
+    const chipsEl = texto.querySelector(".multi-color-chips");
+    if (mensagemEl) mensagemEl.textContent = mensagem;
+    if (chipsEl) {
+      const fio = getFioById(produto.selecaoCores?.fioId);
+      chipsEl.innerHTML = coresSelecionadas.map((id) => {
+        const cor = fio?.cores.find((item) => item.id === id);
+        if (!cor) return "";
+        return `<button type="button" class="multi-color-chip" data-remove-color="${escapeHTML(cor.id)}" aria-label="Remover cor ${escapeHTML(cor.nome)}"><span style="--chip-color: ${escapeHTML(cor.corHex)}" aria-hidden="true"></span>${escapeHTML(cor.nome)} <b aria-hidden="true">×</b></button>`;
+      }).join("");
+    }
+    texto.classList.toggle("selection-invalid", !dentroDaRegra);
+    texto.classList.toggle("selection-valid", dentroDaRegra);
+    atualizarWhatsApp();
+  }
+
+  function initSelecaoMultiplaCores() {
+    const dots = document.querySelectorAll(".multi-color-dot");
+    if (!dots.length) return;
+
+    dots.forEach((button) => {
+      button.addEventListener("click", () => {
+        const corId = button.dataset.corId;
+        if (!corId) return;
+
+        if (coresSelecionadas.includes(corId)) {
+          coresSelecionadas = coresSelecionadas.filter((id) => id !== corId);
+          button.classList.remove("active");
+          button.setAttribute("aria-pressed", "false");
+          button.setAttribute("aria-label", `Selecionar ${button.dataset.corNome}`);
+        } else {
+          const regra = getRegraSelecaoCores();
+          if (regra && coresSelecionadas.length >= regra.maximo) {
+            const texto = document.getElementById("selected-multi-color-text");
+            if (texto) {
+              const mensagem = texto.querySelector(".selected-production-text");
+              if (mensagem) {
+                mensagem.textContent = `Você já selecionou o máximo de ${regra.maximo} cores. Remova uma cor para escolher outra.`;
+              }
+              texto.classList.add("selection-invalid");
+            }
+            return;
+          }
+          coresSelecionadas.push(corId);
+          button.classList.add("active");
+          button.setAttribute("aria-pressed", "true");
+          button.setAttribute("aria-label", `Remover ${button.dataset.corNome}`);
+        }
+        atualizarSelecaoMultiplaCores();
+      });
+    });
+
+    document.getElementById("selected-multi-color-text")?.addEventListener("click", (event) => {
+      const chip = event.target.closest("[data-remove-color]");
+      const corId = chip?.dataset.removeColor;
+      if (!corId) return;
+      document.querySelector(`.multi-color-dot[data-cor-id="${CSS.escape(corId)}"]`)?.click();
+    });
+
+    [waBtn, mobileWaBtn].filter(Boolean).forEach((button) => {
+      button.addEventListener("click", (event) => {
+        if (!selecaoCoresValida()) {
+          event.preventDefault();
+          document.getElementById("selected-multi-color-text")?.focus();
+        }
+      });
+    });
+
+    atualizarSelecaoMultiplaCores();
+  }
+
   thumbs.forEach((thumb) => {
     thumb.addEventListener("click", () => {
       selecionarImagem(Number(thumb.dataset.index));
@@ -1797,6 +1981,7 @@
   initGallerySwipe();
   initConfigurationOptions();
   initProductionOptions();
+  initSelecaoMultiplaCores();
   initSizeOptions();
   atualizarPreco();
   atualizarDimensoes();

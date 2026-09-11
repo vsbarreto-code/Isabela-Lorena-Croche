@@ -50,6 +50,7 @@ const fiosDisponiveis = [
         corHex: "#FFF6D1",
         borda: "#9B8D7E",
       },
+      { id: "amarelo-canario", nome: "Amarelo Canário", corHex: "#F5C542" },
       { id: "mango", nome: "Mango", corHex: "#FFA33C" },
       { id: "marrom", nome: "Marrom", corHex: "#865448" },
       { id: "esmeralda", nome: "Esmeralda", corHex: "#0B6763" },
@@ -66,6 +67,9 @@ const fiosDisponiveis = [
   },
 ];
 
+const coresFioMalha = fiosDisponiveis.find((fio) => fio.id === "fio-malha").cores;
+const coresFioNautico = fiosDisponiveis.find((fio) => fio.id === "fio-nautico").cores;
+
 const produtos = [
   {
     id: 1,
@@ -75,7 +79,7 @@ const produtos = [
       "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado.",
     descricaoDetalhada:
       "A Bolsa Raíssa foi criada para quem gosta de unir delicadeza, presença e praticidade em uma única peça.",
-    destaque: false,
+    destaque: true,
     categoria: "Bolsas",
     badge: "Destaque",
     preco: {
@@ -206,7 +210,7 @@ const produtos = [
       "Bolsa artesanal em crochê com design estruturado, alça de mão e corrente. Elegante, versátil e perfeita para compor looks casuais ou mais sofisticados.",
     descricaoDetalhada:
       "A Bolsa Ryzia une o charme do crochê artesanal com um visual moderno e marcante. Seu formato estruturado traz presença ao look, enquanto a corrente dourada adiciona um toque delicado de sofisticação. É uma peça versátil, ideal para usar em passeios, encontros, eventos leves ou produções mais elegantes.",
-    destaque: true,
+    destaque: false,
     categoria: "Bolsas",
     badge: "Destaque",
     preco: {
@@ -365,7 +369,7 @@ const produtos = [
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
       "Modelo compacto e com visual marcante, a Bolsa Inês é a escolha ideal para quem busca garantir uma ótima primeira impressão ao chegar nos lugares. Com seu design trançado e sua versatilidade em ser produzida tanto em fio náutico como em fio de malha, o cliente escolhe a opção que melhor se adequa ao seu gosto.",
-    destaque: true,
+    destaque: false,
     categoria: "Bolsas",
     badge: "Destaque",
     preco: {
@@ -457,7 +461,7 @@ const produtos = [
       "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
     descricaoDetalhada:
       "A Bolsa Eliza foi criada para mulheres que valorizam elegância sem abrir mão da versatilidade. Seu design trançado combinado com a delicadeza da alça em corrente conferem um acabamento moderno e refinado. É aquela bolsa que acompanha você em todos os momentos: do casamento ao jantar, do shopping ao happy hour. Um modelo atemporal que complementa diferentes estilos e ocasiões com a mesma elegância.",
-    destaque: true,
+    destaque: false,
     categoria: "Bolsas",
     badge: "Destaque",
     preco: {
@@ -539,7 +543,7 @@ const produtos = [
       "Bolsa artesanal em crochê com alça estruturada, corrente dourada e acabamento delicado. Um modelo elegante para usar do dia a dia aos momentos especiais.",
     descricaoDetalhada:
       "Com exclusivo ponto em espinha de peixe, a Bolsa Letícia é uma bolsa resistente e espaçosa, perfeita para o uso diário. Seu design versátil combina a alça de mão revestida em crochê com a alça em corrente, proporcionando diferentes formas de uso, unindo conforto e requinte. O tassel lateral acrescenta um toque de charme e exclusividade ao acabamento.",
-    destaque: true,
+    destaque: false,
     categoria: "Bolsas",
     badge: "Novo",
     preco: {
@@ -681,7 +685,7 @@ const produtos = [
       "Bolsa infantil artesanal em fio de malha, em formato de raposa, delicada, divertida e cheia de personalidade.",
     descricaoDetalhada:
       "Encante as pequenas com esta linda bolsa infantil em formato de raposa. Combinando detalhes em rosa e preto, a Bolsa Rita cria um visual delicado, divertido e cheio de personalidade. O destaque fica por conta das orelhinhas e do rostinho da raposa, que deixam a peça ainda mais charmosa. Uma peça especial para passeios, festas, aniversários e momentos em que as pequenas querem levar seus acessórios favoritos com muito estilo.",
-    destaque: false,
+    destaque: true,
     categoria: "Bolsas",
     badge: "Kids",
     preco: {
@@ -716,6 +720,10 @@ const produtos = [
         imagem: "./assets/img/bolsaRita/bolsa-rita-1.jpeg",
         legenda: "Vista principal na cor Rosa Algodão",
       },
+      {
+        imagem: "./assets/img/bolsaRita/bolsa-rita-amarelo-canario.png",
+        legenda: "Bolsa Rita na cor Amarelo Canário",
+      },
     ],
     variantes: [
       {
@@ -724,6 +732,13 @@ const produtos = [
         corHex: "#E7A5B7",
         corNome: "Rosa Algodão",
         imagem: "./assets/img/bolsaRita/bolsa-rita-1.jpeg",
+      },
+      {
+        fioId: "fio-malha",
+        corId: "amarelo-canario",
+        corHex: "#F5C542",
+        corNome: "Amarelo Canário",
+        imagem: "./assets/img/bolsaRita/bolsa-rita-amarelo-canario.png",
       },
     ],
     opcoesProducao: [
@@ -741,6 +756,7 @@ const produtos = [
           { corId: "preto", disponivel: true, imagem: "" },
           { corId: "lilas", disponivel: true, imagem: "" },
           { corId: "amarelo-bebe", disponivel: true, imagem: "" },
+          { corId: "amarelo-canario", disponivel: true, imagem: "./assets/img/bolsaRita/bolsa-rita-amarelo-canario.png" },
           { corId: "mango", disponivel: true, imagem: "" },
           { corId: "marrom", disponivel: true, imagem: "" },
           { corId: "esmeralda", disponivel: true, imagem: "" },
@@ -935,6 +951,373 @@ const produtos = [
             disponivel: true,
           },
         ],
+      },
+    ],
+  },
+  {
+    id: 9,
+    nome: "Bolsa Cherry",
+    imagemCapa: "./assets/img/bolsaCherry/bolsa-cherry-marsala.png",
+    descricao:
+      "Bolsa artesanal em fio de malha, com design estruturado, alça de mão revestida em crochê e corrente dourada para levar elegância a qualquer produção.",
+    descricaoDetalhada:
+      "A Bolsa Cherry é para quem gosta de uma peça que transforma o look. O ponto artesanal valoriza a textura do fio de malha, enquanto a alça de mão e a corrente dourada permitem usar do seu jeito: mais clássica, mais prática ou mais marcante. A versão Marsala revela toda a sua personalidade, e as demais cores disponíveis deixam a sua Cherry ainda mais única.",
+    destaque: true,
+    categoria: "Bolsas",
+    badge: "Novo",
+    preco: {
+      promocaoAtiva: false,
+      precoOriginal: "R$ 170,00",
+      pix: "R$ 170,00",
+      parcelado: "R$ 181,04",
+      parcelas: 2,
+      valorParcela: "R$ 90,52",
+    },
+    detalhes: {
+      subtitulo: "Uma bolsa marcante, elegante e feita para acompanhar seus melhores momentos.",
+      medidas: "Medidas aproximadas sob consulta no WhatsApp",
+      material: "Fio de malha",
+      prazo: "Produção sob encomenda, conforme disponibilidade",
+      diferenciais: [
+        "Produzida artesanalmente em fio de malha",
+        "Alça de mão e corrente dourada para diferentes formas de uso",
+        "Cores de fio de malha disponíveis para personalizar a sua peça",
+      ],
+    },
+    galeria: [
+      {
+        imagem: "./assets/img/bolsaCherry/bolsa-cherry-marsala.png",
+        legenda: "Bolsa Cherry na cor Marsala",
+      },
+    ],
+    variantes: [
+      {
+        fioId: "fio-malha",
+        corId: "marsala",
+        corHex: "#A52122",
+        corNome: "Marsala",
+        imagem: "./assets/img/bolsaCherry/bolsa-cherry-marsala.png",
+      },
+    ],
+    opcoesProducao: [
+      {
+        fioId: "fio-malha",
+        cores: [
+          {
+            corId: "marsala",
+            disponivel: true,
+            imagem: "./assets/img/bolsaCherry/bolsa-cherry-marsala.png",
+          },
+          { corId: "branco", disponivel: true, imagem: "" },
+          { corId: "pink", disponivel: true, imagem: "" },
+          { corId: "rosa-algodao", disponivel: true, imagem: "" },
+          { corId: "ferrugem", disponivel: true, imagem: "" },
+          { corId: "preto", disponivel: true, imagem: "" },
+          { corId: "lilas", disponivel: true, imagem: "" },
+          { corId: "amarelo-bebe", disponivel: true, imagem: "" },
+          { corId: "amarelo-canario", disponivel: true, imagem: "" },
+          { corId: "mango", disponivel: true, imagem: "" },
+          { corId: "marrom", disponivel: true, imagem: "" },
+          { corId: "esmeralda", disponivel: true, imagem: "" },
+          { corId: "verde-hortela", disponivel: true, imagem: "" },
+          { corId: "babaloo", disponivel: true, imagem: "" },
+          { corId: "verde-musgo", disponivel: true, imagem: "" },
+        ],
+      },
+    ],
+  },
+  {
+    id: 10,
+    nome: "Bolsa Íris",
+    imagemCapa: "./assets/img/bolsaIris/bolsa-iris-pasteis.png",
+    descricao:
+      "Bolsa artesanal em fio de malha com um mix encantador de cores pastéis, alça trançada macia e corrente dourada para usar de diferentes maneiras.",
+    descricaoDetalhada:
+      "Leve, alegre e impossível de passar despercebida: a Bolsa Íris reúne tons pastéis em uma composição delicada que combina com momentos especiais e dias cheios de cor. Você escolhe de quatro a seis cores para criar um mix que tenha a sua cara; cada faixa é trabalhada à mão, resultando em uma peça única, divertida e cheia de afeto. A alça trançada traz conforto, enquanto a corrente dourada acrescenta um toque sofisticado ao acabamento.",
+    destaque: true,
+    categoria: "Bolsas",
+    badge: "Novo",
+    preco: {
+      promocaoAtiva: false,
+      precoOriginal: "R$ 70,00",
+      pix: "R$ 70,00",
+      parcelado: "R$ 74,54",
+      parcelas: 2,
+      valorParcela: "R$ 37,27",
+    },
+    detalhes: {
+      subtitulo: "Cores suaves, acabamento artesanal e charme para iluminar qualquer look.",
+      medidas: "Medidas aproximadas sob consulta no WhatsApp",
+      material: "Fio de malha",
+      prazo: "Produção sob encomenda, conforme disponibilidade",
+      diferenciais: [
+        "Produzida artesanalmente em fio de malha",
+        "Mix exclusivo de cores pastéis que deixa cada peça especial",
+        "Alça trançada confortável e corrente dourada para usar como preferir",
+      ],
+    },
+    galeria: [
+      {
+        imagem: "./assets/img/bolsaIris/bolsa-iris-pasteis.png",
+        legenda: "Bolsa Íris em mix de cores pastéis",
+      },
+    ],
+    variantes: [],
+    opcoesProducao: [],
+    selecaoCores: {
+      fioId: "fio-malha",
+      titulo: "Monte seu mix de cores",
+      descricao: "Escolha de 4 a 6 cores de fio de malha para compor a sua Bolsa Íris.",
+      minimo: 4,
+      maximo: 6,
+    },
+  },
+  {
+    id: 11,
+    nome: "Bolsa Geane",
+    imagemCapa: "./assets/img/bolsaGeane/bolsa-geane-01.jpeg",
+    descricao:
+      "Bolsa artesanal em fio de malha, leve, delicada e pronta para ganhar a cor que mais combina com você.",
+    descricaoDetalhada:
+      "A Bolsa Geane une o charme do crochê artesanal a um design delicado e versátil. Feita à mão, ela é aquela escolha especial para passeios, festas e presentes cheios de significado. Personalize na cor de fio de malha que mais combina com o estilo de quem vai usar e leve uma peça exclusiva, criada ponto a ponto.",
+    destaque: false,
+    categoria: "Bolsas",
+    badge: "Novo",
+    preco: {
+      promocaoAtiva: false,
+      precoOriginal: "R$ 60,00",
+      pix: "R$ 60,00",
+      parcelado: "R$ 63,90",
+      parcelas: 2,
+      valorParcela: "R$ 31,95",
+    },
+    detalhes: {
+      subtitulo: "Uma bolsa artesanal vibrante para levar cor aos seus momentos.",
+      medidas: "Medidas aproximadas sob consulta no WhatsApp",
+      material: "Fio de malha",
+      prazo: "Produção sob encomenda, conforme disponibilidade",
+      diferenciais: [
+        "Produzida artesanalmente em fio de malha",
+        "Todas as cores de fio de malha disponíveis para personalizar",
+        "Peça leve e especial para diferentes ocasiões",
+      ],
+    },
+    galeria: [
+      {
+        imagem: "./assets/img/bolsaGeane/bolsa-geane-01.jpeg",
+        legenda: "Bolsa Geane na cor Pink",
+      },
+    ],
+    variantes: [
+      {
+        fioId: "fio-malha",
+        corId: "pink",
+        corHex: "#EF2F5A",
+        corNome: "Pink",
+        imagem: "./assets/img/bolsaGeane/bolsa-geane-01.jpeg",
+      },
+    ],
+    opcoesProducao: [
+      {
+        fioId: "fio-malha",
+        cores: coresFioMalha.map((cor) => ({
+          corId: cor.id,
+          disponivel: true,
+          imagem: cor.id === "pink" ? "./assets/img/bolsaGeane/bolsa-geane-01.jpeg" : "",
+        })),
+      },
+    ],
+  },
+  {
+    id: 12,
+    nome: "Bolsa Dália",
+    imagemCapa: "./assets/img/bolsaDalia/bolsa-dalia-01.jpeg",
+    descricao:
+      "Bolsa artesanal em fio náutico na cor Amora, com alça em madeira e fecho em zíper.",
+    descricaoDetalhada:
+      "A Bolsa Dália combina a estrutura sofisticada do fio náutico com a beleza natural da alça em madeira, criando uma presença elegante que valoriza qualquer produção. O fechamento em zíper traz praticidade e segurança para o dia a dia, enquanto a possibilidade de escolher a cor deixa a sua peça ainda mais exclusiva. É o encontro perfeito entre acabamento artesanal e estilo atemporal.",
+    destaque: false,
+    categoria: "Bolsas",
+    badge: "Novo",
+    preco: {
+      promocaoAtiva: false,
+      precoOriginal: "R$ 220,00",
+      pix: "R$ 220,00",
+      parcelado: "R$ 234,27",
+      parcelas: 2,
+      valorParcela: "R$ 117,14",
+    },
+    detalhes: {
+      subtitulo: "Estruturada, sofisticada e feita para se destacar.",
+      medidas: "Medidas aproximadas sob consulta no WhatsApp",
+      material: "Fio Náutico",
+      prazo: "Produção sob encomenda, conforme disponibilidade",
+      diferenciais: [
+        "Produzida artesanalmente em fio náutico",
+        "Alça em madeira com acabamento natural",
+        "Fechamento em zíper para mais segurança",
+        "Cores de fio náutico disponíveis para personalizar a sua peça",
+      ],
+    },
+    galeria: [
+      {
+        imagem: "./assets/img/bolsaDalia/bolsa-dalia-01.jpeg",
+        legenda: "Bolsa Dália na cor Amora",
+      },
+    ],
+    variantes: [
+      {
+        fioId: "fio-nautico",
+        corId: "amora",
+        corHex: "#7B2F4E",
+        corNome: "Amora",
+        imagem: "./assets/img/bolsaDalia/bolsa-dalia-01.jpeg",
+      },
+    ],
+    opcoesProducao: [
+      {
+        fioId: "fio-nautico",
+        cores: coresFioNautico.map((cor) => ({
+          corId: cor.id,
+          disponivel: true,
+          imagem: cor.id === "amora" ? "./assets/img/bolsaDalia/bolsa-dalia-01.jpeg" : "",
+        })),
+      },
+    ],
+  },
+  {
+    id: 13,
+    nome: "Bolsa Ana Liz",
+    imagemCapa: "./assets/img/bolsaAnaLiz/bolsa-ana.jpeg",
+    descricao:
+      "Bolsa infantil artesanal em fio de malha, disponível nos designs Ana e Liz.",
+    descricaoDetalhada:
+      "A Bolsa Ana Liz foi pensada para transformar os pequenos detalhes em lembranças especiais. No Design Ana, você escolhe uma cor para uma versão delicada e encantadora. No Design Liz, combina duas cores e pode incluir o nome da criança, criando uma peça cheia de identidade para presentear, acompanhar passeios e guardar memórias felizes.",
+    destaque: false,
+    categoria: "Bolsas",
+    badge: "Kids",
+    preco: {
+      promocaoAtiva: false,
+      precoOriginal: "R$ 55,00",
+      pix: "R$ 55,00",
+      parcelado: "R$ 58,57",
+      parcelas: 2,
+      valorParcela: "R$ 29,29",
+    },
+    opcoesConfiguracao: [
+      {
+        id: "design",
+        nome: "Escolha o design",
+        descricao: "Selecione a versão que deseja encomendar.",
+        obrigatorio: true,
+        opcoes: [
+          { id: "ana", nome: "Design Ana — uma cor" },
+          { id: "liz", nome: "Design Liz — duas cores e nome opcional" },
+        ],
+      },
+    ],
+    configuracoes: [
+      {
+        designId: "ana",
+        preco: {
+          promocaoAtiva: false,
+          pix: "R$ 55,00",
+          parcelado: "R$ 58,57",
+          parcelas: 2,
+          valorParcela: "R$ 29,29",
+        },
+      },
+      {
+        designId: "liz",
+        preco: {
+          promocaoAtiva: false,
+          pix: "R$ 65,00",
+          parcelado: "R$ 69,22",
+          parcelas: 2,
+          valorParcela: "R$ 34,61",
+        },
+      },
+    ],
+    selecaoCores: {
+      fioId: "fio-malha",
+      titulo: "Escolha as cores do seu design",
+      descricao: "Design Ana: escolha exatamente 1 cor. Design Liz: escolha exatamente 2 cores e, se quiser, informe o nome da criança pelo WhatsApp.",
+      porConfiguracao: {
+        design: {
+          ana: { minimo: 1, maximo: 1 },
+          liz: { minimo: 2, maximo: 2 },
+        },
+      },
+    },
+    detalhes: {
+      subtitulo: "Duas versões delicadas para deixar a imaginação das pequenas florescer.",
+      medidas: "Medidas aproximadas sob consulta no WhatsApp",
+      material: "Fio de malha",
+      prazo: "Produção sob encomenda, conforme disponibilidade",
+      diferenciais: [
+        "Disponível nos designs Ana e Liz",
+        "Design Ana com uma opção de cor",
+        "Design Liz com duas opções de cores e nome da criança opcional",
+      ],
+    },
+    galeria: [
+      {
+        imagem: "./assets/img/bolsaAnaLiz/bolsa-ana.jpeg",
+        legenda: "Bolsa Ana Liz — Design Ana",
+      },
+      {
+        imagem: "./assets/img/bolsaAnaLiz/bolsa-liz.jpeg",
+        legenda: "Bolsa Ana Liz — Design Liz",
+      },
+    ],
+    variantes: [],
+    opcoesProducao: [],
+  },
+  {
+    id: 14,
+    nome: "Bolsa Mi",
+    imagemCapa: "./assets/img/bolsaMi/bolsa-mi.jpeg",
+    descricao:
+      "Bolsa artesanal em fio de malha, delicada, versátil e feita para ganhar a sua cor favorita.",
+    descricaoDetalhada:
+      "A Bolsa Mi traz a beleza do crochê feito à mão em uma peça leve, charmosa e fácil de combinar. Personalize entre todas as cores disponíveis de fio de malha e tenha uma bolsa criada especialmente para acompanhar os seus momentos, do passeio casual à ocasião especial.",
+    destaque: false,
+    categoria: "Bolsas",
+    badge: "Kids",
+    preco: {
+      promocaoAtiva: false,
+      precoOriginal: "R$ 65,00",
+      pix: "R$ 65,00",
+      parcelado: "R$ 69,22",
+      parcelas: 2,
+      valorParcela: "R$ 34,61",
+    },
+    detalhes: {
+      subtitulo: "Uma bolsa leve e exclusiva, feita ponto a ponto para você.",
+      medidas: "Medidas aproximadas sob consulta no WhatsApp",
+      material: "Fio de malha",
+      prazo: "Produção sob encomenda, conforme disponibilidade",
+      diferenciais: [
+        "Produzida artesanalmente em fio de malha",
+        "Todas as cores de fio de malha disponíveis para personalizar",
+        "Peça versátil para acompanhar diferentes ocasiões",
+      ],
+    },
+    galeria: [
+      {
+        imagem: "./assets/img/bolsaMi/bolsa-mi.jpeg",
+        legenda: "Bolsa Mi em fio de malha",
+      },
+    ],
+    variantes: [],
+    opcoesProducao: [
+      {
+        fioId: "fio-malha",
+        cores: coresFioMalha.map((cor) => ({
+          corId: cor.id,
+          disponivel: true,
+          imagem: "",
+        })),
       },
     ],
   },

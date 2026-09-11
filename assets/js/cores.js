@@ -43,6 +43,7 @@ const gruposDeCores = [
       { nome: "Preto", hex: "#1D1C21" },
       { nome: "Lilás", hex: "#D8B9E6" },
       { nome: "Amarelo Bebê", hex: "#FFF6D1", borda: "#9B8D7E" },
+      { nome: "Amarelo Canário", hex: "#F5C542" },
       { nome: "Mango", hex: "#FFA33C" },
       { nome: "Marrom", hex: "#865448" },
       { nome: "Esmeralda", hex: "#0B6763" },
