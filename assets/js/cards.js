@@ -318,7 +318,7 @@ function jsParam(value) {
   return JSON.stringify(String(value || ""));
 }
 
-function generateCardHTML(produto, prefix) {
+function generateCardHTML(produto, prefix, prioridadeImagem = false) {
   const variantes = Array.isArray(produto.variantes) ? produto.variantes : [];
   const primeiraVariante = variantes[0] || {};
   const primeiraGaleria = Array.isArray(produto.galeria)
@@ -345,8 +345,9 @@ function generateCardHTML(produto, prefix) {
           src="${imagemCard}"
           alt="${produto.nome}"
           class="product-img"
-          loading="lazy"
+          loading="${prioridadeImagem ? "eager" : "lazy"}"
           decoding="async"
+          ${prioridadeImagem ? 'fetchpriority="high"' : ""}
           onload="onImageLoad(this)"
           onerror="setFallback(this,'${produto.categoria}')"
         />

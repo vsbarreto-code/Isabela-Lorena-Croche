@@ -1039,20 +1039,18 @@
           ${escapeHTML(detalhes.subtitulo || produto.descricao || "")}
         </p>
 
-        <p class="produto-description">
-          ${escapeHTML(produto.descricaoDetalhada || produto.descricao || "")}
-        </p>
-
         <div id="produto-price-root">
           ${renderPrice(produto)}
         </div>
 
-        <aside class="produto-purchase-summary" aria-label="Informações para encomenda">
-          <div><span>Produção</span><strong>${escapeHTML(detalhes.prazo || "Sob consulta")}</strong></div>
-          <div><span>Entrega</span><strong>Aracaju e cidades próximas, conforme disponibilidade</strong></div>
-          <div><span>Pagamento</span><strong>Pix ou cartão em até 2x</strong></div>
-          <div><span>Disponibilidade</span><strong>Cor confirmada no atendimento</strong></div>
-        </aside>
+        <p class="produto-order-note">
+          ${escapeHTML(detalhes.prazo || "Produção sob encomenda")} —
+          entrega ou retirada em Aracaju e cidades próximas a combinar no WhatsApp.
+        </p>
+
+        <p class="produto-description">
+          ${escapeHTML(produto.descricaoDetalhada || produto.descricao || "")}
+        </p>
 
         ${renderTamanhos(produto)}
 
@@ -1061,47 +1059,6 @@
         ${renderOpcoesProducao(produto)}
 
         ${renderSelecaoMultiplaCores()}
-
-        <section
-          class="produto-mobile-choice"
-          id="produto-mobile-choice"
-          aria-label="Resumo da configuração escolhida"
-          aria-live="polite"
-        >
-          <button
-            class="produto-mobile-choice__photo"
-            id="produto-mobile-view-photo"
-            type="button"
-            aria-label="Ver fotos reais do modelo"
-          >
-            <span class="produto-mobile-choice__visual">
-              <img
-                id="produto-mobile-choice-img"
-                src="${escapeHTML(imagens[0].imagem)}"
-                alt=""
-              />
-              <span
-                class="produto-mobile-choice__swatch"
-                id="produto-mobile-choice-swatch"
-                aria-hidden="true"
-              ></span>
-            </span>
-
-            <span id="produto-mobile-choice-action">Ver modelo</span>
-          </button>
-
-          <div class="produto-mobile-choice__content">
-            <span>Sua escolha</span>
-            <strong id="produto-mobile-choice-options">
-              Selecione tamanho e cor
-            </strong>
-            <small
-              class="produto-mobile-choice__note"
-              id="produto-mobile-choice-note"
-            ></small>
-            <em id="produto-mobile-choice-price"></em>
-          </div>
-        </section>
 
         <div class="produto-actions-main">
           <a
@@ -1135,27 +1092,54 @@
           </ul>
         </div>
 
-        <div class="produto-meta-grid">
-          <div>
-            <span>Material</span>
-            <strong>${escapeHTML(detalhes.material || "Sob consulta")}</strong>
-          </div>
-
-
-          <div>
-            <span>Prazo</span>
-            <strong>${escapeHTML(detalhes.prazo || "Sob consulta")}</strong>
-          </div>
-
-          <div>
-            <span>Entrega</span>
-            <strong>Entrega e retirada em Aracaju e cidades próximas, conforme disponibilidade.</strong>
-          </div>
-        </div>
+        <p class="produto-material-note">
+          <span>Material</span>
+          <strong>${escapeHTML(detalhes.material || "Sob consulta")}</strong>
+        </p>
       </article>
     </div>
 
+    <aside class="produto-mobile-buybar" aria-label="Encomendar esta bolsa">
+      <button
+        class="produto-mobile-buybar__summary"
+        id="produto-mobile-buybar-photo"
+        type="button"
+        aria-label="Ver foto da configuração selecionada"
+      >
+        <span class="produto-mobile-buybar__visual">
+          <img
+            id="produto-mobile-buybar-img"
+            src="${escapeHTML(imagens[0].imagem)}"
+            alt=""
+          />
+          <span
+            class="produto-mobile-buybar__swatch"
+            id="produto-mobile-buybar-swatch"
+            aria-hidden="true"
+          ></span>
+        </span>
+        <span>
+          <small id="produto-mobile-buybar-options"></small>
+          <strong id="produto-mobile-buybar-price"></strong>
+        </span>
+      </button>
+      <a
+        id="produto-mobile-wa-btn"
+        class="produto-mobile-buybar__cta"
+        href="${getLinkWhatsApp()}"
+        target="_blank"
+        rel="noopener"
+      >
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        Encomendar
+      </a>
+    </aside>
   `;
+
+  const mobileBuybar = root.querySelector(".produto-mobile-buybar");
+  if (mobileBuybar) {
+    document.body.appendChild(mobileBuybar);
+  }
 
   const mainImg = document.getElementById("gallery-main-img");
   const caption = document.getElementById("gallery-caption");
@@ -1167,28 +1151,6 @@
   const mobileWaBtn = document.getElementById("produto-mobile-wa-btn");
   const priceRoot = document.getElementById("produto-price-root");
   const dimensionsRoot = document.getElementById("produto-dimensions-root");
-
-  const mobileChoiceImg = document.getElementById(
-    "produto-mobile-choice-img",
-  );
-  const mobileChoiceOptions = document.getElementById(
-    "produto-mobile-choice-options",
-  );
-  const mobileChoicePrice = document.getElementById(
-    "produto-mobile-choice-price",
-  );
-  const mobileChoiceNote = document.getElementById(
-    "produto-mobile-choice-note",
-  );
-  const mobileChoiceSwatch = document.getElementById(
-    "produto-mobile-choice-swatch",
-  );
-  const mobileChoiceAction = document.getElementById(
-    "produto-mobile-choice-action",
-  );
-  const mobileViewPhoto = document.getElementById(
-    "produto-mobile-view-photo",
-  );
 
   const colorConfirmation = document.getElementById(
     "produto-color-confirmation",
@@ -1392,36 +1354,23 @@
     const preco = getPrecoResumo();
     const estado = getEstadoVisualConfiguracao();
 
-    if (mobileChoiceOptions) {
-      mobileChoiceOptions.textContent = opcoes;
-    }
-
-    if (mobileChoiceNote) {
-      mobileChoiceNote.textContent = estado.nota;
-    }
-
-    if (mobileChoicePrice) {
-      mobileChoicePrice.textContent = preco;
-    }
-
-    if (mobileChoiceAction) {
-      mobileChoiceAction.textContent =
-        estado.usarFotoNoResumo ? "Ver foto" : "Ver modelo";
-    }
-
     if (mobileBuybarOptions) {
       mobileBuybarOptions.textContent = opcoes;
+    }
+
+    if (mobileBuybarPhoto) {
+      const photoAction = estado.usarFotoNoResumo
+        ? "Ver foto desta configuração"
+        : "Ver fotos do modelo";
+      mobileBuybarPhoto.setAttribute(
+        "aria-label",
+        `${photoAction}: ${opcoes}`,
+      );
     }
 
     if (mobileBuybarPrice) {
       mobileBuybarPrice.textContent = preco;
     }
-
-    atualizarVisualResumo(
-      mobileChoiceImg,
-      mobileChoiceSwatch,
-      estado,
-    );
 
     atualizarVisualResumo(
       mobileBuybarImg,
@@ -1979,7 +1928,6 @@
     });
   });
 
-  mobileViewPhoto?.addEventListener("click", irParaGaleria);
   mobileBuybarPhoto?.addEventListener("click", irParaGaleria);
 
   prevBtn?.addEventListener("click", () => selecionarImagem(imagemAtual - 1));

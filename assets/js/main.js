@@ -197,7 +197,7 @@ if (gridBolsas) {
 
   gridBolsas.innerHTML =
     bolsas.length > 0
-      ? bolsas.map((p) => generateCardHTML(p, "bolsas")).join("")
+      ? bolsas.map((p, index) => generateCardHTML(p, "bolsas", index === 0)).join("")
       : `<p class="catalog-empty">Nenhuma bolsa disponível no momento.</p>`;
 }
 

@@ -578,65 +578,37 @@
   opacity: 0.75;
 }
 
-.produto-meta-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.85rem;
-  margin-top: 1rem;
-}
-
-.produto-purchase-summary {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.65rem;
-  margin: 1.15rem 0;
-  padding: 1rem;
-  border: 1px solid rgba(197, 168, 128, 0.25);
-  border-radius: 1.1rem;
-  background: rgba(250, 249, 246, 0.8);
-}
-
-.produto-purchase-summary div {
-  display: grid;
-  gap: 0.15rem;
-}
-
-.produto-purchase-summary span {
-  color: rgba(44, 42, 40, 0.54);
-  font-size: 0.67rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.produto-purchase-summary strong {
-  color: rgba(44, 42, 40, 0.82);
+.produto-order-note {
+  margin: -0.45rem 0 1.15rem;
+  color: rgba(44, 42, 40, 0.58);
   font-size: 0.78rem;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
-.produto-meta-grid div {
-  padding: 1rem;
-  border-radius: 1.1rem;
-  background: #fff;
-  border: 1px solid rgba(197, 168, 128, 0.16);
+.produto-material-note {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(197, 168, 128, 0.16);
+  color: rgba(44, 42, 40, 0.62);
+  font-size: 0.82rem;
+  line-height: 1.5;
 }
 
-.produto-meta-grid span {
-  display: block;
-  margin-bottom: 0.35rem;
-  font-size: 0.68rem;
+.produto-material-note span {
+  flex-shrink: 0;
+  color: rgba(44, 42, 40, 0.46);
+  font-size: 0.66rem;
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(44, 42, 40, 0.45);
 }
 
-.produto-meta-grid strong {
-  display: block;
-  color: rgba(44, 42, 40, 0.78);
-  font-size: 0.88rem;
-  line-height: 1.45;
+.produto-material-note strong {
+  color: rgba(44, 42, 40, 0.8);
+  font-weight: 600;
 }
 
 /* ============================================================
@@ -678,9 +650,6 @@
     padding: 2.25rem;
   }
 
-  .produto-meta-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 /* ============================================================
@@ -710,9 +679,6 @@
     grid-template-columns: 1fr;
   }
 
-  .produto-meta-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 /* ============================================================
@@ -758,9 +724,6 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .produto-meta-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 /* ============================================================
@@ -768,9 +731,6 @@
    ============================================================ */
 
 @media (max-width: 767px) {
-  .produto-purchase-summary {
-    order: 4;
-  }
   .produto-hero-mini {
     padding-top: 0.75rem;
   }
@@ -923,10 +883,13 @@
     margin: 1.25rem 0;
   }
 
-  .produto-actions-main .btn-whatsapp,
   .produto-actions-main .btn-details {
     min-height: 52px;
     width: 100%;
+  }
+
+  .produto-actions-main .btn-whatsapp {
+    display: none;
   }
 
   .produto-detail-card {
@@ -944,19 +907,6 @@
     line-height: 1.6;
   }
 
-  .produto-meta-grid {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-
-  .produto-meta-grid div {
-    padding: 0.9rem;
-    border-radius: 1rem;
-  }
-
-  .produto-meta-grid strong {
-    font-size: 0.84rem;
-  }
 }
 
 /* ============================================================
@@ -1022,9 +972,6 @@
     gap: clamp(2rem, 4vw, 3.5rem);
   }
 
-  .produto-meta-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
 }
 
 @media (min-width: 980px) and (max-width: 1180px) {
@@ -1055,7 +1002,6 @@
    MOBILE-FIRST — CAMINHO DE COMPRA
    ============================================================ */
 
-.produto-mobile-choice,
 .produto-mobile-buybar {
   display: none;
 }
@@ -1156,7 +1102,7 @@
   }
 
   .produto-info > .produto-description {
-    order: 10;
+    order: 11;
     margin: 0.4rem 0 0;
     padding: 1rem;
     border: 1px solid rgba(197, 168, 128, 0.16);
@@ -1168,32 +1114,37 @@
     order: 5;
   }
 
-  .produto-info > .produto-size-section {
+  .produto-info > .produto-order-note {
     order: 6;
+    margin: -0.45rem 0 0.25rem;
   }
 
-  .produto-info > .produto-production-section {
+  .produto-info > .produto-size-section {
     order: 7;
   }
 
-  .produto-info > .produto-mobile-choice {
+  .produto-info > .produto-configuration-section {
     order: 8;
   }
 
-  .produto-info > .produto-actions-main {
+  .produto-info > .produto-production-section {
     order: 9;
   }
 
-  .produto-info > #produto-dimensions-root {
-    order: 11;
+  .produto-info > .produto-actions-main {
+    order: 10;
   }
 
-  .produto-info > .produto-detail-card {
+  .produto-info > #produto-dimensions-root {
     order: 12;
   }
 
-  .produto-info > .produto-meta-grid {
+  .produto-info > .produto-detail-card {
     order: 13;
+  }
+
+  .produto-info > .produto-material-note {
+    order: 14;
   }
 
   .produto-info .section-title {
@@ -1281,83 +1232,6 @@
 
   .produto-actions-main .btn-details {
     min-height: 46px;
-  }
-
-  .produto-mobile-choice {
-    width: 100%;
-    min-width: 0;
-    margin-top: 0.8rem;
-    padding: 0.75rem;
-    border: 1px solid rgba(197, 168, 128, 0.2);
-    border-radius: 1rem;
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 0.75rem;
-    align-items: center;
-    background: #fff;
-  }
-
-  .produto-mobile-choice__photo {
-    width: 68px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: rgba(44, 42, 40, 0.68);
-    cursor: pointer;
-    text-align: center;
-  }
-
-  .produto-mobile-choice__photo img,
-  .produto-mobile-choice__visual {
-    width: 68px;
-    height: 68px;
-  }
-
-  .produto-mobile-choice__photo img {
-    width: 100%;
-    height: 100%;
-    border: 2px solid rgba(197, 168, 128, 0.35);
-    border-radius: 0.85rem;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .produto-mobile-choice__photo span {
-    display: block;
-    margin-top: 0.3rem;
-    font-size: 0.68rem;
-    font-weight: 700;
-  }
-
-  .produto-mobile-choice__content {
-    min-width: 0;
-  }
-
-  .produto-mobile-choice__content > span {
-    display: block;
-    margin-bottom: 0.2rem;
-    color: rgba(44, 42, 40, 0.48);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.11em;
-    text-transform: uppercase;
-  }
-
-  .produto-mobile-choice__content strong {
-    display: block;
-    overflow: hidden;
-    color: rgba(44, 42, 40, 0.82);
-    font-size: 0.84rem;
-    line-height: 1.4;
-    text-overflow: ellipsis;
-  }
-
-  .produto-mobile-choice__content small {
-    display: block;
-    margin-top: 0.25rem;
-    color: #16964b;
-    font-size: 0.8rem;
-    font-weight: 700;
   }
 
   .produto-mobile-buybar {
@@ -1456,7 +1330,6 @@
   }
 
   .produto-detail-card,
-  .produto-meta-grid,
   #produto-dimensions-root {
     margin-top: 0.85rem;
   }
@@ -1548,50 +1421,19 @@
   line-height: 1.45;
 }
 
-.produto-mobile-choice__visual,
 .produto-mobile-buybar__visual {
   position: relative;
   display: block;
 }
 
-.produto-mobile-choice__swatch,
 .produto-mobile-buybar__swatch {
   display: block;
   background: var(--selected-color, var(--color-accent));
 }
 
-.produto-mobile-choice__swatch[hidden],
 .produto-mobile-buybar__swatch[hidden],
-.produto-mobile-choice__photo img[hidden],
 .produto-mobile-buybar__visual img[hidden] {
   display: none;
-}
-
-.produto-mobile-choice__swatch {
-  width: 68px;
-  height: 68px;
-  border: 4px solid #fff;
-  border-radius: 0.85rem;
-  box-shadow:
-    0 0 0 1px rgba(197, 168, 128, 0.4),
-    inset 0 0 0 1px rgba(44, 42, 40, 0.04);
-}
-
-.produto-mobile-choice__content .produto-mobile-choice__note {
-  margin-top: 0.22rem;
-  color: rgba(44, 42, 40, 0.56);
-  font-size: 0.7rem;
-  font-weight: 500;
-  line-height: 1.35;
-}
-
-.produto-mobile-choice__content em {
-  display: block;
-  margin-top: 0.25rem;
-  color: #16964b;
-  font-size: 0.8rem;
-  font-style: normal;
-  font-weight: 800;
 }
 
 .produto-mobile-buybar__swatch {
@@ -1685,10 +1527,6 @@
 
   .produto-info > .produto-production-section {
     order: 8;
-  }
-
-  .produto-info > .produto-mobile-choice {
-    order: 9;
   }
 
   .produto-info > .produto-actions-main {
