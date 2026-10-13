@@ -87,9 +87,9 @@ const produtos = [
       promocaoAtiva: false,
       precoOriginal: "R$ 170,00",
       pix: "R$ 170,00",
-      parcelado: "R$ 181,04",
+      parcelado: "R$ 170,00",
       parcelas: 2,
-      valorParcela: "R$ 90,52",
+      valorParcela: "R$ 85,00",
     },
     detalhes: {
       subtitulo:
@@ -149,9 +149,9 @@ const produtos = [
       promocaoAtiva: false,
       precoOriginal: "R$ 170,00",
       pix: "R$ 170,00",
-      parcelado: "R$ 181,03",
+      parcelado: "R$ 170,00",
       parcelas: 2,
-      valorParcela: "R$ 90,52",
+      valorParcela: "R$ 85,00",
     },
     detalhes: {
       subtitulo:
@@ -236,9 +236,9 @@ const produtos = [
       promocaoAtiva: false,
       precoOriginal: "R$ 160,00",
       pix: "R$ 160,00",
-      parcelado: "R$ 170,38",
+      parcelado: "R$ 160,00",
       parcelas: 2,
-      valorParcela: "R$ 85,19",
+      valorParcela: "R$ 80,00",
     },
     detalhes: {
       subtitulo:
@@ -308,9 +308,9 @@ const produtos = [
       promocaoAtiva: false,
       precoOriginal: "R$ 145,00",
       pix: "R$ 145,00",
-      parcelado: "R$ 154,41",
+      parcelado: "R$ 145,00",
       parcelas: 2,
-      valorParcela: "R$ 77,20",
+      valorParcela: "R$ 72,50",
     },
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
@@ -400,9 +400,9 @@ const produtos = [
       promocaoAtiva: false,
       precoOriginal: "R$ 160,00",
       pix: "R$ 160,00",
-      parcelado: "R$ 170,38",
+      parcelado: "R$ 160,00",
       parcelas: 2,
-      valorParcela: "R$ 85,19",
+      valorParcela: "R$ 80,00",
     },
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
@@ -482,9 +482,9 @@ const produtos = [
       promocaoAtiva: false,
       precoOriginal: "R$ 190,00",
       pix: "R$ 190,00",
-      parcelado: "R$ 210,00",
+      parcelado: "R$ 190,00",
       parcelas: 2,
-      valorParcela: "R$ 105,00",
+      valorParcela: "R$ 95,00",
     },
 
     // true: exibe a área de medidas.
@@ -511,9 +511,9 @@ const produtos = [
         preco: {
           promocaoAtiva: false,
           pix: "R$ 170,00",
-          parcelado: "R$ 180,00",
+          parcelado: "R$ 170,00",
           parcelas: 2,
-          valorParcela: "R$ 90,00",
+          valorParcela: "R$ 85,00",
         },
       },
 
@@ -530,9 +530,9 @@ const produtos = [
         preco: {
           promocaoAtiva: false,
           pix: "R$ 190,00",
-          parcelado: "R$ 202,33",
+          parcelado: "R$ 190,00",
           parcelas: 2,
-          valorParcela: "R$ 101,17",
+          valorParcela: "R$ 95,00",
         },
       },
 
@@ -549,9 +549,9 @@ const produtos = [
         preco: {
           promocaoAtiva: false,
           pix: "R$ 250,00",
-          parcelado: "R$ 266,22",
+          parcelado: "R$ 250,00",
           parcelas: 2,
-          valorParcela: "R$ 133,11",
+          valorParcela: "R$ 125,00",
         },
       },
     ],
@@ -624,9 +624,9 @@ const produtos = [
       promocaoAtiva: false,
       precoOriginal: "R$ 65,00",
       pix: "R$ 65,00",
-      parcelado: "R$ 69,22",
+      parcelado: "R$ 65,00",
       parcelas: 2,
-      valorParcela: "R$ 34,61",
+      valorParcela: "R$ 32,50",
     },
     // A variação de cor da Rita corresponde somente à parte superior da bolsa.
     // Não significa que toda a peça mudará de cor.
@@ -715,9 +715,9 @@ const produtos = [
       promocaoAtiva: false,
       precoOriginal: "R$ 50,00",
       pix: "R$ 50,00",
-      parcelado: "R$ 53,25",
+      parcelado: "R$ 50,00",
       parcelas: 2,
-      valorParcela: "R$ 26,63",
+      valorParcela: "R$ 25,00",
     },
     // A Aurora trabalha com tamanho, mas não exibe uma área de medidas
     // neste momento. Se as medidas forem cadastradas futuramente, basta
@@ -746,9 +746,9 @@ const produtos = [
         preco: {
           promocaoAtiva: false,
           pix: "R$ 50,00",
-          parcelado: "R$ 53,25",
+          parcelado: "R$ 50,00",
           parcelas: 2,
-          valorParcela: "R$ 26,63",
+          valorParcela: "R$ 25,00",
         },
       },
 
@@ -772,9 +772,9 @@ const produtos = [
         preco: {
           promocaoAtiva: false,
           pix: "R$ 50,00",
-          parcelado: "R$ 53,25",
+          parcelado: "R$ 50,00",
           parcelas: 2,
-          valorParcela: "R$ 26,63",
+          valorParcela: "R$ 25,00",
         },
       },
     ],
@@ -797,9 +797,9 @@ const produtos = [
         preco: {
           promocaoAtiva: false,
           pix: "R$ 50,00",
-          parcelado: "R$ 53,25",
+          parcelado: "R$ 50,00",
           parcelas: 2,
-          valorParcela: "R$ 26,63",
+          valorParcela: "R$ 25,00",
         },
       },
       {
@@ -808,9 +808,9 @@ const produtos = [
         preco: {
           promocaoAtiva: false,
           pix: "R$ 55,00",
-          parcelado: "R$ 58,57",
+          parcelado: "R$ 55,00",
           parcelas: 2,
-          valorParcela: "R$ 29,29",
+          valorParcela: "R$ 27,50",
         },
       },
       {
@@ -819,9 +819,9 @@ const produtos = [
         preco: {
           promocaoAtiva: false,
           pix: "R$ 60,00",
-          parcelado: "R$ 63,89",
+          parcelado: "R$ 60,00",
           parcelas: 2,
-          valorParcela: "R$ 31,95",
+          valorParcela: "R$ 30,00",
         },
       },
       {
@@ -830,9 +830,9 @@ const produtos = [
         preco: {
           promocaoAtiva: false,
           pix: "R$ 65,00",
-          parcelado: "R$ 69,22",
+          parcelado: "R$ 65,00",
           parcelas: 2,
-          valorParcela: "R$ 34,61",
+          valorParcela: "R$ 32,50",
         },
       },
     ],
@@ -936,9 +936,9 @@ const produtos = [
       promocaoAtiva: false,
       precoOriginal: "R$ 170,00",
       pix: "R$ 170,00",
-      parcelado: "R$ 181,04",
+      parcelado: "R$ 170,00",
       parcelas: 2,
-      valorParcela: "R$ 90,52",
+      valorParcela: "R$ 85,00",
     },
     detalhes: {
       subtitulo: "Uma bolsa marcante, elegante e feita para acompanhar seus melhores momentos.",
@@ -1009,9 +1009,9 @@ const produtos = [
       promocaoAtiva: false,
       precoOriginal: "R$ 70,00",
       pix: "R$ 70,00",
-      parcelado: "R$ 74,54",
+      parcelado: "R$ 70,00",
       parcelas: 2,
-      valorParcela: "R$ 37,27",
+      valorParcela: "R$ 35,00",
     },
     detalhes: {
       subtitulo: "Cores suaves, acabamento artesanal e charme para iluminar qualquer look.",
@@ -1055,9 +1055,9 @@ const produtos = [
       promocaoAtiva: false,
       precoOriginal: "R$ 60,00",
       pix: "R$ 60,00",
-      parcelado: "R$ 63,90",
+      parcelado: "R$ 60,00",
       parcelas: 2,
-      valorParcela: "R$ 31,95",
+      valorParcela: "R$ 30,00",
     },
     detalhes: {
       subtitulo: "Uma bolsa artesanal vibrante para levar cor aos seus momentos.",
@@ -1109,11 +1109,11 @@ const produtos = [
     badge: "Novo",
     preco: {
       promocaoAtiva: false,
-      precoOriginal: "R$ 220,00",
-      pix: "R$ 220,00",
-      parcelado: "R$ 234,27",
+      precoOriginal: "R$ 250,00",
+      pix: "R$ 250,00",
+      parcelado: "R$ 250,00",
       parcelas: 2,
-      valorParcela: "R$ 117,14",
+      valorParcela: "R$ 125,00",
     },
     detalhes: {
       subtitulo: "Estruturada, sofisticada e feita para se destacar.",
@@ -1168,9 +1168,9 @@ const produtos = [
       promocaoAtiva: false,
       precoOriginal: "R$ 55,00",
       pix: "R$ 55,00",
-      parcelado: "R$ 58,57",
+      parcelado: "R$ 55,00",
       parcelas: 2,
-      valorParcela: "R$ 29,29",
+      valorParcela: "R$ 27,50",
     },
     opcoesConfiguracao: [
       {
@@ -1190,9 +1190,9 @@ const produtos = [
         preco: {
           promocaoAtiva: false,
           pix: "R$ 55,00",
-          parcelado: "R$ 58,57",
+          parcelado: "R$ 55,00",
           parcelas: 2,
-          valorParcela: "R$ 29,29",
+          valorParcela: "R$ 27,50",
         },
       },
       {
@@ -1200,9 +1200,9 @@ const produtos = [
         preco: {
           promocaoAtiva: false,
           pix: "R$ 65,00",
-          parcelado: "R$ 69,22",
+          parcelado: "R$ 65,00",
           parcelas: 2,
-          valorParcela: "R$ 34,61",
+          valorParcela: "R$ 32,50",
         },
       },
     ],
@@ -1256,9 +1256,9 @@ const produtos = [
       promocaoAtiva: false,
       precoOriginal: "R$ 65,00",
       pix: "R$ 65,00",
-      parcelado: "R$ 69,22",
+      parcelado: "R$ 65,00",
       parcelas: 2,
-      valorParcela: "R$ 34,61",
+      valorParcela: "R$ 32,50",
     },
     detalhes: {
       subtitulo: "Uma bolsa leve e exclusiva, feita ponto a ponto para você.",
@@ -1304,9 +1304,9 @@ const produtos = [
       promocaoAtiva: false,
       precoOriginal: "R$ 55,00",
       pix: "R$ 55,00",
-      parcelado: "R$ 58,57",
+      parcelado: "R$ 55,00",
       parcelas: 2,
-      valorParcela: "R$ 29,29",
+      valorParcela: "R$ 27,50",
     },
     detalhes: {
       subtitulo: "Duas cores, muito encanto e uma peça feita especialmente para presentear.",

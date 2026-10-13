@@ -30,6 +30,23 @@ function moedaParaNumero(valor) {
   return Number.isFinite(numero) ? numero : Number.POSITIVE_INFINITY;
 }
 
+function normalizarPrecoCartao(preco) {
+  const total = moedaParaNumero(preco?.pix);
+  const parcelas = Number(preco?.parcelas);
+  if (!Number.isFinite(total) || !Number.isFinite(parcelas) || parcelas <= 0) {
+    return preco;
+  }
+
+  return {
+    ...preco,
+    parcelado: preco.pix,
+    valorParcela: new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(total / parcelas),
+  };
+}
+
 function getTamanhoPorId(produto, tamanhoId) {
   return getTamanhosDisponiveis(produto).find(
     (tamanho) => String(tamanho.id) === String(tamanhoId),
@@ -77,13 +94,16 @@ function getPrecoProduto(produto, tamanhoId = null, opcoesSelecionadas = {}) {
       ),
     );
 
-    if (configuracaoExata) return configuracaoExata.preco;
+    if (configuracaoExata) {
+      return normalizarPrecoCartao(configuracaoExata.preco);
+    }
 
-    return configuracoes.reduce((menor, atual) => {
+    const preco = configuracoes.reduce((menor, atual) => {
       const precoMenor = moedaParaNumero(menor?.preco?.pix);
       const precoAtual = moedaParaNumero(atual?.preco?.pix);
       return precoAtual < precoMenor ? atual : menor;
     }, configuracoes[0])?.preco || produto.preco || null;
+    return normalizarPrecoCartao(preco);
   }
 
   if (produtoTemTamanhos(produto)) {
@@ -91,10 +111,10 @@ function getPrecoProduto(produto, tamanhoId = null, opcoesSelecionadas = {}) {
       ? getTamanhoPorId(produto, tamanhoId)
       : getTamanhoMaisBarato(produto);
 
-    return tamanho?.preco || produto.preco || null;
+    return normalizarPrecoCartao(tamanho?.preco || produto.preco || null);
   }
 
-  return produto.preco || null;
+  return normalizarPrecoCartao(produto.preco || null);
 }
 
 function getPrecoTexto(produto, tamanhoId = null, opcoesSelecionadas = {}) {
