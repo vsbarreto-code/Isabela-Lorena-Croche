@@ -331,10 +331,15 @@ function generateCardHTML(produto, prefix, prioridadeImagem = false) {
     primeiraVariante.imagem ||
     FALLBACK_SVG;
 
+  const badge =
+    produto.badge === "Destaque" && !produto.destaque ? "" : produto.badge;
   const detalhesLink = produto.detalheUrl || `produto.html?id=${produto.id}`;
 
   return `
-    <article class="product-card product-card-simple">
+    <article
+      class="product-card product-card-simple"
+      data-product-id="${produto.id}"
+    >
       <a
         class="product-image-wrap"
         href="${detalhesLink}"
@@ -352,7 +357,7 @@ function generateCardHTML(produto, prefix, prioridadeImagem = false) {
           onerror="setFallback(this,'${produto.categoria}')"
         />
 
-        ${produto.badge ? `<span class="product-badge">${produto.badge}</span>` : ""}
+        ${badge ? `<span class="product-badge">${badge}</span>` : ""}
       </a>
 
       <div class="content">

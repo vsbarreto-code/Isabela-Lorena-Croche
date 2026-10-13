@@ -90,9 +90,70 @@
         </div>
       </section>
 
+      <section class="catalog-controls" aria-label="Buscar e filtrar bolsas">
+        <label class="catalog-search" for="catalog-search">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input
+            id="catalog-search"
+            type="search"
+            placeholder="Buscar bolsa"
+            autocomplete="off"
+          aria-label="Buscar bolsa pelo nome"
+          />
+        </label>
+
+        <details class="catalog-filter-details" id="catalog-filter-details">
+          <summary>
+            <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+            Filtrar e ordenar
+          </summary>
+          <div class="catalog-filter-panel">
+            <fieldset>
+              <legend>Material</legend>
+              <div
+                class="catalog-filter-options"
+                id="catalog-material-options"
+              ></div>
+            </fieldset>
+
+            <label class="catalog-sort" for="catalog-sort">
+              <span>Ordenar por</span>
+              <select id="catalog-sort">
+                <option value="catalogo">Ordem do catálogo</option>
+                <option value="menor-preco">Menor preço</option>
+                <option value="maior-preco">Maior preço</option>
+              </select>
+            </label>
+
+            <label class="catalog-kids-filter" id="catalog-kids-filter" hidden>
+              <input id="catalog-kids-only" type="checkbox" />
+              <span>Mostrar bolsas infantis</span>
+            </label>
+          </div>
+        </details>
+
+        <div class="catalog-results-row">
+          <p id="catalog-results-count" role="status" aria-live="polite"></p>
+          <button
+            class="catalog-clear"
+            id="catalog-clear"
+            type="button"
+            hidden
+          >
+            Limpar filtros
+          </button>
+        </div>
+      </section>
+
       <section class="catalog-list" aria-label="Lista de bolsas disponíveis">
         <div class="catalog-grid-wrap">
           <div class="products-grid" id="grid-bolsas"></div>
+          <div class="catalog-empty" id="catalog-empty" hidden>
+            <p>Nenhuma bolsa encontrada com esses critérios.</p>
+            <button class="catalog-clear" id="catalog-empty-clear" type="button">
+              Limpar busca e filtros
+            </button>
+          </div>
         </div>
       </section>
 
@@ -234,6 +295,7 @@
 
     <script src="./assets/js/produtos.js"></script>
     <script src="./assets/js/cards.js"></script>
+    <script src="./assets/js/catalog.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>

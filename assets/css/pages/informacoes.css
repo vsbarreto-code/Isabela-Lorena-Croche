@@ -57,6 +57,10 @@
   font-weight: 800;
 }
 
+.cta-section .cta-catalog-link {
+  width: min(100%, 320px);
+}
+
 @media (min-width: 768px) {
   .info-grid--three {
     grid-template-columns: repeat(3, 1fr);

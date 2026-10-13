@@ -190,17 +190,6 @@ if (typeof filtrarDestaques === "function") {
   filtrarDestaques("Bolsas", firstFilterTab);
 }
 
-// ---- GRID CATÁLOGO — BOLSAS ----
-const gridBolsas = document.getElementById("grid-bolsas");
-if (gridBolsas) {
-  const bolsas = produtos.filter((p) => p.categoria === "Bolsas");
-
-  gridBolsas.innerHTML =
-    bolsas.length > 0
-      ? bolsas.map((p, index) => generateCardHTML(p, "bolsas", index === 0)).join("")
-      : `<p class="catalog-empty">Nenhuma bolsa disponível no momento.</p>`;
-}
-
 // ---- CARROSSEL DE DEPOIMENTOS ----
 const reviewsCarousel = document.querySelector("#reviews-carousel");
 
