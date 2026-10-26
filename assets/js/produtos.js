@@ -1067,12 +1067,12 @@ const produtos = [
   },
   {
     id: 11,
-    nome: "Bolsa Geane",
+    nome: "Bolsa Ane",
     imagemCapa: "./assets/img/bolsaGeane/bolsa-geane-01.jpeg",
     descricao:
       "Bolsa artesanal em fio de malha, leve, delicada e pronta para ganhar a cor que mais combina com você.",
     descricaoDetalhada:
-      "A Bolsa Geane une o charme do crochê artesanal a um design delicado e versátil. Feita à mão, ela é aquela escolha especial para passeios, festas e presentes cheios de significado. Personalize na cor de fio de malha que mais combina com o estilo de quem vai usar e leve uma peça exclusiva, criada ponto a ponto.",
+      "A Bolsa Ane une o charme do crochê artesanal a um design delicado e versátil. Feita à mão, ela é aquela escolha especial para passeios, festas e presentes cheios de significado. Personalize na cor de fio de malha que mais combina com o estilo de quem vai usar e leve uma peça exclusiva, criada ponto a ponto.",
     destaque: false,
     categoria: "Bolsas",
     badge: "Novo",
@@ -1099,11 +1099,11 @@ const produtos = [
     galeria: [
       {
         imagem: "./assets/img/bolsaGeane/bolsa-geane-01.jpeg",
-        legenda: "Bolsa Geane na cor Pink",
+        legenda: "Bolsa Ane na cor Pink",
       },
       {
         imagem: "./assets/img/bolsaGeane/bolsa-geane-02.jpeg",
-        legenda: "Bolsa Geane na cor Rosa Algodão com nome personalizado",
+        legenda: "Bolsa Ane na cor Rosa Algodão com nome personalizado",
       },
     ],
     variantes: [
