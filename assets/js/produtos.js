@@ -821,10 +821,10 @@ const produtos = [
         personalizacaoId: "3-pingentes",
         preco: {
           promocaoAtiva: false,
-          pix: "R$ 50,00",
-          parcelado: "R$ 50,00",
+          pix: "R$ 55,00",
+          parcelado: "R$ 55,00",
           parcelas: 2,
-          valorParcela: "R$ 25,00",
+          valorParcela: "R$ 27,50",
         },
       },
       {
@@ -832,10 +832,10 @@ const produtos = [
         personalizacaoId: "2-pingentes-nome",
         preco: {
           promocaoAtiva: false,
-          pix: "R$ 55,00",
-          parcelado: "R$ 55,00",
+          pix: "R$ 60,00",
+          parcelado: "R$ 60,00",
           parcelas: 2,
-          valorParcela: "R$ 27,50",
+          valorParcela: "R$ 30,00",
         },
       },
       {
@@ -1296,11 +1296,11 @@ const produtos = [
     badge: "Kids",
     preco: {
       promocaoAtiva: false,
-      precoOriginal: "R$ 65,00",
-      pix: "R$ 65,00",
-      parcelado: "R$ 65,00",
+      precoOriginal: "R$ 70,00",
+      pix: "R$ 70,00",
+      parcelado: "R$ 70,00",
       parcelas: 2,
-      valorParcela: "R$ 32,50",
+      valorParcela: "R$ 35,00",
     },
     detalhes: {
       subtitulo: "Uma bolsa leve e exclusiva, feita ponto a ponto para você.",
