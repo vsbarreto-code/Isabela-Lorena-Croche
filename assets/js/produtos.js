@@ -42,6 +42,7 @@ const fiosDisponiveis = [
       { id: "porcelana", nome: "Porcelana", corHex: "#F1EEE4", borda: "#9B8D7E" },
       { id: "pink", nome: "Pink", corHex: "#EF2F5A" },
       { id: "rosa-algodao", nome: "Rosa Algodão", corHex: "#E7A5B7" },
+      { id: "brotinho", nome: "Brotinho", corHex: "#D5EAE4", borda: "#9B8D7E" },
       { id: "ferrugem", nome: "Ferrugem", corHex: "#D8733A" },
       { id: "preto", nome: "Preto", corHex: "#1D1C21" },
       { id: "lilas", nome: "Lilás", corHex: "#D8B9E6" },
@@ -54,6 +55,7 @@ const fiosDisponiveis = [
       { id: "amarelo-canario", nome: "Amarelo Canário", corHex: "#F5C542" },
       { id: "mango", nome: "Mango", corHex: "#FFA33C" },
       { id: "marrom", nome: "Marrom", corHex: "#865448" },
+      { id: "chocolate", nome: "Chocolate", corHex: "#68443B" },
       { id: "esmeralda", nome: "Esmeralda", corHex: "#0B6763" },
       { id: "marsala", nome: "Marsala", corHex: "#A52122" },
       {
@@ -298,9 +300,9 @@ const produtos = [
     nome: "Bolsa Inês",
     imagemCapa: "./assets/img/bolsaInes/bolsa-ines-1.jpeg",
     descricao:
-      "Bolsa compacta para passeios, eventos e composições elegantes. Feita em crochê com toque artesanal premium.",
+      "Bolsa artesanal em fio de malha, disponível nos tamanhos P e G.",
     descricaoDetalhada:
-      "Modelo compacto e com visual marcante, a Bolsa Inês é a escolha ideal para quem busca garantir uma ótima primeira impressão ao chegar nos lugares. Com seu design trançado e sua versatilidade em ser produzida tanto em fio náutico como em fio de malha, o cliente escolhe a opção que melhor se adequa ao seu gosto.",
+      "A Bolsa Inês é feita em fio de malha e tem um visual marcante, com alça estruturada e acabamento artesanal. Escolha entre os tamanhos P e G.",
     destaque: false,
     categoria: "Bolsas",
     badge: "Destaque",
@@ -315,23 +317,53 @@ const produtos = [
     detalhes: {
       subtitulo: "Clássica, compacta e sofisticada.",
       medidas: "Medidas aproximadas sob consulta no WhatsApp",
-      material: "Fio Náutico ou Fio de Malha",
+      material: "Fio de malha",
       prazo: "Produção sob encomenda, conforme disponibilidade",
       diferenciais: [
-        "Produzida artesanalmente em crochê com fio náutico e fio de malha premium",
+        "Produzida artesanalmente em fio de malha",
         "Design trançado traz um toque de elegância",
-        "Tamanho prático para levar o essencial",
+        "Disponível nos tamanhos P e G",
         "Cores podem ser personalizadas ao seu gosto (Verificar disponibilidade)",
       ],
     },
-    galeria: [
+    tamanhos: [
       {
-        imagem: "./assets/img/bolsaInes/bolsa-ines-2.jpeg",
-        legenda: "Bolsa em fio náutico",
+        id: "P",
+        nome: "P",
+        disponivel: true,
+        imagem: "./assets/img/bolsaInes/bolsa-ines-1.jpeg",
+        legendaImagem: "Bolsa Inês tamanho P em fio de malha",
+        preco: {
+          promocaoAtiva: false,
+          pix: "R$ 145,00",
+          parcelado: "R$ 145,00",
+          parcelas: 2,
+          valorParcela: "R$ 72,50",
+        },
       },
       {
+        id: "G",
+        nome: "G",
+        disponivel: true,
+        imagem: "./assets/img/bolsaInes/bolsa-ines-3.jpeg",
+        legendaImagem: "Bolsa Inês tamanho G na cor Chocolate",
+        preco: {
+          promocaoAtiva: false,
+          pix: "R$ 220,00",
+          parcelado: "R$ 220,00",
+          parcelas: 2,
+          valorParcela: "R$ 110,00",
+        },
+      },
+    ],
+    galeria: [
+      {
         imagem: "./assets/img/bolsaInes/bolsa-ines-1.jpeg",
-        legenda: "Bolsa em fio de malha",
+        legenda: "Bolsa Inês tamanho P em fio de malha",
+      },
+      {
+        imagem: "./assets/img/bolsaInes/bolsa-ines-3.jpeg",
+        legenda: "Bolsa Inês tamanho G na cor Chocolate",
       },
     ],
     variantes: [
@@ -339,8 +371,15 @@ const produtos = [
         fioId: "fio-malha",
         corId: "preto",
         corHex: "#1D1C21",
-        cornome: "Preto",
-        imagem: "./assets/img/bolsaInes/bolsa-ines-2.jpeg",
+        corNome: "Preto",
+        imagem: "./assets/img/bolsaInes/bolsa-ines-1.jpeg",
+      },
+      {
+        fioId: "fio-malha",
+        corId: "chocolate",
+        corHex: "#68443B",
+        corNome: "Chocolate",
+        imagem: "./assets/img/bolsaInes/bolsa-ines-3.jpeg",
       },
     ],
     opcoesProducao: [
@@ -355,6 +394,7 @@ const produtos = [
           { corId: "amarelo-bebe", disponivel: true },
           { corId: "mango", disponivel: true },
           { corId: "marrom", disponivel: true },
+          { corId: "chocolate", disponivel: true, imagem: "./assets/img/bolsaInes/bolsa-ines-3.jpeg" },
           { corId: "esmeralda", disponivel: true },
           { corId: "marsala", disponivel: true },
           { corId: "verde-hortela", disponivel: true },
@@ -363,24 +403,6 @@ const produtos = [
             corId: "verde-musgo",
             disponivel: true,
           },
-        ],
-      },
-      {
-        fioId: "fio-nautico",
-        cores: [
-          { corId: "chocolate", disponivel: true },
-          { corId: "rosa-bebe", disponivel: true },
-          { corId: "verde-jade", disponivel: true },
-          { corId: "champagne", disponivel: true },
-          { corId: "rose-gold", disponivel: true },
-          { corId: "amora", disponivel: true },
-          { corId: "verde-bandeira", disponivel: true },
-          { corId: "caqui", disponivel: true },
-          { corId: "azul-marinho", disponivel: true },
-          { corId: "colorau", disponivel: true },
-          { corId: "lilas", disponivel: true },
-          { corId: "sangria", disponivel: true },
-          { corId: "ferrugem", disponivel: true },
         ],
       },
     ],
@@ -425,7 +447,10 @@ const produtos = [
         imagem: "./assets/img/bolsaEliza/bolsa-eliza-4.jpeg",
         legenda: "Vista principal na cor Marsala",
       },
-
+      {
+        imagem: "./assets/img/bolsaEliza/bolsa-eliza-5.jpeg",
+        legenda: "Bolsa Eliza nas cores Ferrugem e Verde Musgo",
+      },
     ],
     variantes: [
       {
@@ -1068,12 +1093,17 @@ const produtos = [
         "Produzida artesanalmente em fio de malha",
         "Todas as cores de fio de malha disponíveis para personalizar",
         "Peça leve e especial para diferentes ocasiões",
+        "A foto mostra o nome personalizado aplicado na parte externa da bolsa; consulte as condições para adicionar esse detalhe",
       ],
     },
     galeria: [
       {
         imagem: "./assets/img/bolsaGeane/bolsa-geane-01.jpeg",
         legenda: "Bolsa Geane na cor Pink",
+      },
+      {
+        imagem: "./assets/img/bolsaGeane/bolsa-geane-02.jpeg",
+        legenda: "Bolsa Geane na cor Rosa Algodão com nome personalizado",
       },
     ],
     variantes: [
@@ -1084,6 +1114,13 @@ const produtos = [
         corNome: "Pink",
         imagem: "./assets/img/bolsaGeane/bolsa-geane-01.jpeg",
       },
+      {
+        fioId: "fio-malha",
+        corId: "rosa-algodao",
+        corHex: "#E7A5B7",
+        corNome: "Rosa Algodão",
+        imagem: "./assets/img/bolsaGeane/bolsa-geane-02.jpeg",
+      },
     ],
     opcoesProducao: [
       {
@@ -1091,7 +1128,12 @@ const produtos = [
         cores: coresFioMalha.map((cor) => ({
           corId: cor.id,
           disponivel: true,
-          imagem: cor.id === "pink" ? "./assets/img/bolsaGeane/bolsa-geane-01.jpeg" : "",
+          imagem:
+            cor.id === "pink"
+              ? "./assets/img/bolsaGeane/bolsa-geane-01.jpeg"
+              : cor.id === "rosa-algodao"
+                ? "./assets/img/bolsaGeane/bolsa-geane-02.jpeg"
+                : "",
         })),
       },
     ],
@@ -1109,11 +1151,11 @@ const produtos = [
     badge: "Novo",
     preco: {
       promocaoAtiva: false,
-      precoOriginal: "R$ 250,00",
-      pix: "R$ 250,00",
-      parcelado: "R$ 250,00",
+      precoOriginal: "R$ 220,00",
+      pix: "R$ 220,00",
+      parcelado: "R$ 220,00",
       parcelas: 2,
-      valorParcela: "R$ 125,00",
+      valorParcela: "R$ 110,00",
     },
     detalhes: {
       subtitulo: "Estruturada, sofisticada e feita para se destacar.",
@@ -1333,6 +1375,155 @@ const produtos = [
       descricao: "Selecione exatamente 2 cores de fio de malha para personalizar a sua Bolsa Kitty.",
       minimo: 2,
       maximo: 2,
+    },
+  },
+  {
+    id: 16,
+    nome: "Bolsa Lúcia",
+    imagemCapa: "./assets/img/bolsaLucia/bolsa-lucia.jpeg",
+    descricao:
+      "Bolsa artesanal em fio de malha, na cor Marsala, com alça regulável.",
+    descricaoDetalhada:
+      "A Bolsa Lúcia é feita em fio de malha e tem alça regulável, permitindo usar a peça na mão, no ombro ou transversalmente.",
+    destaque: false,
+    categoria: "Bolsas",
+    badge: "Novo",
+    preco: {
+      promocaoAtiva: false,
+      precoOriginal: "R$ 130,00",
+      pix: "R$ 130,00",
+      parcelado: "R$ 130,00",
+      parcelas: 2,
+      valorParcela: "R$ 65,00",
+    },
+    detalhes: {
+      subtitulo: "Versátil para usar de diferentes formas.",
+      medidas: "Medidas aproximadas sob consulta no WhatsApp",
+      material: "Fio de malha",
+      prazo: "Produção sob encomenda, conforme disponibilidade",
+      diferenciais: [
+        "Alça regulável para usar na mão, no ombro ou transversalmente",
+        "Peça artesanal em fio de malha",
+        "Cor da foto: Marsala",
+      ],
+    },
+    galeria: [
+      {
+        imagem: "./assets/img/bolsaLucia/bolsa-lucia.jpeg",
+        legenda: "Bolsa Lúcia na cor Marsala",
+      },
+    ],
+    variantes: [
+      {
+        fioId: "fio-malha",
+        corId: "marsala",
+        corHex: "#A52122",
+        corNome: "Marsala",
+        imagem: "./assets/img/bolsaLucia/bolsa-lucia.jpeg",
+      },
+    ],
+    opcoesProducao: [
+      {
+        fioId: "fio-malha",
+        cores: [{ corId: "marsala", disponivel: true }],
+      },
+    ],
+  },
+  {
+    id: 17,
+    nome: "Bolsa Merliah",
+    imagemCapa: "./assets/img/bolsaMerliah/bolsa-merliah.jpeg",
+    descricao:
+      "Bolsa artesanal em fio de malha na cor Brotinho, com alça de pérolas e alça de corrente.",
+    descricaoDetalhada:
+      "A Bolsa Merliah combina uma alça de mão em pérolas com uma alça de ombro em corrente, para variar a forma de usar. A peça da foto está na cor Brotinho.",
+    destaque: false,
+    categoria: "Bolsas",
+    badge: "Novo",
+    preco: {
+      promocaoAtiva: false,
+      precoOriginal: "R$ 145,00",
+      pix: "R$ 145,00",
+      parcelado: "R$ 145,00",
+      parcelas: 2,
+      valorParcela: "R$ 72,50",
+    },
+    detalhes: {
+      subtitulo: "Duas alças para usar em diferentes ocasiões.",
+      medidas: "Medidas aproximadas sob consulta no WhatsApp",
+      material: "Fio de malha",
+      prazo: "Produção sob encomenda, conforme disponibilidade",
+      diferenciais: [
+        "Alça de mão em pérolas",
+        "Alça de ombro em corrente",
+        "Cor da foto: Brotinho",
+      ],
+    },
+    galeria: [
+      {
+        imagem: "./assets/img/bolsaMerliah/bolsa-merliah.jpeg",
+        legenda: "Bolsa Merliah na cor Brotinho",
+      },
+    ],
+    variantes: [
+      {
+        fioId: "fio-malha",
+        corId: "brotinho",
+        corHex: "#D5EAE4",
+        corNome: "Brotinho",
+        imagem: "./assets/img/bolsaMerliah/bolsa-merliah.jpeg",
+      },
+    ],
+    opcoesProducao: [
+      {
+        fioId: "fio-malha",
+        cores: [{ corId: "brotinho", disponivel: true }],
+      },
+    ],
+  },
+  {
+    id: 18,
+    nome: "Bolsa Flora",
+    imagemCapa: "./assets/img/bolsaFlora/bolsa-flora.jpeg",
+    descricao:
+      "Bolsa artesanal em fio de malha, personalizável em até três cores.",
+    descricaoDetalhada:
+      "A Bolsa Flora é feita em fio de malha e pode ser personalizada com uma combinação de até três cores.",
+    destaque: false,
+    categoria: "Bolsas",
+    badge: "Novo",
+    preco: {
+      promocaoAtiva: false,
+      precoOriginal: "R$ 65,00",
+      pix: "R$ 65,00",
+      parcelado: "R$ 65,00",
+      parcelas: 2,
+      valorParcela: "R$ 32,50",
+    },
+    detalhes: {
+      subtitulo: "Escolha as cores para criar uma combinação só sua.",
+      medidas: "Medidas aproximadas sob consulta no WhatsApp",
+      material: "Fio de malha",
+      prazo: "Produção sob encomenda, conforme disponibilidade",
+      diferenciais: [
+        "Produzida artesanalmente em fio de malha",
+        "Personalização com até três cores",
+      ],
+    },
+    galeria: [
+      {
+        imagem: "./assets/img/bolsaFlora/bolsa-flora.jpeg",
+        legenda: "Bolsa Flora personalizada em três cores",
+      },
+    ],
+    variantes: [],
+    opcoesProducao: [],
+    selecaoCores: {
+      fioId: "fio-malha",
+      titulo: "Escolha as cores da Bolsa Flora",
+      descricao: "Selecione de 1 a 3 cores de fio de malha para personalizar a sua Bolsa Flora.",
+      minimo: 1,
+      maximo: 3,
     },
   },
 ];
